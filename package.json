@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "qwiki",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "qWiki",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -22,6 +22,7 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "express": "^4.17.1",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "mongoose": "^5.7.8"
   }
 }

@@ -1,6 +1,12 @@
+//  Imports
 const express = require("express");
 const path = require("path");
+const db = require("./app/models");
+
+// Constants
 const PORT = process.env.PORT || 3001;
+
+// Express App
 const app = express();
 
 // Serve up static assets (usually on heroku)
@@ -14,6 +20,7 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+// Setup server listener
 app.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
