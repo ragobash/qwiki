@@ -1,7 +1,6 @@
 //  Imports
 const express = require("express");
 const path = require("path");
-const db = require("./app/models");
 
 // Constants
 const PORT = process.env.PORT || 3001;
