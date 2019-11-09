@@ -40,13 +40,13 @@ Please make sure to update tests as appropriate.
 ## Folder Structure
 ```
 qwiki/
-  README.md
-  LICENSE.txt
-  package.json
-  server.js
-  app/
-    models/
-        index.js
+└  README.md
+└  LICENSE.txt
+└  package.json
+└  server.js
+└  app/
+└──    models/
+  └     index.js
         Pages.js
         PermissionsEnum.js
         Qwikis.js
