@@ -25,9 +25,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Credits
-[Andrew Brooking](https://github.com/AndrewBrooking)
-[Joshua Munoz](https://github.com/Joshmunoz63)
-[Ryan Harris](https://github.com/ragobash)
+* [Andrew Brooking](https://github.com/AndrewBrooking)
+* [Joshua Munoz](https://github.com/Joshmunoz63)
+* [Ryan Harris](https://github.com/ragobash)
 
 ## Folder Structure
 ```
