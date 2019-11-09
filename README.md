@@ -1,5 +1,5 @@
 
-# qWiki ![](client/public/images/logo.png)
+![logo](client/public/images/logo.png)
 
 qWiki is a 
 
