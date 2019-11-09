@@ -8,16 +8,16 @@ qWiki is a
 /// FILLER TEXT
 
 ## Technologies Used
-*[Axios](https://www.npmjs.com/package/axios)
-*[Bcrypt](https://www.npmjs.com/package/bcrypt)
-*[Express](https://expressjs.com/)
-*[Heroku](https://devcenter.heroku.com/categories/reference)
-*[Javascript](https://devdocs.io/javascript/)
-*[Material UI](https://material-ui.com/)
-*[Mongo](https://docs.mongodb.com/)
-*[Mongoose](https://mongoosejs.com/docs/api.html)
-*[React](https://reactjs.org/docs/getting-started.html)
-*[Redux](https://redux.js.org/)
+* [Axios](https://www.npmjs.com/package/axios)
+* [Bcrypt](https://www.npmjs.com/package/bcrypt)
+* [Express](https://expressjs.com/)
+* [Heroku](https://devcenter.heroku.com/categories/reference)
+* [Javascript](https://devdocs.io/javascript/)
+* [Material UI](https://material-ui.com/)
+* [Mongo](https://docs.mongodb.com/)
+* [Mongoose](https://mongoosejs.com/docs/api.html)
+* [React](https://reactjs.org/docs/getting-started.html)
+* [Redux](https://redux.js.org/)
 
 ## Usage
 
