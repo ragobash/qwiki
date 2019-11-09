@@ -33,6 +33,7 @@ Please make sure to update tests as appropriate.
 ```
 qwiki/
   README.md
+  LICENSE.txt
   package.json
   server.js
   app/
