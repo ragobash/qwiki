@@ -19,5 +19,5 @@
  */
 
 module.exports = {
-    apiRoutes: require("./apiRoutes");
+    getRoutes: require("./getRoutes")
 }
