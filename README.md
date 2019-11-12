@@ -3,13 +3,16 @@
 
 qWiki is a platform that provides a quick and easy way to host your own scalable Wiki. With the Builder Tool, you can easily generate dynamic informative Wikis and publish them for others to read or contribute.
 
-## Table of Contents
-- [Technologies Used](https://github.com/ragobash/qwiki#technologies-used)
-- [Usage](https://github.com/ragobash/qwiki#usage)
-- [Contributing](https://github.com/ragobash/qwiki#contributing)
-- [Credits](https://github.com/ragobash/qwiki#credits)
-- [Folder Structure](https://github.com/ragobash/qwiki#folder-structure)
-- [License](https://github.com/ragobash/qwiki#license)
+
+| Table of Contents |
+| ------------- |
+| [Technologies Used](https://github.com/ragobash/qwiki#technologies-used) |
+| [Usage](https://github.com/ragobash/qwiki#usage) |
+| [Contributing](https://github.com/ragobash/qwiki#contributing) |
+| [Credits](https://github.com/ragobash/qwiki#credits) |
+| [Folder Structure](https://github.com/ragobash/qwiki#folder-structure) |
+| [License](https://github.com/ragobash/qwiki#license) |
+
 
 ## Technologies Used
 * [Axios](https://www.npmjs.com/package/axios)
