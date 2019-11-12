@@ -19,5 +19,19 @@
  */
 
 module.exports = {
+
     // TODO
+    updateQwiki: (data, cb) => {
+        // TODO
+    },
+
+    // TODO
+    updatePage: (data, cb) => {
+        // TODO
+    },
+    
+    // TODO
+    updateUser: (data, cb) => {
+        // TODO
+    }
 }

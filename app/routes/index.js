@@ -19,5 +19,6 @@
  */
 
 module.exports = {
-    getRoutes: require("./getRoutes")
+    getRoutes: require("./getRoutes"),
+    postRoutes: require("./postRoutes")
 }

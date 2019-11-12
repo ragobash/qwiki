@@ -19,32 +19,36 @@
  */
 
 const mongoose = require('mongoose');
-const PERMISSIONS = require('./PermissionsEnum');
 const SECTION_TYPES = require('./SectionTypesEnum');
 const Schema = mongoose.Schema;
 
 const PagesSchema = new Schema({
     title: {
-        type: String
+        type: String,
+        required: true
     },
     blurb: {
         type: String
     },
-    permissions: {
-        type: String,
-        enum: Object.values(PERMISSIONS)
-    },
     public: {
         type: Boolean,
-        default: true
+        default: true,
+        required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now,
+        required: true
     },
     lastEdit: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        required: true
     },
     lastEditor: {
         type: Schema.Types.ObjectId,
-        ref: "Users"
+        ref: "Users",
+        required: true
     },
     sections: [{
         sectionType: {

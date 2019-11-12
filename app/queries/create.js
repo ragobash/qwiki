@@ -18,6 +18,60 @@
  * 
  */
 
+const db = require("./app/models");
+
 module.exports = {
-    // TODO
+    
+    // Creates a new Qwiki document using the provided data
+    newQwiki: (data, cb) => {
+        db.Qwikis.create({
+            title: data.title,
+            blurb: data.blurb || "",
+            img: data.img || "",
+            owner: data.owner,
+            mods: data.mods || [],
+            pages: [],
+            permissions: data.permissions,
+            public: data.public,
+            created: Date.now(),
+            lastEdit: Date.now(),
+            lastEditor: data.owner
+        }, cb);
+    },
+
+    // Creates a new Page document using the provided data, and links it to the correct Qwiki
+    newPage: (data, cb) => {
+        db.Pages.create({
+            title: data.title,
+            blurb: data.blurb || "",
+            public: data.public,
+            created: Date.now(),
+            lastEdit: Date.now(),
+            lastEditor: data.editor,
+            sections: data.sections || []
+        }, (err, page) => {
+            if (err) {
+                cb(err);
+            } else {
+                db.Qwikis.findByIdAndUpdate(
+                    data.qwikiID,
+                    { $push: { pages: page._id } },
+                    (error) => {
+                        cb(error, page);
+                    }
+                );
+            }
+        });
+    },
+
+    // Creates a new User document using the provided data
+    newUser: (data, cb) => {
+        db.Users.create({
+            email: data.email,
+            password: data.password,
+            displayName: data.displayName,
+            followed: [],
+            joined: Date.now()
+        }, cb);
+    }
 }

@@ -18,33 +18,8 @@
  * 
  */
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const queries = require("../queries");
 
-const UsersSchema = new Schema({
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    displayName: {
-        type: String,
-        required: true
-    },
-    followed: [{
-        type: Schema.Types.ObjectId,
-        ref: "Qwikis"
-    }],
-    joined: {
-        type: Date,
-        default: Date.now,
-        required: true
-    }
-});
-
-const Users = mongoose.model("Users", UsersSchema);
-
-module.exports = Users;
+module.exports = (app) => {
+    // TODO
+}
