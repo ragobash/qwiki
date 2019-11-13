@@ -18,8 +18,53 @@
  * 
  */
 
+const bcrypt = require("bcrypt");
 const queries = require("../queries");
 
+const SALT_ROUNDS =  10;
+
 module.exports = (app) => {
-    // TODO
+    
+    app.post("/api/qwikis/new", (req, res) => {
+        queries.create.newQwiki(req.data, (err, qwiki) => {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+
+            res.send(qwiki);
+        });
+    }),
+
+    app.post("/api/pages/new", (req, res) => {
+        queries.create.newPage(req.data, (err, page) => {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+
+            res.send(page);
+        });
+    }),
+
+    app.post("/api/users/new", (req, res) => {
+        bcrypt
+            .hash(req.data.password, SALT_ROUNDS)
+            .then(hash => {
+                let data = {...req.data};
+
+                data.passsword = hash;
+
+                queries.create.newUser(data, (err, user) => {
+                    if (err) {
+                        console.log(err);
+                        return res.send(err);
+                    }
+        
+                    res.send(user);
+                });
+            });
+    })
+
+    // TODO: Update queries
 }
