@@ -22,7 +22,7 @@ class LoginModal extends Component {
 render() {
        return(
         <div>
-        <Button variant="contained" color="primary" onClick={this.handleOpen} id="btn">
+        <Button variant="contained"  onClick={this.handleOpen} id="btn">
             Login
         </Button>
 

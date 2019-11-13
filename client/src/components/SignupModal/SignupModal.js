@@ -23,7 +23,7 @@ class SignupModal extends Component {
 render() {
        return(
         <div>
-        <Button variant="contained" color="primary" onClick={this.handleOpen}>
+        <Button variant="contained" onClick={this.handleOpen} id="btn">
             Sign up
         </Button>
 
