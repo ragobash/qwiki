@@ -25,6 +25,7 @@ const SALT_ROUNDS =  10;
 
 module.exports = (app) => {
     
+    // Adds a new Qwiki to the database and sends the result back to the client
     app.post("/api/qwikis/new", (req, res) => {
         queries.create.newQwiki(req.data, (err, qwiki) => {
             if (err) {
@@ -36,6 +37,7 @@ module.exports = (app) => {
         });
     }),
 
+    // Adds a new Page to the database and sends the result back to the client
     app.post("/api/pages/new", (req, res) => {
         queries.create.newPage(req.data, (err, page) => {
             if (err) {
@@ -47,6 +49,7 @@ module.exports = (app) => {
         });
     }),
 
+    // Adds a new User to the database and sends the result back to the client
     app.post("/api/users/new", (req, res) => {
         bcrypt
             .hash(req.data.password, SALT_ROUNDS)
