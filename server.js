@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Import API routes
-require("./app/routes")
+require("./app/routes/index");
 
 // Send every request to the React app
 // Define any API routes before this runs
