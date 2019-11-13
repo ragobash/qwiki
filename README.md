@@ -62,26 +62,38 @@ qwiki
 │    │      update.js
 │    └─── routes
 │           index.js
-│           apiRoutes.js
+│           getRoutes.js
+|           postRoutes.js
 └─── client
      │    package.json
      └─── public
      │    │    index.html
      │    │    manifest.json
-     │    └─── images/
+     │    └─── images
      │           favicon.png
      │           logo.png
      └─── src
-            App.css
-            App.js
-            App.test.js
-            index.css
-            index.js
-            registerServiceWorker.js
+          │     App.css
+          │     App.js
+          │     App.test.js
+          │     index.css
+          │     index.js
+          │     registerServiceWorker.js
+          └─── components
+          │    └─── LoginModal
+          │    │        LoginModal.css
+          │    │        LoginModal.js
+          │    └─── NavBar
+          │    │        NavBar.css
+          │    │        NavBar.js
+          │    └─── SignupModal
+          │             SignupModal.css
+          │             SignupModal.js
+          └─── pages
 ```
 
 ## License
-[qWiki Copyright (C) 2019  Andrew Brooking, Josh Munoz, and Ryan Harris](https://github.com/ragobash/qwiki#license)
+[qWiki Copyright (C) 2019  Andrew Brooking, Josh Munoz, and Ryan Harris](https://github.com/ragobash/qwiki/blob/master/LICENSE.txt)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
