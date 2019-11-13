@@ -18,12 +18,14 @@
  * 
  */
 
-const SECTION_TYPES = Object.freeze({
-    HEADING: "HEADING",
-    PARAGRAPH: "PARAGRAPH",
-    IMAGE: "IMAGE",
-    CHART: "CHART",
-    GRAPH: "GRAPH"
-});
+module.exports = (app) => {
 
-module.exports = SECTION_TYPES;
+    app.get("/api/", (req, res) => {
+        // TODO
+    });
+
+    app.post("/api/", (req, res) => {
+        // TODO
+    });
+    
+}
