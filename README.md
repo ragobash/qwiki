@@ -62,22 +62,34 @@ qwiki
 │    │      update.js
 │    └─── routes
 │           index.js
-│           apiRoutes.js
+│           getRoutes.js
+|           postRoutes.js
 └─── client
      │    package.json
      └─── public
      │    │    index.html
      │    │    manifest.json
-     │    └─── images/
+     │    └─── images
      │           favicon.png
      │           logo.png
      └─── src
-            App.css
-            App.js
-            App.test.js
-            index.css
-            index.js
-            registerServiceWorker.js
+          │     App.css
+          │     App.js
+          │     App.test.js
+          │     index.css
+          │     index.js
+          │     registerServiceWorker.js
+          └─── components
+          │    └─── LoginModal
+          │    │        LoginModal.css
+          │    │        LoginModal.js
+          │    └─── NavBar
+          │    │        NavBar.css
+          │    │        NavBar.js
+          │    └─── SignupModal
+          │             SignupModal.css
+          │             SignupModal.js
+          └─── pages
 ```
 
 ## License
