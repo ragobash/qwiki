@@ -18,7 +18,7 @@
  * 
  */
 
-//  Imports
+// Imports
 const express = require("express");
 const path = require("path");
 
@@ -28,10 +28,13 @@ const PORT = process.env.PORT || 3001;
 // Express App
 const app = express();
 
-// Serve up static assets (usually on heroku)
+// Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+// Import API routes
+require("./app/routes/index");
 
 // Send every request to the React app
 // Define any API routes before this runs

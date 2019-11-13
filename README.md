@@ -42,45 +42,46 @@ Please make sure to update tests as appropriate.
 
 ## Folder Structure
 ```
-qwiki/
-  README.md
-  LICENSE.txt
-  package.json
-  server.js
-  app/
-    models/
-       index.js
-        Pages.js
-        PermissionsEnum.js
-        Qwikis.js
-        SectionTypesEnum.js
-        Users.js
-    queries/
-        index.js
-        create.js
-        read.js
-        update.js
-    routes/
-        index.js
-        apiRoutes.js
-  client/
-    package.json
-    public/
-        index.html
-        manifest.json
-        images/
-            favicon.png
-            logo.png
-    src/
-        App.css
-        App.js
-        App.test.js
-        index.css
-        index.js
-        registerServiceWorker.js
+qwiki
+│    README.md
+│    LICENSE.txt
+│    package.json
+│    server.js
+└─── app
+│    └─── models
+│    │      index.js
+│    │      Pages.js
+│    │      PermissionsEnum.js
+│    │      Qwikis.js
+│    │      SectionTypesEnum.js
+│    │      Users.js
+│    └─── queries
+│    │      index.js
+│    │      create.js
+│    │      read.js
+│    │      update.js
+│    └─── routes
+│           index.js
+│           apiRoutes.js
+└─── client
+     │    package.json
+     └─── public
+     │    │    index.html
+     │    │    manifest.json
+     │    └─── images/
+     │           favicon.png
+     │           logo.png
+     └─── src
+            App.css
+            App.js
+            App.test.js
+            index.css
+            index.js
+            registerServiceWorker.js
 ```
+
 ## License
-qWiki Copyright (C) 2019  Andrew Brooking, Josh Munoz, and Ryan Harris
+[qWiki Copyright (C) 2019  Andrew Brooking, Josh Munoz, and Ryan Harris](https://github.com/ragobash/qwiki#license)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
