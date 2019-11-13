@@ -27,31 +27,29 @@ module.exports = {
         db.Qwikis
             .find({}, cb)
             .exec((err, qwikis) => {
-                if (err) console.log(err);
-                cb(qwikis);
+                cb(err, qwikis);
             });
     },
 
-    // Queries the Qwiki collection for a specific Qwiki documents, also populates subpages
+    // Queries the Qwiki collection for a specific Qwiki documents
+    // Also populates subpages
     getQwiki: (_id, cb) => {
         db.Qwikis
             .findById(_id)
             .populate("Pages")
             .exec((err, qwiki) => {
-                if (err) console.log(err);
-                cb(qwiki);
+                cb(err, qwiki);
             });
     },
 
-    // Queries the Pages collection for any Page document with the specified term in the title
+    // Queries the Pages collection for any Page documents with the specified term in the title
     searchPages: (term, cb) => {
         db.Pages
             .find({
                 title: new RegExp('^' + term + '$', "i")
             })
-            .exec((err, qwikis) => {
-                if (err) console.log(err);
-                cb(qwikis);
+            .exec((err, pages) => {
+                cb(err, pages);
             });
     },
 
@@ -60,18 +58,31 @@ module.exports = {
         db.Pages
             .findById(_id)
             .exec((err, page) => {
-                if (err) console.log(err);
-                cb(page);
+                cb(err, page);
             });
     },
 
+    // Queries the Users collection for any User documents with the specified term in the displayName
+    // Also populates followed qwikis
+    searchUsers: (term, cb) => {
+        db.Users
+            .find({
+                displayName: new RegExp('^' + term + '$', "i")
+            }, "-password")
+            .populate("Qwikis")
+            .exec((err, users) => {
+                cb(err, users);
+            })
+    },
+
     // Queries the Users collection for a specific User document
+    // Also populates followed qwikis
     getUser: (_id, cb) => {
         db.Users
-            .findById(_id)
+            .findById(_id, "-password")
+            .populate("Qwikis")
             .exec((err, user) => {
-                if (err) console.log(err);
-                cb(user);
+                cb(err, user);
             });
     }
 }

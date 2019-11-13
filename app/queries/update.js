@@ -18,6 +18,82 @@
  * 
  */
 
+const db = require("./app/models");
+
 module.exports = {
-    // TODO
+
+    // Updates a single Qwiki document 
+    updateQwiki: (data, cb) => {
+        let values = {};
+
+        if (data.title) {
+            values.title = data.title;
+        }
+
+        if (data.blurb) {
+            values.blurb = data.blurb;
+        }
+
+        if (data.img) {
+            values.img = data.img;
+        }
+
+        if (data.permissions) {
+            values.permissions = data.permissions;
+        }
+
+        if (data.public) {
+            values.public = data.public;
+        }
+
+        values.lastEdit = Date.now();
+        values.lastEditor = data.editor;
+
+        db.Qwikis.findByIdAndUpdate(data.id, values, cb);
+    },
+
+    // Updates a single Page document 
+    updatePage: (data, cb) => {
+        let values = {};
+
+        if (data.title) {
+            values.title = data.title;
+        }
+
+        if (data.blurb) {
+            values.blurb = data.blurb;
+        }
+
+        if (data.public) {
+            values.public = data.public;
+        }
+
+        if (data.sections) {
+            values.sections = data.sections;
+        }
+
+        values.lastEdit = Date.now();
+        values.lastEditor = data.editor;
+
+        db.Pages.findByIdAndUpdate(data.id, values, cb);
+    },
+    
+    // Updates a single User document 
+    updateUser: (data, cb) => {
+        let values = {};
+
+        if (data.email) {
+            values.email = data.email;
+        }
+
+        if (data.password) {
+            values.password = data.password;
+        }
+
+        if (data.displayName) {
+            values.displayName = data.displayName;
+        }
+
+        db.Users.findByIdAndUpdate(data.id, values, cb);
+    }
 }

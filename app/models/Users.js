@@ -23,13 +23,16 @@ const Schema = mongoose.Schema;
 
 const UsersSchema = new Schema({
     email: {
-        type: String
+        type: String,
+        required: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     displayName: {
-        type: String
+        type: String,
+        required: true
     },
     followed: [{
         type: Schema.Types.ObjectId,
@@ -37,7 +40,8 @@ const UsersSchema = new Schema({
     }],
     joined: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        required: true
     }
 });
 
