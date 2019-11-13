@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="background">
           <Navbar />
         </div>
       </Router>      
