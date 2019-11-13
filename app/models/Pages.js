@@ -62,7 +62,6 @@ const PagesSchema = new Schema({
 });
 
 Object.assign(PagesSchema.statics, {
-    PERMISSIONS,
     SECTION_TYPES
 });
 
