@@ -18,7 +18,7 @@
  * 
  */
 
-const db = require("./app/models/index");
+const db = require("../models/index");
 
 module.exports = {
     
