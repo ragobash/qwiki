@@ -19,7 +19,7 @@
  */
 
 const bcrypt = require("bcrypt");
-const queries = require("../queries");
+const queries = require("../queries/index");
 
 const SALT_ROUNDS =  10;
 
