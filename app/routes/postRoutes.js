@@ -69,5 +69,48 @@ module.exports = (app) => {
             });
     })
 
-    // TODO: Update queries
+    // Updates a Qwiki document and sends the result back to the client
+    app.post("/api/qwikis/:id", (req, res) => {
+        req.data.id = req.params.id;
+
+        queries.update.updateQwiki(req.data, (err, qwiki) => {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+
+            res.send(qwiki);
+        });
+    }),
+
+    // Updates a Page document and sends the result back to the client
+    app.post("/api/pages/:id", (req, res) => {
+        req.data.id = req.params.id;
+
+        queries.update.updatePage(req.data, (err, page) => {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+
+            res.send(page);
+        });
+    }),
+
+    // Updates a User document and sends the result back to the client
+    app.post("/api/users/:id", (req, res) => {
+        req.data.id = req.params.id;
+
+        queries.update.updateUser(req.data, (err, user) => {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+
+            // Remove the password for security
+            user.password = "";
+
+            res.send(user);
+        });
+    })
 }
