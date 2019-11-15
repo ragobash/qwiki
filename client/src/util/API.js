@@ -24,7 +24,7 @@ export default {
 
     // Performs an axios GET request for all Qwikis
     getAllQwikis: () => {
-        return axios.get("/api/qwikis/all");
+        return axios.get("/api/qwikis");
     },
 
     // Performs an axios GET request for an individual Qwiki using the id

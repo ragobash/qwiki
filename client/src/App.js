@@ -22,13 +22,25 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/NavBar/Navbar";
+import LandingPage from "./pages/LandingPage";
 
 class App extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      loggedIn: false,
+      userID: ""
+    };
+  }
+
   render() {
     return (
       <Router>
         <div className="background">
           <Navbar />
+          <LandingPage />
         </div>
       </Router>      
     );
