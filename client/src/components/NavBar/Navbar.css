@@ -7,10 +7,6 @@
     justify-content: space-between;
 }
 
-.MuiAppBar-colorPrimary {
-    background-color: black;
-}
-
 .navbar {
     background-color: black;
     display: flex;
