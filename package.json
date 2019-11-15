@@ -1,9 +1,11 @@
 {
   "name": "qwiki",
   "version": "1.0.0",
-  "description": "",
+  "description": "![logo](client/public/images/logo.png)",
   "main": "server.js",
   "dependencies": {
+    "@material-ui/styles": "^4.6.0",
+    "@material-ui/core": "^4.6.1",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "express": "^4.17.1",
