@@ -22,6 +22,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/NavBar/Navbar";
+import SimpleExpansionPanel from './components/SubqWikiPopOut/SubqWikiPopOut.js'
 
 class App extends Component {
   render() {
@@ -29,6 +30,9 @@ class App extends Component {
       <Router>
         <div className="background">
           <Navbar />
+        </div>
+        <div>
+        <SimpleExpansionPanel />
         </div>
       </Router>      
     );

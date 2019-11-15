@@ -1,0 +1,17 @@
+$size: 45px;
+
+div {
+  background: #2f3640;
+  display: inline-block;
+}
+
+.right,
+.left {
+  height: $size * 2;
+  width: $size;
+}
+
+.right {
+  border-bottom-right-radius: $size * 2;
+  border-top-right-radius: $size * 2;
+}
