@@ -23,8 +23,8 @@ const db = require("../models/index");
 module.exports = {
     
     // Creates a new Qwiki document using the provided data
-    newQwiki: (data, cb) => {
-        db.Qwikis.create({
+    newQwiki: (data) => {
+        return db.Qwikis.create({
             title: data.title,
             blurb: data.blurb || "",
             img: data.img || "",
@@ -36,12 +36,12 @@ module.exports = {
             created: Date.now(),
             lastEdit: Date.now(),
             lastEditor: data.owner
-        }, cb);
+        });
     },
 
     // Creates a new Page document using the provided data, and links it to the correct Qwiki
-    newPage: (data, cb) => {
-        db.Pages.create({
+    newPage: (data) => {
+        return db.Pages.create({
             title: data.title,
             blurb: data.blurb || "",
             public: data.public,
@@ -49,29 +49,22 @@ module.exports = {
             lastEdit: Date.now(),
             lastEditor: data.editor,
             sections: data.sections || []
-        }, (err, page) => {
-            if (err) {
-                cb(err);
-            } else {
-                db.Qwikis.findByIdAndUpdate(
-                    data.qwikiID,
-                    { $push: { pages: page._id } },
-                    (error) => {
-                        cb(error, page);
-                    }
-                );
-            }
+        }).then(page => {
+            db.Qwikis.findByIdAndUpdate(
+                data.qwikiID,
+                { $push: { pages: page._id } }
+            )
         });
     },
 
     // Creates a new User document using the provided data
-    newUser: (data, cb) => {
-        db.Users.create({
+    newUser: (data) => {
+        return db.Users.create({
             email: data.email,
             password: data.password,
             displayName: data.displayName,
             followed: [],
             joined: Date.now()
-        }, cb);
+        });
     }
 }

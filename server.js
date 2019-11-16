@@ -21,9 +21,11 @@
 // Imports
 const express = require("express");
 const path = require("path");
+const mongoose = require("mongoose");
 
 // Constants
 const PORT = process.env.PORT || 3001;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/qwikiDevDB";
 
 // Express App
 const app = express();
@@ -33,13 +35,20 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// Connect to mongo DB
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
 // Import API routes
-require("./app/routes/index");
+require("./app/routes/getRoutes")(app);
+require("./app/routes/postRoutes")(app);
 
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "/"));
 });
 
 // Setup server listener
