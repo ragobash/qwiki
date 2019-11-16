@@ -38,10 +38,7 @@ class LandingPage extends React.Component {
             .then(res => {
                 this.setState({
                     qwikis: res.data.qwikis
-                }, ()=> {
-                    console.log(this.state);
                 });
-                
             })
             .catch(err => {
                 console.log(err);
