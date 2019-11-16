@@ -23,6 +23,7 @@ import React, {Component} from "react";
 import {Button, AppBar, Toolbar} from '@material-ui/core';
 import LoginModal from "../LoginModal/LoginModal";
 import SignupModal from "../SignupModal/SignupModal";
+import Logo from "../Logo/Logo";
 import SearchIcon from '@material-ui/icons/Search';
 import "./Navbar.css";
 

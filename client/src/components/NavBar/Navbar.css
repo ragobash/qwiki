@@ -15,6 +15,7 @@
     background-color: black;
     display: flex;
     justify-content: space-between;
+    border-bottom: #FB582F 1px;
 }
 
 .btns {
