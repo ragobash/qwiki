@@ -23,7 +23,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
-import SimpleExpansionPanel from './components/qWikiPagePopOut/qWikiPagePopOut.js'
+import SimpleExpansionPanel from './components/qWikiPagePopOut/qWikiPagePopOut.js';
+import Switches from './components/Switch/Switch';
 
 class App extends Component {
 
@@ -44,7 +45,8 @@ class App extends Component {
           <LandingPage />
         </div>
         <div>
-        <SimpleExpansionPanel />
+          <SimpleExpansionPanel />
+          <Switches />
         </div>
       </Router>
     );
