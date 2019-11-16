@@ -21,7 +21,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navbar from "./components/NavBar/Navbar";
+import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
 import SimpleExpansionPanel from './components/qWikiPagePopOut/qWikiPagePopOut.js'
 
@@ -41,7 +41,6 @@ class App extends Component {
       <Router>
         <div className="background">
           <Navbar />
-          <QwikiCard />
           <LandingPage />
         </div>
         <div>

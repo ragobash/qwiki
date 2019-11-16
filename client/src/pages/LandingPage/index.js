@@ -20,6 +20,7 @@
 
 import React from "react";
 import API from "../../util/API";
+import QwikiCard from "../../components/QwikiCard";
 
 class LandingPage extends React.Component {
 
@@ -51,7 +52,9 @@ class LandingPage extends React.Component {
 
     render() {
         return (
-            <div></div>
+            <div>
+                <QwikiCard />
+            </div>
         );
     }
 }

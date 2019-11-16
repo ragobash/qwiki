@@ -20,6 +20,7 @@
 
 import React from "react";
 import API from "../../util/API";
+import Navbar from "../../components/NavBar"
 
 class QwikiHub extends React.Component {
 
@@ -46,7 +47,9 @@ class QwikiHub extends React.Component {
 
     render() {
         return (
-            <div></div>
+            <div>
+                <Navbar />
+            </div>
         );
     }
 }
