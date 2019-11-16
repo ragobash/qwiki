@@ -1,3 +1,8 @@
+/*----------------------------------------\
+    Sign up Modal Styles and Animations
+\----------------------------------------*/
+
+/* Box that holds Modal */
 .box {
     width: 400px;
     padding: 40px;
@@ -10,12 +15,14 @@
     font-family: sans-serif;
 }
 
+/* Header */
 .box h2 {
     color: white;
     text-transform: uppercase;
     font-weight: 500;
 }
 
+/* imnput field styles */
 .box input[type = "text"],.box input[type = "password"]{
     border: 0;
     background: none;
@@ -31,6 +38,9 @@
     transition: 0.25s;
 }
 
+/*---------------------------\
+    Input Field Animations
+\---------------------------*/
 .box input[type = "text"]:focus,.box input[type = "password"]:focus{
     width: 280px;
     border-color: #FB582F;
@@ -56,6 +66,7 @@
     background: #3498db;
 }
 
+/* Submit btn Styles */
 #btn {
     background-color: #3498db;
     color: white;
