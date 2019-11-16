@@ -23,7 +23,7 @@ const db = require("../models/index");
 module.exports = {
 
     // Updates a single Qwiki document 
-    updateQwiki: (data, cb) => {
+    updateQwiki: (data) => {
         let values = {};
 
         if (data.title) {
@@ -49,11 +49,11 @@ module.exports = {
         values.lastEdit = Date.now();
         values.lastEditor = data.editor;
 
-        db.Qwikis.findByIdAndUpdate(data.id, values, cb);
+        return db.Qwikis.findByIdAndUpdate(data.id, values);
     },
 
     // Updates a single Page document 
-    updatePage: (data, cb) => {
+    updatePage: (data) => {
         let values = {};
 
         if (data.title) {
@@ -75,11 +75,11 @@ module.exports = {
         values.lastEdit = Date.now();
         values.lastEditor = data.editor;
 
-        db.Pages.findByIdAndUpdate(data.id, values, cb);
+        return db.Pages.findByIdAndUpdate(data.id, values);
     },
     
     // Updates a single User document 
-    updateUser: (data, cb) => {
+    updateUser: (data) => {
         let values = {};
 
         if (data.email) {
@@ -94,6 +94,6 @@ module.exports = {
             values.displayName = data.displayName;
         }
 
-        db.Users.findByIdAndUpdate(data.id, values, cb);
+        return db.Users.findByIdAndUpdate(data.id, values);
     }
 }
