@@ -20,7 +20,7 @@
 
 import React from "react";
 import API from "../../util/API";
-import Navbar from "../../components/NavBar"
+import qWikiPagePopOut from "../../components/qWikiPagePopOut";
 
 class QwikiHub extends React.Component {
 
@@ -37,6 +37,8 @@ class QwikiHub extends React.Component {
             .getQwikiByID(this.props.qwikiID)
             .then(res => {
                 this.setState({
+                    title: res.data.title,
+                    blurb: res.data.blurb,
                     pages: res.data.pages
                 });
             })
@@ -48,7 +50,7 @@ class QwikiHub extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <qWikiPagePopOut pages={this.state.pages} />
             </div>
         );
     }

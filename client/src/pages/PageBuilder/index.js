@@ -19,9 +19,7 @@
  */
 
 import React from "react";
-import Heading from "../../components/Heading";
-import Paragraph from "../../components/Paragraph";
-import Image from "../../components/Image";
+import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 
 class PageBuilder extends React.Component {
@@ -93,29 +91,23 @@ class PageBuilder extends React.Component {
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }
-
-    // TODO
-    renderSections() {
-        for (let i = 0; i < this.state.sections.length; i++) {
-            let section = this.state.sections[i];
-
-            switch (section.type) {
-                case "HEADING":
-                    <Heading index={i} content={section.content} onChange={this.sectionInput} />
-                case "PARAGRAPH":
-                    <Paragraph index={i} content={section.content} onChange={this.sectionInput} />
-                case "IMAGE":
-                    <Image index={i} content={section.content} onChange={this.sectionInput} />
-            }
-        }
-    }
     
     // TODO
     render() {
         return (
             <div>
+                <BuilderToolbar onClick={this.newSection} />
                 <div>
-                    {this.renderSections()}
+                    {this.state.sections.map((section, index) => {
+                        switch (section.type) {
+                            case "HEADING":
+                                return <input index={index} content={section.content} onChange={this.sectionInput} />
+                            case "PARAGRAPH":
+                                return <textarea index={index} content={section.content} onChange={this.sectionInput} />
+                            case "IMAGE":
+                                return <input index={index} content={section.content} onChange={this.sectionInput} />
+                        }
+                    })}
                 </div>
             </div>
         );
