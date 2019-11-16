@@ -27,26 +27,22 @@ module.exports = (app) => {
     
     // Adds a new Qwiki to the database and sends the result back to the client
     app.post("/api/qwikis/new", (req, res) => {
-        queries.create.newQwiki(req.data, (err, qwiki) => {
-            if (err) {
+        queries.create.newQwiki(req.data)
+            .then(qwiki => res.json(qwiki))
+            .catch(err => {
                 console.log(err);
-                return res.send(err);
-            }
-
-            res.send(qwiki);
-        });
+                res.send(err);
+            });
     }),
 
     // Adds a new Page to the database and sends the result back to the client
     app.post("/api/pages/new", (req, res) => {
-        queries.create.newPage(req.data, (err, page) => {
-            if (err) {
+        queries.create.newPage(req.data)
+            .then(page => res.json(page))
+            .catch(err => {
                 console.log(err);
-                return res.send(err);
-            }
-
-            res.send(page);
-        });
+                res.send(err);
+            });
     }),
 
     // Adds a new User to the database and sends the result back to the client
@@ -58,14 +54,21 @@ module.exports = (app) => {
 
                 data.passsword = hash;
 
-                queries.create.newUser(data, (err, user) => {
-                    if (err) {
-                        console.log(err);
-                        return res.send(err);
-                    }
+                queries.create.newUser(data)
+                    .then(user => {
+                        // Remove the password for security
+                        user.password = "";
         
-                    res.send(user);
-                });
+                        res.json(user)
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.send(err);
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.send(err);
             });
     })
 
@@ -73,44 +76,40 @@ module.exports = (app) => {
     app.post("/api/qwikis/:id", (req, res) => {
         req.data.id = req.params.id;
 
-        queries.update.updateQwiki(req.data, (err, qwiki) => {
-            if (err) {
+        queries.update.updateQwiki(req.data)
+            .then(qwiki => res.json(qwiki))
+            .catch(err => {
                 console.log(err);
-                return res.send(err);
-            }
-
-            res.send(qwiki);
-        });
+                res.send(err);
+            });
     }),
 
     // Updates a Page document and sends the result back to the client
     app.post("/api/pages/:id", (req, res) => {
         req.data.id = req.params.id;
 
-        queries.update.updatePage(req.data, (err, page) => {
-            if (err) {
+        queries.update.updatePage(req.data)
+            .then(page => res.json(page))
+            .catch(err => {
                 console.log(err);
-                return res.send(err);
-            }
-
-            res.send(page);
-        });
+                res.send(err);
+            });
     }),
 
     // Updates a User document and sends the result back to the client
     app.post("/api/users/:id", (req, res) => {
         req.data.id = req.params.id;
 
-        queries.update.updateUser(req.data, (err, user) => {
-            if (err) {
+        queries.update.updateUser(req.data)
+            .then(user => {
+                // Remove the password for security
+                user.password = "";
+
+                res.json(user)
+            })
+            .catch(err => {
                 console.log(err);
-                return res.send(err);
-            }
-
-            // Remove the password for security
-            user.password = "";
-
-            res.send(user);
-        });
+                res.send(err);
+            });;
     })
 }
