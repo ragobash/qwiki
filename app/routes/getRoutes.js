@@ -23,74 +23,62 @@ const queries = require("../queries/index");
 module.exports = (app) => {
 
     // Sends the results of the allQwikis query (an array of Qwiki documents) to the client
-    app.get("/api/qwikis/all", (req, res) => {
-        queries.read.allQwikis((err, qwikis) => {
-            if (err) {
+    app.get("/api/qwikis", (req, res) => {
+        queries.read.allQwikis()
+            .then(data => res.json(data))
+            .catch(err => {
                 console.log(err);
                 res.send(err);
-            } else {
-                res.send(qwikis);
-            }
-        });
+            });
     });
 
     // Sends the results of the getQwiki query (a single Qwiki document) to the client
     app.get("/api/qwikis/:id", (req, res) => {
-        queries.read.getQwiki(req.params.id, (err, qwiki) => {
-            if (err) {
+        queries.read.getQwiki(req.params.id)
+            .then(data => res.json(data))
+            .catch(err => {
                 console.log(err);
                 res.send(err);
-            } else {
-                res.send(qwiki);
-            }
-        });
+            });
     });
 
     // Sends the results of the searchPages query (an array of Page documents) to the client
     app.get("/api/pages/:term", (req, res) => {
-        queries.read.searchPages(req.params.term, (err, pages) => {
-            if (err) {
+        queries.read.searchPages(req.params.term)
+            .then(data => res.json(data))
+            .catch(err => {
                 console.log(err);
                 res.send(err);
-            } else {
-                res.send(pages);
-            }
-        });
+            });
     });
 
     // Sends the results of the getPage query (a single Page document) to the client
     app.get("/api/pages/:id", (req, res) => {
-        queries.read.getPage(req.params.id, (err, page) => {
-            if (err) {
+        queries.read.getPage(req.params.id)
+            .then(data => res.json(data))
+            .catch(err => {
                 console.log(err);
                 res.send(err);
-            } else {
-                res.send(page);
-            }
-        });
+            });
     });
 
     // Sends the results of the searchUsers query (an array of User documents) to the client
     app.get("/api/users/:term", (req, res) => {
-        queries.read.searchUsers(req.params.term, (err, users) => {
-            if (err) {
+        queries.read.searchUsers(req.params.term)
+            .then(data => res.json(data))
+            .catch(err => {
                 console.log(err);
                 res.send(err);
-            } else {
-                res.send(users);
-            }
-        });
+            });
     });
     
     // Sends the results of the getUser query (a single User document)
     app.get("/api/users/:id", (req, res) => {
-        queries.read.getUser(req.params.id, (err, user) => {
-            if (err) {
+        queries.read.getUser(req.params.id)
+            .then(data => res.json(data))
+            .catch(err => {
                 console.log(err);
                 res.send(err);
-            } else {
-                res.send(user);
-            }
-        });
+            });
     });
 }
