@@ -83,16 +83,17 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      <Button style={{background: '#2f3640',
-                      height: '65px',
-                      borderRadius: '50%',
-                      padding: '10px',
-                      display: 'flex',
-                      justifycontent: 'space-between',
-                      margin: '10px',
-                      color: '#FB582F'
-  }} onClick={toggleDrawer('left', true)}><ArrowForwardIosOutlinedIcon /></Button>
-      <Drawer classes={{paper: classes.drawerRoot}}open={state.left} onClose={toggleDrawer('left', false)}>
+      <Button style={{
+        background: '#2f3640',
+        height: '65px',
+        borderRadius: '50%',
+        padding: '10px',
+        display: 'flex',
+        justifycontent: 'space-between',
+        margin: '10px',
+        color: '#FB582F'
+      }} onClick={toggleDrawer('left', true)}><ArrowForwardIosOutlinedIcon /></Button>
+      <Drawer classes={{ paper: classes.drawerRoot }} open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
       </Drawer>
     </div>

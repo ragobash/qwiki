@@ -25,6 +25,7 @@ import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
 import SimpleExpansionPanel from './components/qWikiPagePopOut/qWikiPagePopOut.js';
 import Switches from './components/Switch/Switch';
+import Button from './components/Button/Button';
 
 class App extends Component {
 
@@ -47,6 +48,7 @@ class App extends Component {
         <div>
           <SimpleExpansionPanel />
           <Switches />
+          <Button />
         </div>
       </Router>
     );
