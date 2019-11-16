@@ -18,31 +18,26 @@
  * 
  */
 
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
+import React from "react";
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    '& > * + *': {
-      padding: '15',
-    },
-  },
-  square: {
-    width: '100%',
-    heigth: '100%',
-    backgroundColor: 'red'
-  }
-});
+class PageBuilder extends React.Component {
 
-export default function VariantAvatars() {
-  const classes = useStyles();
+    constructor() {
+        super();
 
-  return (
-    <div className={classes.root}>
-      <Avatar variant="square" src="https://via.placeholder.com/300" className={classes.square}>
-      </Avatar>
-    </div>
-  );
+        this.state = {
+            title: "",
+            blurb: "",
+            public: true,
+            sections: []
+        }
+    }
+    
+    render() {
+        return (
+            <div></div>
+        );
+    }
 }
+
+export default PageBuilder;
