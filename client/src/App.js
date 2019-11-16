@@ -20,14 +20,12 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
-import SimpleExpansionPanel from './components/qWikiPagePopOut/qWikiPagePopOut.js';
-import Switches from './components/Switch/Switch';
+import QwikiBuilder from "../src/pages/QwikiBuilder";
 
 class App extends Component {
-
   constructor() {
     super();
 
@@ -42,12 +40,11 @@ class App extends Component {
       <Router>
         <div className="background">
           <Navbar />
-          <LandingPage />
         </div>
-        <div>
-          <SimpleExpansionPanel />
-          <Switches />
-        </div>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/QwikiBuilder" component={QwikiBuilder} />
+        </Switch>
       </Router>
     );
   }

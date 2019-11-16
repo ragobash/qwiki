@@ -24,6 +24,7 @@ import {Button, Modal,} from '@material-ui/core';
 import "./LoginModal.css";
 
 class LoginModal extends Component {
+    // This handles the state of the modal
     constructor () {
         super();
         this.state = {
@@ -31,10 +32,12 @@ class LoginModal extends Component {
         };
     }
 
+    // opens modal
     handleOpen = () => {
         this.setState({ open: true });
     };
 
+    // closes modal
     handleClose = () => {
         this.setState({ open: false });
     };
@@ -42,10 +45,12 @@ class LoginModal extends Component {
 render() {
        return(
         <div>
+            {/* login btn */}
         <Button variant="contained"  onClick={this.handleOpen} id="btn">
             Login
         </Button>
 
+        {/* login modal */}
         <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
