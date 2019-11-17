@@ -22,7 +22,7 @@ import React from "react";
 import API from "../../util/API";
 import Heading from "../../components/Heading";
 import Paragraph from "../../components/Paragraph";
-import Image from "../../components/Image";
+import Image from "../../components/Image/Image";
 
 class QwikiPage extends React.Component {
 

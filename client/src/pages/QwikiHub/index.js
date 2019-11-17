@@ -21,6 +21,9 @@
 import React from "react";
 import API from "../../util/API";
 import SimpleExpansionPanel from "../../components/qWikiPagePopOut/qWikiPagePopOut";
+import Heading from "../../components/Heading";
+import Paragraph from "../../components/Paragraph";
+import Image from "../../components/Image/Image";
 
 class QwikiHub extends React.Component {
 

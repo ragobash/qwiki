@@ -39,7 +39,7 @@ class QwikiBuilder extends React.Component {
   }
 
   // TODO
-  handleInput(event) {
+  handleInput = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
@@ -49,14 +49,14 @@ class QwikiBuilder extends React.Component {
   }
 
   // TODO
-  switchPublic(event) {
+  switchPublic = (event) => {
     this.setState({
       public: event.target.checked
     });
   }
 
   // TODO
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     API.newQwiki(this.state)
@@ -77,8 +77,9 @@ class QwikiBuilder extends React.Component {
             label="Title"
             margin="normal"
             variant="outlined"
-            name="Title"
+            name="title"
             value={this.state.title}
+            onChange={this.handleInput}
           />
           {/* blurb input */}
           <div className="background">
@@ -88,8 +89,9 @@ class QwikiBuilder extends React.Component {
               label="Blurb"
               margin="normal"
               variant="outlined"
-              name="Blurb"
+              name="blurb"
               value={this.state.blurb}
+              onChange={this.handleInput}
             />
           </div>
           {/* img input */}
@@ -102,10 +104,11 @@ class QwikiBuilder extends React.Component {
               variant="outlined"
               name="img"
               value={this.state.img}
+              onChange={this.handleInput}
             />
           </div>
         </div>
-          <input type="submit" value="Submit"></input>
+          <input type="submit" value="Submit" onClick={this.handleSubmit}></input>
       </div>
     );
   }
