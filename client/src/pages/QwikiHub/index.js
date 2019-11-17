@@ -28,6 +28,9 @@ class QwikiHub extends React.Component {
         super(props);
 
         this.state = {
+            title: "",
+            blurb: "",
+            img: "",
             pages: []
         };
     }
@@ -39,6 +42,7 @@ class QwikiHub extends React.Component {
                 this.setState({
                     title: res.data.title,
                     blurb: res.data.blurb,
+                    img: res.data.img,
                     pages: res.data.pages
                 });
             })
@@ -51,6 +55,9 @@ class QwikiHub extends React.Component {
         return (
             <div>
                 <SimpleExpansionPanel pages={this.state.pages} />
+                <Heading content={this.state.title} />
+                <Paragraph content={this.state.blurb} />
+                <Image content={this.state.img} />
             </div>
         );
     }

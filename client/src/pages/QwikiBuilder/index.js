@@ -1,6 +1,6 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import API from "../../util/API";
-import Navbar from "../../components/NavBar";
 import "./QwikiBuilder.css";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -60,7 +60,9 @@ class QwikiBuilder extends React.Component {
     event.preventDefault();
 
     API.newQwiki(this.state)
-      .then(res => console.log(res))
+      .then(res => {
+        return <Redirect to={"/qwikis/" + res.data._id} />
+      })
       .catch(err => console.log(err));
   }
 

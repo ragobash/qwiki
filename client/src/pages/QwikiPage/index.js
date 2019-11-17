@@ -20,6 +20,9 @@
 
 import React from "react";
 import API from "../../util/API";
+import Heading from "../../components/Heading";
+import Paragraph from "../../components/Paragraph";
+import Image from "../../components/Image";
 
 class QwikiPage extends React.Component {
 
@@ -50,7 +53,22 @@ class QwikiPage extends React.Component {
 
     render() {
         return (
-            <div></div>
+            <div>
+                <Heading content={this.state.title} />
+                <Paragraph content={this.state.blurb} />
+                {
+                    this.state.sections.map(section => {
+                        switch(section.sectionType) {
+                            case "HEADING":
+                                return <Heading content={section.content} />
+                            case "PARAGRAPH":
+                                return <Paragraph content={section.content} />
+                            case "IMAGE":
+                                return <Image content={section.content} />
+                        }
+                    })
+                }
+            </div>
         )
     }
 }
