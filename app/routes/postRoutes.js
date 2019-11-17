@@ -27,7 +27,7 @@ module.exports = (app) => {
     
     // Adds a new Qwiki to the database and sends the result back to the client
     app.post("/api/qwikis/new", (req, res) => {
-        queries.create.newQwiki(req.data)
+        queries.create.newQwiki(req.body)
             .then(qwiki => res.json(qwiki))
             .catch(err => {
                 console.log(err);
@@ -37,7 +37,7 @@ module.exports = (app) => {
 
     // Adds a new Page to the database and sends the result back to the client
     app.post("/api/pages/new", (req, res) => {
-        queries.create.newPage(req.data)
+        queries.create.newPage(req.body)
             .then(page => res.json(page))
             .catch(err => {
                 console.log(err);
@@ -50,7 +50,7 @@ module.exports = (app) => {
         bcrypt
             .hash(req.data.password, SALT_ROUNDS)
             .then(hash => {
-                let data = {...req.data};
+                let data = {...req.body};
 
                 data.passsword = hash;
 
@@ -74,9 +74,9 @@ module.exports = (app) => {
 
     // Updates a Qwiki document and sends the result back to the client
     app.post("/api/qwikis/:id", (req, res) => {
-        req.data.id = req.params.id;
+        req.body.id = req.params.id;
 
-        queries.update.updateQwiki(req.data)
+        queries.update.updateQwiki(req.body)
             .then(qwiki => res.json(qwiki))
             .catch(err => {
                 console.log(err);
@@ -86,9 +86,9 @@ module.exports = (app) => {
 
     // Updates a Page document and sends the result back to the client
     app.post("/api/pages/:id", (req, res) => {
-        req.data.id = req.params.id;
+        req.body.id = req.params.id;
 
-        queries.update.updatePage(req.data)
+        queries.update.updatePage(req.body)
             .then(page => res.json(page))
             .catch(err => {
                 console.log(err);
@@ -98,9 +98,9 @@ module.exports = (app) => {
 
     // Updates a User document and sends the result back to the client
     app.post("/api/users/:id", (req, res) => {
-        req.data.id = req.params.id;
+        req.body.id = req.params.id;
 
-        queries.update.updateUser(req.data)
+        queries.update.updateUser(req.body)
             .then(user => {
                 // Remove the password for security
                 user.password = "";
