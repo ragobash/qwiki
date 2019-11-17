@@ -20,7 +20,7 @@
 
 import React from "react";
 import API from "../../util/API";
-import qWikiPagePopOut from "../../components/qWikiPagePopOut";
+import SimpleExpansionPanel from "../../components/qWikiPagePopOut/qWikiPagePopOut";
 
 class QwikiHub extends React.Component {
 
@@ -50,7 +50,7 @@ class QwikiHub extends React.Component {
     render() {
         return (
             <div>
-                <qWikiPagePopOut pages={this.state.pages} />
+                <SimpleExpansionPanel pages={this.state.pages} />
             </div>
         );
     }

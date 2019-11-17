@@ -101,11 +101,11 @@ class PageBuilder extends React.Component {
                     {this.state.sections.map((section, index) => {
                         switch (section.type) {
                             case "HEADING":
-                                return <input index={index} content={section.content} onChange={this.sectionInput} />
+                                return <input index={index} value={section.content} onChange={this.sectionInput} />
                             case "PARAGRAPH":
-                                return <textarea index={index} content={section.content} onChange={this.sectionInput} />
+                                return <textarea index={index} value={section.content} onChange={this.sectionInput} />
                             case "IMAGE":
-                                return <input index={index} content={section.content} onChange={this.sectionInput} />
+                                return <input index={index} value={section.content} onChange={this.sectionInput} />
                         }
                     })}
                 </div>
