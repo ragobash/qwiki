@@ -23,10 +23,17 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
+<<<<<<< HEAD
 import SimpleExpansionPanel from './components/qWikiPagePopOut/qWikiPagePopOut.js';
 import Switches from './components/Switch/Switch';
 import Button from './components/Button/Button';
 import QwikiBuilder from "../src/pages/QwikiBuilder";
+=======
+import QwikiBuilder from "./pages/QwikiBuilder";
+import QwikiHub from "./pages/QwikiHub";
+import PageBuilder from "./pages/PageBuilder";
+import QwikiPage from "./pages/QwikiHub";
+>>>>>>> 6ce467ee53e109cdecd1b68492778b2a886b892d
 
 class App extends Component {
   constructor() {
@@ -52,7 +59,10 @@ class App extends Component {
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/QwikiBuilder" component={QwikiBuilder} />
+          <Route exact path="/qwikis/builder" component={QwikiBuilder} />
+          <Route path="/qwikis/:id" component={QwikiHub} />
+          <Route exact path="/pages/builder" component={PageBuilder} />
+          <Route path="/pages/:id" component={QwikiPage} />
         </Switch>
       </Router>
     );

@@ -1,8 +1,10 @@
 import React from "react";
 import API from "../../util/API";
 import Navbar from "../../components/NavBar";
+import "./QwikiBuilder.css";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+
 // styles for title and blrb input
 const styles = theme => ({
   container: {
@@ -73,18 +75,35 @@ class QwikiBuilder extends React.Component {
             label="Title"
             margin="normal"
             variant="outlined"
+            name="Title"
+            value={this.state.title}
           />
-          {/* blrb input */}
+          {/* blurb input */}
           <div className="background">
             <TextField
               id="outlined-basic"
               className={this.props.classes.textField}
-              label="Blrb"
+              label="Blurb"
               margin="normal"
               variant="outlined"
+              name="Blurb"
+              value={this.state.blurb}
+            />
+          </div>
+          {/* img input */}
+          <div className="background">
+            <TextField
+              id="outlined-basic"
+              className={this.props.classes.textField}
+              label="img"
+              margin="normal"
+              variant="outlined"
+              name="img"
+              value={this.state.img}
             />
           </div>
         </div>
+          <input type="submit" value="Submit"></input>
       </div>
     );
   }
