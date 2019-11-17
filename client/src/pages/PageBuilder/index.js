@@ -19,13 +19,7 @@
  */
 
 import React from "react";
-<<<<<<< HEAD
-import Heading from "../../components/Heading";
-import Paragraph from "../../components/Paragraph";
-import Image from "../../components/Image/Image";
-=======
 import BuilderToolbar from "../../components/BuilderToolbar";
->>>>>>> 5eb093ee2c5a2a75e7dd3ca28249431c4ca05108
 import API from "../../util/API";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
