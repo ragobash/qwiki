@@ -24,6 +24,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
 import QwikiBuilder from "../src/pages/QwikiBuilder";
+import PageBuilder from "./pages/PageBuilder";
 
 class App extends Component {
   constructor() {
@@ -44,6 +45,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/QwikiBuilder" component={QwikiBuilder} />
+          <Route exact path="/PageBuilder" component={PageBuilder} />
         </Switch>
       </Router>
     );
