@@ -19,9 +19,13 @@
  */
 
 import React from "react";
+<<<<<<< HEAD
 import Heading from "../../components/Heading";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image/Image";
+=======
+import BuilderToolbar from "../../components/BuilderToolbar";
+>>>>>>> 5eb093ee2c5a2a75e7dd3ca28249431c4ca05108
 import API from "../../util/API";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -45,127 +49,95 @@ const styles = theme => ({
 });
 
 class PageBuilder extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      qwikiID: props.qwikiID,
-      title: "",
-      blurb: "",
-      public: true,
-      sections: []
-    };
-  }
+    constructor(props) {
+        super(props);
 
-  // TODO
-  handleInput(event) {
-    const name = event.target.name;
-    const value = event.target.value;
+        this.state = {
+            qwikiID: props.qwikiID,
+            title: "",
+            blurb: "",
+            public: true,
+            sections: []
+        }
+    }
 
-    this.setState({
-      [name]: value
-    });
-  }
+    // TODO
+    handleInput(event) {
+        const name = event.target.name;
+        const value = event.target.value;
 
-  // TODO
-  switchPublic(event) {
-    this.setState({
-      public: event.target.checked
-    });
-  }
+        this.setState({
+            [name]: value
+        });
+    }
 
-  // TODO
-  newSection(event) {
-    event.preventDefault();
+    // TODO
+    switchPublic(event) {
+        this.setState({
+            public: event.target.checked
+        });
+    }
 
-    const type = event.target.sectionType;
-    const sections = [...this.state.sections];
+    // TODO
+    newSection(event) {
+        event.preventDefault();
 
-    sections.push({
-      type,
-      content: ""
-    });
+        const type = event.target.sectionType;
+        const sections = [...this.state.sections];
 
-    this.setState({
-      sections
-    });
-  }
+        sections.push({
+            type,
+            content: ""
+        });
 
-  // TODO
-  sectionInput(event) {
-    const index = event.target.index;
-    const content = event.target.value;
-    const sections = [...this.state.sections];
+        this.setState({
+            sections
+        });
+    }
 
-    sections[index].content = content;
+    // TODO
+    sectionInput(event) {
+        const index = event.target.index;
+        const content = event.target.value;
+        const sections = [...this.state.sections];
 
-    this.setState({
-      sections
-    });
-  }
+        sections[index].content = content;
 
-  // TODO
-  handleSubmit(event) {
-    event.preventDefault();
+        this.setState({
+            sections
+        });
+    }
 
-    API.newPage(this.state)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  }
+    // TODO
+    handleSubmit(event) {
+        event.preventDefault();
 
-  // TODO
-  renderSections() {
-    for (let i = 0; i < this.state.sections.length; i++) {
-      let section = this.state.sections[i];
-
-      switch (section.type) {
-        case "HEADING":
-          return (
-            <Heading
-              index={i}
-              content={section.content}
-              onChange={this.sectionInput}
-            />
-          );
-        case "PARAGRAPH":
-          return (
-            <Paragraph
-              index={i}
-              content={section.content}
-              onChange={this.sectionInput}
-            />
-          );
-        case "IMAGE":
-          return (
-            <Image
-              index={i}
-              content={section.content}
-              onChange={this.sectionInput}
-            />
-          );
-        default:
-          return <h1>hello</h1>;
-      }
+        API.newPage(this.state)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
+    
+    // TODO
+    render() {
+        return (
+            <div>
+                <BuilderToolbar onClick={this.newSection} />
+                <div>
+                    {this.state.sections.map((section, index) => {
+                        switch (section.type) {
+                            case "HEADING":
+                                return <input index={index} value={section.content} onChange={this.sectionInput} />
+                            case "PARAGRAPH":
+                                return <textarea index={index} value={section.content} onChange={this.sectionInput} />
+                            case "IMAGE":
+                                return <input index={index} value={section.content} onChange={this.sectionInput} />
+                        }
+                    })}
+                </div>
+            </div>
+        );
     }
   }
-
-  // TODO
-  render() {
-    return (
-      <div>
-        <div>{this.renderSections()}</div>
-        <div className="container">
-          <TextField
-            id="outlined-basic"
-            className={this.props.classes.textField}
-            label="Outlined"
-            margin="normal"
-            variant="outlined"
-          />
-        </div>
-      </div>
-    );
-  }
-}
 
 export default withStyles(styles)(PageBuilder);
