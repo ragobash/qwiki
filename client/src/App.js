@@ -43,6 +43,12 @@ class App extends Component {
       <Router>
         <div className="background">
           <Navbar />
+          <LandingPage />
+        </div>
+        <div>
+          <SimpleExpansionPanel />
+          <Switches />
+          <Button />
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
