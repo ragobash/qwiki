@@ -63,9 +63,9 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={this.props.pages}>
-            <ListItemText primary={text} />
+        {props.pages.map((page) => (
+          <ListItem button key={page.title}>
+            <ListItemText primary={page.title} />
           </ListItem>
         ))}
       </List>

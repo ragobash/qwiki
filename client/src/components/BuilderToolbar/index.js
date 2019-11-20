@@ -36,6 +36,7 @@ function BuilderToolbar(props) {
   const classes = useStyles();
 
   return (
+<<<<<<< HEAD
     <div className="buttonbox">
     <p className="heading">TOOLBAR</p>
       <Button onClick={props.onClick} sectionType='HEADING' variant="outlined" color="primary" className={`${classes.button} i-am-class`}>
@@ -45,6 +46,16 @@ function BuilderToolbar(props) {
         Image
       </Button>
       <Button onClick={props.onClick} sectionType='PARAGRAPH' variant="outlined" color="primary" className={`${classes.button} i-am-class`}>
+=======
+    <div>
+      <Button onClick={props.onClick} sectiontype='HEADING' variant="outlined" color="primary" className={classes.button}>
+        Heading
+      </Button>
+      <Button onClick={props.onClick} sectiontype='IMAGE' variant="outlined" color="primary" className={classes.button}>
+        Image
+      </Button>
+      <Button onClick={props.onClick} sectiontype='PARAGRAPH' variant="outlined" color="primary" className={classes.button}>
+>>>>>>> 23bd96f89318adafaf855ac6e476814af0bdc340
         Paragraph
       </Button>
     </div>

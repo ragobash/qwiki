@@ -19,7 +19,7 @@
  */
 
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router";
 import API from "../../util/API";
 import "./QwikiBuilder.css";
 import { TextField } from "@material-ui/core";

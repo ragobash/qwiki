@@ -19,12 +19,10 @@
  */
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Button, AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Toolbar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import MenuIcon from "@material-ui/icons/Menu";
 import "./Navbar.css";
-import Logo from "../Logo/Logo";
+import Logo from "../Logo";
 import "../NavMenu";
 import NavMenu from "../NavMenu";
 
@@ -44,7 +42,7 @@ class Navbar extends Component {
                 placeholder="Type to search"
                 className="search-txt"
               ></input>
-              <a className="search-btn">
+              <a href="/" className="search-btn">
                 <SearchIcon />
               </a>
             </div>
