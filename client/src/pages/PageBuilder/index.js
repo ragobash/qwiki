@@ -20,9 +20,12 @@
 
 import React from "react";
 import { Redirect } from "react-router-dom";
+import '../PageBuilder/pagebuilder.css';
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { withStyles } from "@material-ui/core/styles";
+import Box from '@material-ui/core/Box';
+
 
 const styles = theme => ({
   container: {
@@ -117,20 +120,22 @@ class PageBuilder extends React.Component {
     // TODO
     render() {
         return (
-            <div>
-                <BuilderToolbar onClick={this.newSection} />
-                <div>
-                    {this.state.sections.map((section, index) => {
-                        switch (section.type) {
-                            case "HEADING":
-                                return <input index={index} value={section.content} onChange={this.sectionInput} />
-                            case "PARAGRAPH":
-                                return <textarea index={index} value={section.content} onChange={this.sectionInput} />
-                            case "IMAGE":
-                                return <input index={index} value={section.content} onChange={this.sectionInput} />
+            <div className="fullbox">
+            <Box className="toolbarbox" bgcolor="#2f3640">
+                <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
+                    <div className="kjhjk">
+                        {this.state.sections.map((section, index) => {
+                            switch (section.type) {
+                                case "HEADING":
+                                    return <input index={index} value={section.content} onChange={this.sectionInput} />
+                                case "PARAGRAPH":
+                                    return <textarea index={index} value={section.content} onChange={this.sectionInput} />
+                                case "IMAGE":
+                                    return <input index={index} value={section.content} onChange={this.sectionInput} />
                         }
                     })}
                 </div>
+            </Box>
             </div>
         );
     }
