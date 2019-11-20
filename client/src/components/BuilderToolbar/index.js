@@ -36,13 +36,13 @@ function BuilderToolbar(props) {
 
   return (
     <div>
-      <Button onClick={props.onClick} sectionType='HEADING' variant="outlined" color="primary" className={classes.button}>
+      <Button onClick={props.onClick} sectiontype='HEADING' variant="outlined" color="primary" className={classes.button}>
         Heading
       </Button>
-      <Button onClick={props.onClick} sectionType='IMAGE' variant="outlined" color="primary" className={classes.button}>
+      <Button onClick={props.onClick} sectiontype='IMAGE' variant="outlined" color="primary" className={classes.button}>
         Image
       </Button>
-      <Button onClick={props.onClick} sectionType='PARAGRAPH' variant="outlined" color="primary" className={classes.button}>
+      <Button onClick={props.onClick} sectiontype='PARAGRAPH' variant="outlined" color="primary" className={classes.button}>
         Paragraph
       </Button>
     </div>

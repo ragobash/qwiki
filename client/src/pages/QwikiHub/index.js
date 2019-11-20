@@ -24,6 +24,8 @@ import SimpleExpansionPanel from "../../components/qWikiPagePopOut";
 import Heading from "../../components/Heading";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class QwikiHub extends React.Component {
 
@@ -31,6 +33,7 @@ class QwikiHub extends React.Component {
         super(props);
 
         this.state = {
+            _id: "",
             title: "",
             blurb: "",
             img: "",
@@ -39,10 +42,13 @@ class QwikiHub extends React.Component {
     }
 
     componentDidMount() {
+        const id = this.props.match.params.id;
+
         API
-            .getQwikiByID(this.props.qwikiID)
+            .getQwikiByID(id)
             .then(res => {
                 this.setState({
+                    _id: res.data._id,
                     title: res.data.title,
                     blurb: res.data.blurb,
                     img: res.data.img,
@@ -58,6 +64,15 @@ class QwikiHub extends React.Component {
         return (
             <div>
                 <SimpleExpansionPanel pages={this.state.pages} />
+
+                <Fab
+                    color="primary"
+                    aria-label="add"
+                    href={"/pages/builder/" + this.state._id}
+                >
+                    <AddIcon />
+                </Fab>
+
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
                 <Image content={this.state.img} />
