@@ -26,13 +26,11 @@ import Image from "../../components/Image";
 
 class QwikiPage extends React.Component {
 
-    constructor({ match, location }) {
-        super({ match, location });
-
-        const { params: { id } } = match;
+    constructor(props) {
+        super(props);
 
         this.state = {
-            id,
+            _id: "",
             title: "",
             blurb: "",
             sections = []
@@ -40,9 +38,12 @@ class QwikiPage extends React.Component {
     }
 
     componentDidMount() {
-        API.getPageByID(this.state.id)
+        const id = this.props.match.params.id;
+
+        API.getPageByID(id)
             .then(res => {
                 this.setState({
+                    _id: res.data._id,
                     title: res.data.title,
                     blurb: res.data.blurb,
                     sections: res.data.sections

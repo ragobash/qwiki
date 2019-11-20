@@ -43,13 +43,12 @@ class App extends Component {
       <Router>
         <div className="background">
           <Navbar />
-          <LandingPage />
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
           <Route path="/qwikis/:id" component={QwikiHub} />
-          <Route exact path="/pages/builder" component={PageBuilder} />
+          <Route exact path="/pages/builder/:id" component={PageBuilder} />
           <Route path="/pages/:id" component={QwikiPage} />
         </Switch>
       </Router>
