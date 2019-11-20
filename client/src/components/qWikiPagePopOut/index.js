@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function TemporaryDrawer(props) {
+export default function TemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,

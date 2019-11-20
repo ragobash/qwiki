@@ -21,6 +21,7 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import '../BuilderToolbar/buildertoolbar.css'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -35,14 +36,15 @@ function BuilderToolbar(props) {
   const classes = useStyles();
 
   return (
-    <div>
-      <Button onClick={props.onClick} sectiontype='HEADING' variant="outlined" color="primary" className={classes.button}>
+    <div className="buttonbox">
+    <p className="heading">TOOLBAR</p>
+      <Button onClick={props.onClick} sectionType='HEADING' variant="outlined" color="primary" className={`${classes.button} i-am-class`}>
         Heading
       </Button>
-      <Button onClick={props.onClick} sectiontype='IMAGE' variant="outlined" color="primary" className={classes.button}>
+      <Button onClick={props.onClick} sectionType='IMAGE' variant="outlined" color="primary" className={`${classes.button} i-am-class`}>
         Image
       </Button>
-      <Button onClick={props.onClick} sectiontype='PARAGRAPH' variant="outlined" color="primary" className={classes.button}>
+      <Button onClick={props.onClick} sectionType='PARAGRAPH' variant="outlined" color="primary" className={`${classes.button} i-am-class`}>
         Paragraph
       </Button>
     </div>
