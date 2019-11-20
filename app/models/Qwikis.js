@@ -24,8 +24,7 @@ const Schema = mongoose.Schema;
 
 const QwikisSchema = new Schema({
     title: {
-        type: String,
-        required: true
+        type: String
     },
     blurb: {
         type: String
@@ -35,8 +34,7 @@ const QwikisSchema = new Schema({
     },
     owner: {
         type: Schema.Types.ObjectId,
-        ref: "Users",
-        required: true
+        ref: "Users"
     },
     mods: [{
         type: Schema.Types.ObjectId,
@@ -49,28 +47,23 @@ const QwikisSchema = new Schema({
     permissions: {
         type: String,
         enum: Object.values(PERMISSIONS),
-        default: PERMISSIONS.PUBLIC,
-        required: true
+        default: PERMISSIONS.PUBLIC
     },
     public: {
         type: Boolean,
-        default: true,
-        required: true
+        default: true
     },
     created: {
         type: Date,
-        default: Date.now,
-        required: true
+        default: Date.now
     },
     lastEdit: {
         type: Date,
-        default: Date.now,
-        required: true
+        default: Date.now
     },
     lastEditor: {
         type: Schema.Types.ObjectId,
-        ref: "Users",
-        required: true
+        ref: "Users"
     }
 });
 

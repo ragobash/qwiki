@@ -19,12 +19,12 @@
  */
 
 import React from "react";
-
+import Button from '../Button/Button';
 
 function BuilderToolbar() {
     return (
         <div>
-        
+        <Button />
         </div>
     );
 }

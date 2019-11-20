@@ -37,9 +37,6 @@ class LandingPage extends React.Component {
         this.setState(
           {
             qwikis: res.data.qwikis
-          },
-          () => {
-            console.log(this.state);
           }
         );
       })
@@ -53,7 +50,9 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <QwikiCard />
+        {/* {this.state.qwikis.map(
+            qwiki => { return <QwikiCard qwiki={qwiki} /> }
+        )} */}
       </div>
     );
   }

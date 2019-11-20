@@ -45,9 +45,6 @@ class App extends Component {
           <Navbar />
           <LandingPage />
         </div>
-        <div>
-          
-        </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
