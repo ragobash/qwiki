@@ -1,6 +1,6 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import API from "../../util/API";
-import Navbar from "../../components/NavBar";
 import "./QwikiBuilder.css";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -39,7 +39,7 @@ class QwikiBuilder extends React.Component {
   }
 
   // TODO
-  handleInput(event) {
+  handleInput = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
@@ -49,18 +49,20 @@ class QwikiBuilder extends React.Component {
   }
 
   // TODO
-  switchPublic(event) {
+  switchPublic = (event) => {
     this.setState({
       public: event.target.checked
     });
   }
 
   // TODO
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     API.newQwiki(this.state)
-      .then(res => console.log(res))
+      .then(res => {
+        return <Redirect to={"/qwikis/" + res.data._id} />
+      })
       .catch(err => console.log(err));
   }
 
@@ -77,6 +79,7 @@ class QwikiBuilder extends React.Component {
             variant="outlined"
             name="title"
             value={this.state.title}
+            onChange={this.handleInput}
           />
           {/* blurb input */}
           <div className="background">
@@ -88,6 +91,7 @@ class QwikiBuilder extends React.Component {
               variant="outlined"
               name="blurb"
               value={this.state.blurb}
+              onChange={this.handleInput}
             />
           </div>
           {/* img input */}
@@ -100,10 +104,11 @@ class QwikiBuilder extends React.Component {
               variant="outlined"
               name="img"
               value={this.state.img}
+              onChange={this.handleInput}
             />
           </div>
         </div>
-          <input type="submit" value="Submit" className="input"></input>
+          <input type="submit" value="Submit" onClick={this.handleSubmit}></input>
       </div>
     );
   }

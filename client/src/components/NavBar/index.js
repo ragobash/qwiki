@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, AppBar, Toolbar } from "@material-ui/core";
-import LoginModal from "../LoginModal";
-import SignupModal from "../SignupModal";
 import SearchIcon from "@material-ui/icons/Search";
+import MenuIcon from "@material-ui/icons/Menu";
 import "./Navbar.css";
+import Logo from "../Logo/Logo";
+import "../NavMenu";
+import NavMenu from "../NavMenu";
 
 class Navbar extends Component {
   render() {
@@ -12,10 +14,10 @@ class Navbar extends Component {
       <div className="navbar">
         <AppBar position="static" className="navbar">
           <Toolbar className="navbar">
-            <div className="btns">
-              <LoginModal />
-              <SignupModal />
+            <div>
+              <Logo />
             </div>
+            <div className="tools">
             <div className="search-box">
               <input
                 type="text"
@@ -25,6 +27,8 @@ class Navbar extends Component {
               <a className="search-btn">
                 <SearchIcon />
               </a>
+            </div>
+            <NavMenu />
             </div>
           </Toolbar>
         </AppBar>

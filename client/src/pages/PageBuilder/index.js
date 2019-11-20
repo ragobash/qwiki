@@ -19,6 +19,7 @@
  */
 
 import React from "react";
+import { Redirect } from "react-router-dom";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { TextField } from "@material-ui/core";
@@ -107,7 +108,9 @@ class PageBuilder extends React.Component {
     event.preventDefault();
 
     API.newPage(this.state)
-      .then(res => console.log(res))
+      .then(res => {
+        return <Redirect to={"/pages/" + res.data._id} />;
+      })
       .catch(err => console.log(err));
   }
 

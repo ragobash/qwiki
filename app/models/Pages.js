@@ -24,31 +24,26 @@ const Schema = mongoose.Schema;
 
 const PagesSchema = new Schema({
     title: {
-        type: String,
-        required: true
+        type: String
     },
     blurb: {
         type: String
     },
     public: {
         type: Boolean,
-        default: true,
-        required: true
+        default: true
     },
     created: {
         type: Date,
-        default: Date.now,
-        required: true
+        default: Date.now
     },
     lastEdit: {
         type: Date,
-        default: Date.now,
-        required: true
+        default: Date.now
     },
     lastEditor: {
         type: Schema.Types.ObjectId,
-        ref: "Users",
-        required: true
+        ref: "Users"
     },
     sections: [{
         sectionType: {
