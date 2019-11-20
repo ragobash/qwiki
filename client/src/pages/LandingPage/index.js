@@ -50,9 +50,9 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        {/* {this.state.qwikis.map(
+        {this.state.length > 0 ? this.state.qwikis.map(
             qwiki => { return <QwikiCard qwiki={qwiki} /> }
-        )} */}
+        ): <div />}
       </div>
     );
   }
