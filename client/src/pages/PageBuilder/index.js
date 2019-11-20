@@ -131,7 +131,6 @@ class PageBuilder extends React.Component {
       .catch(err => console.log(err));
   };
 
-<<<<<<< HEAD
     constructor(props) {
         super(props);
 
@@ -225,8 +224,6 @@ class PageBuilder extends React.Component {
         );
     }
   // TODO
-=======
->>>>>>> 23bd96f89318adafaf855ac6e476814af0bdc340
   render() {
     return (
       <div>
