@@ -43,95 +43,112 @@ const styles = theme => ({
 });
 
 class PageBuilder extends React.Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            qwikiID: props.qwikiID,
-            title: "",
-            blurb: "",
-            public: true,
-            sections: []
-        }
-    }
-
-    // TODO
-    handleInput(event) {
-        const name = event.target.name;
-        const value = event.target.value;
-
-        this.setState({
-            [name]: value
-        });
-    }
-
-    // TODO
-    switchPublic(event) {
-        this.setState({
-            public: event.target.checked
-        });
-    }
-
-    // TODO
-    newSection(event) {
-        event.preventDefault();
-
-        const type = event.target.sectionType;
-        const sections = [...this.state.sections];
-
-        sections.push({
-            type,
-            content: ""
-        });
-
-        this.setState({
-            sections
-        });
-    }
-
-    // TODO
-    sectionInput(event) {
-        const index = event.target.index;
-        const content = event.target.value;
-        const sections = [...this.state.sections];
-
-        sections[index].content = content;
-
-        this.setState({
-            sections
-        });
-    }
-
-    // TODO
-    handleSubmit(event) {
-        event.preventDefault();
-
-        API.newPage(this.state)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-    }
-    
-    // TODO
-    render() {
-        return (
-            <div>
-                <BuilderToolbar onClick={this.newSection} />
-                <div>
-                    {this.state.sections.map((section, index) => {
-                        switch (section.type) {
-                            case "HEADING":
-                                return <input index={index} value={section.content} onChange={this.sectionInput} />
-                            case "PARAGRAPH":
-                                return <textarea index={index} value={section.content} onChange={this.sectionInput} />
-                            case "IMAGE":
-                                return <input index={index} value={section.content} onChange={this.sectionInput} />
-                        }
-                    })}
-                </div>
-            </div>
-        );
-    }
+    this.state = {
+      qwikiID: props.qwikiID,
+      title: "",
+      blurb: "",
+      public: true,
+      sections: []
+    };
   }
+
+  // TODO
+  handleInput(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  // TODO
+  switchPublic(event) {
+    this.setState({
+      public: event.target.checked
+    });
+  }
+
+  // TODO
+  newSection(event) {
+    event.preventDefault();
+
+    const type = event.target.sectionType;
+    const sections = [...this.state.sections];
+
+    sections.push({
+      type,
+      content: ""
+    });
+
+    this.setState({
+      sections
+    });
+  }
+
+  // TODO
+  sectionInput(event) {
+    const index = event.target.index;
+    const content = event.target.value;
+    const sections = [...this.state.sections];
+
+    sections[index].content = content;
+
+    this.setState({
+      sections
+    });
+  }
+
+  // TODO
+  handleSubmit(event) {
+    event.preventDefault();
+
+    API.newPage(this.state)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+
+  // TODO
+  render() {
+    return (
+      <div>
+        <BuilderToolbar onClick={this.newSection} />
+        <div>
+          {this.state.sections.map((section, index) => {
+            switch (section.type) {
+              case "HEADING":
+                return (
+                  <input
+                    index={index}
+                    value={section.content}
+                    onChange={this.sectionInput}
+                  />
+                );
+              case "PARAGRAPH":
+                return (
+                  <textarea
+                    index={index}
+                    value={section.content}
+                    onChange={this.sectionInput}
+                  />
+                );
+              case "IMAGE":
+                return (
+                  <input
+                    index={index}
+                    value={section.content}
+                    onChange={this.sectionInput}
+                  />
+                );
+            }
+          })}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default withStyles(styles)(PageBuilder);

@@ -75,7 +75,7 @@ class QwikiBuilder extends React.Component {
             label="Title"
             margin="normal"
             variant="outlined"
-            name="Title"
+            name="title"
             value={this.state.title}
           />
           {/* blurb input */}
@@ -86,7 +86,7 @@ class QwikiBuilder extends React.Component {
               label="Blurb"
               margin="normal"
               variant="outlined"
-              name="Blurb"
+              name="blurb"
               value={this.state.blurb}
             />
           </div>
@@ -103,7 +103,7 @@ class QwikiBuilder extends React.Component {
             />
           </div>
         </div>
-          <input type="submit" value="Submit"></input>
+          <input type="submit" value="Submit" className="input"></input>
       </div>
     );
   }
