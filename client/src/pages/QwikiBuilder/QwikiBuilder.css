@@ -1,4 +1,4 @@
-input[type = "submit"]{
+.input[type = "submit"]{
     border: 0;
     background: none;
     display: block;

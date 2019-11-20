@@ -14,6 +14,13 @@
     border-bottom: #FB582F 1px;
 }
 
+.tools {
+    display: flex;
+    align-items: center;
+    margin-right: 0%;
+    padding-right: 0%;
+}
+
 .btns {
     display: flex;
 }
