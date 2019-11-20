@@ -30,13 +30,13 @@ const useStyles = makeStyles({
     },
   },
   square: {
-    width: '100%',
-    heigth: '100%',
+    width: '13%',
+    heigth: '10%',
     backgroundColor: '#000000'
   }
 });
 
-export default function VariantAvatars() {
+export default function Logo() {
   const classes = useStyles();
 
   return (
@@ -46,3 +46,5 @@ export default function VariantAvatars() {
     </div>
   );
 }
+
+
