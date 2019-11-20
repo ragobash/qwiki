@@ -46,9 +46,7 @@ class App extends Component {
           <LandingPage />
         </div>
         <div>
-          <SimpleExpansionPanel />
-          <Switches />
-          <Button />
+          
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
