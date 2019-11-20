@@ -1,0 +1,19 @@
+.buttonbox {
+    display: grid;
+    padding: 5px;
+}
+
+.heading {
+    text-align: center;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.MuiButton-outlinedPrimary {
+    color: #3498db;
+}
+
+.i-am-class {
+    color: #3498db !important;
+    border: 1px solid #3498db !important;
+}

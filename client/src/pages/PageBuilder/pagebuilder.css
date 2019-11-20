@@ -1,0 +1,10 @@
+.toolbarbox {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.fullbox {
+    display: flex;
+    justify-content: flex-end;
+}

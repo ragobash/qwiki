@@ -18,38 +18,33 @@
  *
  */
 
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions
-} from "@material-ui/core";
+import React from "react";
+import { Button, Card, CardActionArea, CardMedia, CardContent, Typography,CardActions } from "@material-ui/core";
 import "./QwikiCard.css";
 
 function QwikiCard(props) {
   return (
-    <div className="cardBackground" qwikiId={props.qwiki._id}>
+    <div className="cardBackground">
       <Card className="card">
         <CardActionArea className="card">
-          <CardMedia image={props.qwiki.img} title={props.qwiki.title} />
+          <CardMedia
+            image={props.qwiki.img}
+            title={props.qwiki.title}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+              {props.qwiki.title}
             </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              blurb={props.qwiki.blurb}
-            />
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.qwiki.blurb}
+            </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions></CardActions>
+        <CardActions>
+          <Button variant="outlined" size="small" color="primary" href={"/qwikis/" + props.qwiki._id}>
+            Read More
+          </Button>
+        </CardActions>
       </Card>
     </div>
   );

@@ -3,7 +3,7 @@
   "name": "qWiki",
   "icons": [
     {
-      "src": "./images/favicon.ico",
+      "src": "./images/favicon.png",
       "sizes": "300x300",
       "type": "image/png"
     }

@@ -20,10 +20,15 @@
 
 import React from "react";
 import { Redirect } from "react-router-dom";
+import '../PageBuilder/pagebuilder.css';
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
+import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import Box from '@material-ui/core/Box';
 
+
+// styles for title and blrb input
 const styles = theme => ({
   container: {
     display: "flex",
@@ -47,7 +52,7 @@ class PageBuilder extends React.Component {
     super(props);
 
     this.state = {
-      qwikiID: props.qwikiID,
+      qwikiID: "",
       title: "",
       blurb: "",
       public: true,
@@ -55,55 +60,68 @@ class PageBuilder extends React.Component {
     };
   }
 
-  // TODO
-  handleInput(event) {
+  componentDidMount() {
+    this.setState({
+      qwikiID: this.props.match.params.id
+    });
+  }
+
+  handleInput = event => {
     const name = event.target.name;
     const value = event.target.value;
 
     this.setState({
       [name]: value
     });
-  }
+  };
 
-  // TODO
-  switchPublic(event) {
+  switchPublic = event => {
     this.setState({
       public: event.target.checked
     });
-  }
+  };
 
-  // TODO
-  newSection(event) {
+  newSection = event => {
     event.preventDefault();
 
-    const type = event.target.sectionType;
-    const sections = [...this.state.sections];
-
-    sections.push({
-      type,
+    const entry = {
+      type: event.target.sectiontype,
       content: ""
-    });
+    };
+
+    const sections = [...this.state.sections, entry];
 
     this.setState({
       sections
     });
-  }
+  };
 
-  // TODO
-  sectionInput(event) {
+  sectionInput = event => {
     const index = event.target.index;
     const content = event.target.value;
-    const sections = [...this.state.sections];
 
-    sections[index].content = content;
+    this.setState(state => {
+      const sections = state.sections.map((section, i) => {
+        if (i === index) {
+          return {
+            type: section.type,
+            content
+          };
+        }
+        return section;
+      });
 
-    this.setState({
-      sections
+      return {
+        qwikiID: state.qwikiID,
+        title: state.title,
+        blurb: state.blurb,
+        public: state.public,
+        sections
+      };
     });
-  }
+  };
 
-  // TODO
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
 
     API.newPage(this.state)
@@ -111,27 +129,141 @@ class PageBuilder extends React.Component {
         return <Redirect to={"/pages/" + res.data._id} />;
       })
       .catch(err => console.log(err));
-  }
+  };
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            qwikiID: props.qwikiID,
+            title: "",
+            blurb: "",
+            public: true,
+            sections: []
+        }
+    }
+
+    // TODO
+    handleInput(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
+    // TODO
+    switchPublic(event) {
+        this.setState({
+            public: event.target.checked
+        });
+    }
+
+    // TODO
+    newSection(event) {
+        event.preventDefault();
+
+        const type = event.target.sectionType;
+        const sections = [...this.state.sections];
+
+        sections.push({
+            type,
+            content: ""
+        });
+
+        this.setState({
+            sections
+        });
+    }
+
+    // TODO
+    sectionInput(event) {
+        const index = event.target.index;
+        const content = event.target.value;
+        const sections = [...this.state.sections];
+
+        sections[index].content = content;
+
+        this.setState({
+            sections
+        });
+    }
+
+    // TODO
+    handleSubmit(event) {
+        event.preventDefault();
+
+        API.newPage(this.state)
+            .then(res => {
+                return <Redirect to={"/pages/" + res.data._id} />
+            })
+            .catch(err => console.log(err));
+    }
+    
+    // TODO
+    render() {
+        return (
+            <div className="fullbox">
+            <Box className="toolbarbox" bgcolor="#2f3640">
+                <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
+                    <div className="kjhjk">
+                        {this.state.sections.map((section, index) => {
+                            switch (section.type) {
+                                case "HEADING":
+                                    return <input index={index} value={section.content} onChange={this.sectionInput} />
+                                case "PARAGRAPH":
+                                    return <textarea index={index} value={section.content} onChange={this.sectionInput} />
+                                case "IMAGE":
+                                    return <input index={index} value={section.content} onChange={this.sectionInput} />
+                        }
+                    })}
+                </div>
+            </Box>
+            </div>
+        );
+    }
   // TODO
   render() {
     return (
       <div>
         <BuilderToolbar onClick={this.newSection} />
+
+        {/* title input */}
+        <div className="background">
+          <TextField
+            id="outlined-basic"
+            className={this.props.classes.textField}
+            label="Title"
+            margin="normal"
+            variant="outlined"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleInput}
+          />
+        </div>
+
+        {/* blurb input */}
+        <div className="background">
+          <TextField
+            id="outlined-basic"
+            className={this.props.classes.textField}
+            label="Blurb"
+            margin="normal"
+            variant="outlined"
+            name="blurb"
+            value={this.state.blurb}
+            onChange={this.handleInput}
+          />
+        </div>
+
         <div>
           {this.state.sections.map((section, index) => {
             switch (section.type) {
               case "HEADING":
                 return (
                   <input
-                    index={index}
-                    value={section.content}
-                    onChange={this.sectionInput}
-                  />
-                );
-              case "PARAGRAPH":
-                return (
-                  <textarea
+                    key={index}
                     index={index}
                     value={section.content}
                     onChange={this.sectionInput}
@@ -140,6 +272,16 @@ class PageBuilder extends React.Component {
               case "IMAGE":
                 return (
                   <input
+                    key={index}
+                    index={index}
+                    value={section.content}
+                    onChange={this.sectionInput}
+                  />
+                );
+              default:
+                return (
+                  <textarea
+                    key={index}
                     index={index}
                     value={section.content}
                     onChange={this.sectionInput}
@@ -148,6 +290,8 @@ class PageBuilder extends React.Component {
             }
           })}
         </div>
+
+        <input type="submit" value="Submit" onClick={this.handleSubmit}></input>
       </div>
     );
   }
