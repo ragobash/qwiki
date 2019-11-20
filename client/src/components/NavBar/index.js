@@ -41,7 +41,7 @@ class Navbar extends Component {
                 placeholder="Type to search"
                 className="search-txt"
               ></input>
-              <a className="search-btn">
+              <a href="/" className="search-btn">
                 <SearchIcon />
               </a>
             </div>

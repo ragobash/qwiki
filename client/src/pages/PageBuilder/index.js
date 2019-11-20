@@ -124,10 +124,10 @@ class PageBuilder extends React.Component {
                         switch (section.type) {
                             case "HEADING":
                                 return <input index={index} value={section.content} onChange={this.sectionInput} />
-                            case "PARAGRAPH":
-                                return <textarea index={index} value={section.content} onChange={this.sectionInput} />
                             case "IMAGE":
                                 return <input index={index} value={section.content} onChange={this.sectionInput} />
+                            default:
+                                return <textarea index={index} value={section.content} onChange={this.sectionInput} />
                         }
                     })}
                 </div>
