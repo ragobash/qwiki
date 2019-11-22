@@ -23,9 +23,8 @@ import { Redirect } from "react-router-dom";
 import "../PageBuilder/pagebuilder.css";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
-import { TextField } from "@material-ui/core";
+import { Box, TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
 
 // styles for title and blrb input
 
@@ -85,7 +84,7 @@ class PageBuilder extends React.Component {
     event.preventDefault();
 
     const entry = {
-      type: event.target.sectiontype,
+      sectionType: event.target.sectiontype,
       content: ""
     };
 
@@ -97,10 +96,21 @@ class PageBuilder extends React.Component {
   };
 
   sectionInput = event => {
-    const index = event.target.index;
+    const index = event.target.getAttribute("data-index");
     const content = event.target.value;
 
-    this.setState({});
+    let sections = [...this.state.sections];
+
+    const sectionType = sections[index].sectionType;
+
+    sections[index] = {
+      sectionType,
+      content
+    };
+
+    this.setState({
+      sections
+    });
   };
 
   handleSubmit = event => {
@@ -113,7 +123,6 @@ class PageBuilder extends React.Component {
       .catch(err => console.log(err));
   };
 
-  // TODO
   render() {
     return (
       <div className="fulldiv">
@@ -150,30 +159,33 @@ class PageBuilder extends React.Component {
             switch (section.type) {
               case "HEADING":
                 return (
-                  <input
-                    key={index}
-                    index={index}
-                    value={section.content}
-                    onChange={this.sectionInput}
-                  />
+                  <div className="background" key={index}>
+                    <input
+                      data-index={index}
+                      value={section.content}
+                      onChange={this.sectionInput}
+                    />
+                  </div>
                 );
               case "IMAGE":
                 return (
-                  <input
-                    key={index}
-                    index={index}
-                    value={section.content}
-                    onChange={this.sectionInput}
-                  />
+                  <div className="background" key={index}>
+                    <input
+                      data-index={index}
+                      value={section.content}
+                      onChange={this.sectionInput}
+                    />
+                  </div>
                 );
               default:
                 return (
-                  <textarea
-                    key={index}
-                    index={index}
-                    value={section.content}
-                    onChange={this.sectionInput}
-                  />
+                  <div className="background" key={index}>
+                    <textarea
+                      data-index={index}
+                      value={section.content}
+                      onChange={this.sectionInput}
+                    />
+                  </div>
                 );
             }
           })}
