@@ -22,37 +22,69 @@ import React from "react";
 import {
   Button,
   Card,
-  CardActionArea,
+  CardHeader,
+  Avatar,
+  IconButton,
   CardMedia,
   CardContent,
   Typography,
   CardActions
 } from "@material-ui/core";
 import "./QwikiCard.css";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = () => ({
+  card: {
+    maxWidth: 345
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%"
+  },
+  avatar: {
+    backgroundColor: "red"
+  }
+});
 
 function QwikiCard(props) {
   return (
     <div className="cardBackground">
-      <Card className="card">
-        <CardActionArea className="card">
-          <CardMedia image={props.qwiki.img} title={props.qwiki.title} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.qwiki.title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.qwiki.blurb}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
+      <Card className={props.classes.card}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={props.classes.avatar}>
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={props.qwiki.title}
+          subheader={props.qwiki.created}
+        />
+        <CardMedia
+          className={props.classes.media}
+          image={props.qwiki.img}
+          title=""
+        />
+        <CardContent>
+          <Typography>{props.qwiki.blurb}</Typography>
+        </CardContent>
         <CardActions>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
           <Button
             variant="outlined"
             size="small"
             color="primary"
             href={"/qwikis/" + props.qwiki._id}
           >
-            Read More
+            Read more
           </Button>
         </CardActions>
       </Card>
@@ -60,4 +92,4 @@ function QwikiCard(props) {
   );
 }
 
-export default QwikiCard;
+export default withStyles(styles)(QwikiCard);
