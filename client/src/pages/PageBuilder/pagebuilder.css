@@ -2,9 +2,17 @@
     width: 150px;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .fullbox {
     display: flex;
     justify-content: flex-end;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.fulldiv {
+    position: relative;
 }
