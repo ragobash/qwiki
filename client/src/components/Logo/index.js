@@ -41,11 +41,13 @@ export default function Logo() {
 
   return (
     <div className={classes.root}>
-      <Avatar
-        variant="square"
-        src="/images/logocolor.png"
-        className={classes.square}
-      ></Avatar>
+      <a href="/">
+        <Avatar
+          variant="square"
+          src="/images/logocolor.png"
+          className={classes.square}
+        ></Avatar>
+      </a>
     </div>
   );
 }

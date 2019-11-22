@@ -119,7 +119,7 @@ class QwikiBuilder extends React.Component {
             <TextField
               id="outlined-basic"
               className={this.props.classes.textField}
-              label="img"
+              label="Image"
               margin="normal"
               variant="outlined"
               name="img"
