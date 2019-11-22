@@ -21,6 +21,8 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class LandingPage extends React.Component {
   constructor() {
@@ -50,6 +52,14 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
+        <Fab
+            color="primary"
+            aria-label="add"
+            href={"/qwikis/builder/"}
+        >
+            <AddIcon />
+        </Fab>
+
         {this.state.qwikis.length > 0 ? this.state.qwikis.map(
             qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} /> }
         ): <div />}
