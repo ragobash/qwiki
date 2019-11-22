@@ -27,6 +27,7 @@ import { Box, TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 // styles for title and blrb input
+
 const styles = theme => ({
   container: {
     display: "flex",
@@ -124,7 +125,7 @@ class PageBuilder extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="fulldiv">
         {/* title input */}
         <div className="background">
           <TextField
