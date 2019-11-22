@@ -19,7 +19,7 @@
  */
 
 import React, {Component} from "react";
-// import { Link } from "react-router-dom";
+import API from "../../util/API";
 import {Button, Modal,} from '@material-ui/core';
 import "./LoginModal.css";
 
@@ -28,7 +28,9 @@ class LoginModal extends Component {
     constructor () {
         super();
         this.state = {
-            open: false
+            open: false,
+            email: "",
+            password: ""
         };
     }
 
@@ -41,6 +43,23 @@ class LoginModal extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
+
+    handleInput = event => {
+        const name = event.target.name;
+        const value = event.target.value;
+    
+        this.setState({
+          [name]: value
+        });
+      };
+    
+      handleSubmit = event => {
+        event.preventDefault();
+    
+        API.newUser(this.state)
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      };
     
 render() {
        return(
@@ -61,9 +80,21 @@ render() {
               <form className="box">
               <h2>Login</h2>
                   <div>
-                    <input type="text" placeholder="Username"></input>
-                    <input type="password" placeholder="Password"></input>
-                    <input type="submit" value="Login"></input>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleInput}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleInput}
+                    />
+                    <input type="submit" value="Login" onClick={this.handleSubmit}></input>
                   </div>
               </form>
             </div>

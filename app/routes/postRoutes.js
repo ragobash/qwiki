@@ -48,11 +48,13 @@ module.exports = (app) => {
     // Adds a new User to the database and sends the result back to the client
     app.post("/api/users/new", (req, res) => {
         bcrypt
-            .hash(req.data.password, SALT_ROUNDS)
+            .hash(req.body.password, SALT_ROUNDS)
             .then(hash => {
-                let data = {...req.body};
-
-                data.passsword = hash;
+                let data = {
+                    email: req.body.email,
+                    displayName: req.body.displayName,
+                    password: hash
+                };
 
                 queries.create.newUser(data)
                     .then(user => {
@@ -110,6 +112,28 @@ module.exports = (app) => {
             .catch(err => {
                 console.log(err);
                 res.send(err);
-            });;
+            });
+    }),
+
+    // TODO
+    app.post("/api/login", (req, res) => {
+        const email = req.body.email;
+        const password = req.body.password;
+
+        queries.read.searchUsersEmail(email)
+            .then(user => {
+                bcrypt.compare(password, user.password)
+                    .then(result => {
+                        res.send(result);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.send(err);
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.send(err);
+            });
     })
 }
