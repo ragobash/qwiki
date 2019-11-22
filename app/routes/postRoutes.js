@@ -110,6 +110,28 @@ module.exports = (app) => {
             .catch(err => {
                 console.log(err);
                 res.send(err);
-            });;
+            });
+    }),
+
+    // TODO
+    app.post("/api/login", (req, res) => {
+        const email = req.body.email;
+        const password = req.body.password;
+
+        queries.read.searchUsersEmail(email)
+            .then(user => {
+                bcrypt.compare(password, user.password)
+                    .then(result => {
+                        res.send(result);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.send(err);
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.send(err);
+            });
     })
 }

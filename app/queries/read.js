@@ -47,12 +47,21 @@ module.exports = {
 
     // Queries the Users collection for any User documents with the specified term in the displayName
     // Also populates followed qwikis
-    searchUsers: (term) => {
+    searchUsersName: (term) => {
         return db.Users
             .find({
                 displayName: new RegExp('^' + term + '$', "i")
             }, "-password")
             .populate("Qwikis");
+    },
+
+    // Queries the Users collection for any User documents with the specified term in the displayName
+    // Also populates followed qwikis
+    searchUsersEmail: (term) => {
+        return db.Users
+            .find({
+                email: ("" + term).toLowerCase()
+            });
     },
 
     // Queries the Users collection for a specific User document
