@@ -37,12 +37,18 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: "75%",
     heigth: "300",
-    background: "white"
+    borderRadius: "40px",
+    background: "#2f3640",
+    color: "white !important",
+    borderColor: "#3498db"
   },
   background: {
     background: "white"
+  },
+  label: {
+    color: "white"
   }
 });
 
@@ -129,14 +135,23 @@ class PageBuilder extends React.Component {
         {/* title input */}
         <div className="background">
           <TextField
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
             id="outlined-basic"
-            className={this.props.classes.textField}
+            // className={this.props.classes.textField}
             label="Title"
             margin="normal"
             variant="outlined"
             name="title"
             value={this.state.title}
             onChange={this.handleInput}
+            fullWidth
           />
         </div>
 
@@ -144,11 +159,23 @@ class PageBuilder extends React.Component {
         <div className="background">
           <TextField
             id="outlined-basic"
-            className={this.props.classes.textField}
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }          
+            }}
+            fullWidth
+            multiline={true}
+            rows={1}
+            rowsMax={10}
             label="Blurb"
             margin="normal"
             variant="outlined"
             name="blurb"
+            padding="10px"
             value={this.state.blurb}
             onChange={this.handleInput}
           />
