@@ -55,8 +55,7 @@ module.exports = {
             .populate("Qwikis");
     },
 
-    // Queries the Users collection for any User documents with the specified term in the displayName
-    // Also populates followed qwikis
+    // Queries the Users collection for any User documents with the specified term in the email
     searchUsersEmail: (term) => {
         return db.Users
             .find({
