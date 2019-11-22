@@ -19,7 +19,15 @@
  */
 
 import React from "react";
-import { Button, Card, CardActionArea, CardMedia, CardContent, Typography,CardActions } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions
+} from "@material-ui/core";
 import "./QwikiCard.css";
 
 function QwikiCard(props) {
@@ -27,10 +35,7 @@ function QwikiCard(props) {
     <div className="cardBackground">
       <Card className="card">
         <CardActionArea className="card">
-          <CardMedia
-            image={props.qwiki.img}
-            title={props.qwiki.title}
-          />
+          <CardMedia image={props.qwiki.img} title={props.qwiki.title} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {props.qwiki.title}
@@ -41,7 +46,12 @@ function QwikiCard(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="outlined" size="small" color="primary" href={"/qwikis/" + props.qwiki._id}>
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            href={"/qwikis/" + props.qwiki._id}
+          >
             Read More
           </Button>
         </CardActions>
