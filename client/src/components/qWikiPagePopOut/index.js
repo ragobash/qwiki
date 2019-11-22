@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -62,13 +62,13 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
+      {/* <List>
         {props.pages.map((page) => (
           <ListItem button key={page.title}>
             <ListItemText primary={page.title} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </div>
   );
 

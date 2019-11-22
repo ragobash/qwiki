@@ -24,6 +24,9 @@ import Button from "@material-ui/core/Button";
 import "../BuilderToolbar/buildertoolbar.css";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+  position: 'fixed',
+  },
   button: {
     margin: theme.spacing(1)
   },
