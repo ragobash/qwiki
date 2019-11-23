@@ -40,7 +40,13 @@ class SignupModal extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      email: "",
+      displayName: "",
+      password: "",
+      confirm: ""
+    });
   };
 
   handleInput = event => {

@@ -115,7 +115,7 @@ module.exports = (app) => {
             });
     }),
 
-    // TODO
+    // Handles user login requests
     app.post("/api/login", (req, res) => {
         const email = req.body.email;
         const password = req.body.password;
@@ -123,8 +123,18 @@ module.exports = (app) => {
         queries.read.searchUsersEmail(email)
             .then(user => {
                 bcrypt.compare(password, user.password)
-                    .then(result => {
-                        res.send(result);
+                    .then(match => {
+                        if (!match) {
+                            return res.status(400).send({ msg: "Invalid credentials" });
+                        }
+
+                        const sessUser = { uuid: user._id,  };
+                        req.session.user = sessUser;
+
+                        res.send({
+                            msg: "Successfully logged in",
+                            sessUser
+                        });
                     })
                     .catch(err => {
                         console.log(err);

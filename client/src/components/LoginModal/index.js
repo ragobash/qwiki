@@ -41,27 +41,34 @@ class LoginModal extends Component {
 
     // closes modal
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({
+            open: false,
+            email: "",
+            password: ""
+        });
     };
 
     handleInput = event => {
         const name = event.target.name;
         const value = event.target.value;
-    
+
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-    
-      handleSubmit = event => {
+    };
+
+    handleSubmit = event => {
         event.preventDefault();
+
+        API.login(this.state)
+            .then(res => {
+                document.cookie = res.data.sessUser;
+                //console.log(res);
+            })
+            .catch(err => console.log(err));
+    };
     
-        API.newUser(this.state)
-          .then(res => console.log(res))
-          .catch(err => console.log(err));
-      };
-    
-render() {
+    render() {
        return(
         <div>
             {/* login btn */}
