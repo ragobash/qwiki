@@ -20,3 +20,14 @@
 .textField {
     background: red;
 }
+
+.submit {
+    background: #2f3640;
+    color: #3498db;
+    width: 325px;
+    height: 35px;
+    margin: 0.5% 25%;
+    border-radius: 25px;
+    border: 1px solid #3498db;
+    font-weight: 600;
+}
