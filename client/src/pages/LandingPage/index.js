@@ -38,7 +38,7 @@ class LandingPage extends React.Component {
       .then(res => {
         this.setState(
           {
-            qwikis: res.data
+            qwikis: res.data.qwikis
           }
         );
       })

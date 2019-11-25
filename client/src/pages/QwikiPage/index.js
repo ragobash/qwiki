@@ -43,10 +43,10 @@ class QwikiPage extends React.Component {
         API.getPageByID(id)
             .then(res => {
                 this.setState({
-                    _id: res.data._id,
-                    title: res.data.title,
-                    blurb: res.data.blurb,
-                    sections: res.data.sections
+                    _id: res.data.page._id,
+                    title: res.data.page.title,
+                    blurb: res.data.page.blurb,
+                    sections: res.data.page.sections
                 });
             })
             .catch(err => console.log(err));

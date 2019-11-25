@@ -29,12 +29,13 @@ import QwikiHub from "./pages/QwikiHub";
 import PageBuilder from "./pages/PageBuilder";
 import QwikiPage from "./pages/QwikiHub";
 
+const HOUR = 3600;
+
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      loggedIn: false,
       uuid: ""
     };
   }
@@ -44,19 +45,29 @@ class App extends Component {
 
     if (uuid) {
       this.setState({
-        loggedIn: true,
         uuid
       });
     }
   }
 
   userLoggedIn = uuid => {
-    this.props.cookies.set("qwiki.sid", uuid);
+    this.props.cookies.set("qwiki.sid", uuid, {
+      path: "/",
+      maxAge: HOUR,
+      sameSite: true
+    });
 
     this.setState({
-      loggedIn: true,
       uuid
     });
+  }
+
+  userLoggedOut = () => {
+    this.props.cookies.remove("qwiki.sid", { path: "/" });
+
+    this.setState({
+      uuid: ""
+    })
   }
 
   render() {
@@ -69,7 +80,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
           <Route path="/qwikis/:id" component={QwikiHub} />
-          <Route exact path="/pages/builder/:id" component={PageBuilder} />
+          <Route path="/pages/builder/:id" component={PageBuilder} />
           <Route path="/pages/:id" component={QwikiPage} />
         </Switch>
       </Router>
