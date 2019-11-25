@@ -25,8 +25,8 @@ import "./LoginModal.css";
 
 class LoginModal extends Component {
     // This handles the state of the modal
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.state = {
             open: false,
             email: "",
@@ -63,7 +63,7 @@ class LoginModal extends Component {
         API.login(this.state)
             .then(res => {
                 document.cookie = res.data.sessUser;
-                //console.log(res);
+                this.props.userLoggedIn(res.data.sessUser.uuid);
             })
             .catch(err => console.log(err));
     };

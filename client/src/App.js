@@ -34,15 +34,26 @@ class App extends Component {
 
     this.state = {
       loggedIn: false,
-      userID: ""
+      uuid: ""
     };
+  }
+
+  componentDidMount() {
+    // TODO
+  }
+
+  userLoggedIn = uuid => {
+    this.setState({
+      loggedIn: true,
+      uuid
+    });
   }
 
   render() {
     return (
       <Router>
         <div className="background">
-          <Navbar />
+          <Navbar userLoggedIn={this.userLoggedIn} />
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
