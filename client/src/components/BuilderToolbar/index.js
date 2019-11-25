@@ -43,30 +43,33 @@ function BuilderToolbar(props) {
       <p className="heading">TOOLBAR</p>
       <Button
         onClick={props.onClick}
-        sectiontype="HEADING"
+        data-sectiontype="HEADING"
         variant="outlined"
         color="primary"
         className={`${classes.button} i-am-class`}
       >
-        Heading
+        <span onClick={props.onClick}
+        data-sectiontype="HEADING">Heading</span>
       </Button>
       <Button
         onClick={props.onClick}
-        sectiontype="IMAGE"
+        data-sectiontype="IMAGE"
         variant="outlined"
         color="primary"
         className={`${classes.button} i-am-class`}
       >
-        Image
+        <span onClick={props.onClick}
+        data-sectiontype="IMAGE">Image</span>
       </Button>
       <Button
         onClick={props.onClick}
-        sectiontype="PARAGRAPH"
+        data-sectiontype="PARAGRAPH"
         variant="outlined"
         color="primary"
         className={`${classes.button} i-am-class`}
       >
-        Paragraph
+        <span onClick={props.onClick}
+        data-sectiontype="PARAGRAPH">Paragraph</span>
       </Button>
     </div>
   );
