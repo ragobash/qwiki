@@ -63,7 +63,7 @@ class LoginModal extends Component {
         API.login(this.state)
             .then(res => {
                 document.cookie = res.data.sessUser;
-                this.props.userLoggedIn(res.data.sessUser.uuid);
+                this.props.userLoggedIn(res.data.uuid);
             })
             .catch(err => console.log(err));
     };

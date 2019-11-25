@@ -28,20 +28,38 @@ module.exports = (app) => {
     // Adds a new Qwiki to the database and sends the result back to the client
     app.post("/api/qwikis/new", (req, res) => {
         queries.create.newQwiki(req.body)
-            .then(qwiki => res.json(qwiki))
+            .then(qwiki => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    qwiki
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "POST request could not be processed"
+                });
             });
     }),
 
     // Adds a new Page to the database and sends the result back to the client
     app.post("/api/pages/new", (req, res) => {
         queries.create.newPage(req.body)
-            .then(page => res.json(page))
+            .then(page => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    page
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "POST request could not be processed"
+                });
             });
     }),
 
@@ -58,19 +76,26 @@ module.exports = (app) => {
 
                 queries.create.newUser(data)
                     .then(user => {
-                        // Remove the password for security
-                        user.password = "";
-        
-                        res.json(user)
+                        res.json({
+                            error: false,
+                            msg: "Success",
+                            uuid: user._id
+                        });
                     })
                     .catch(err => {
                         console.log(err);
-                        res.send(err);
+                        res.status(400).json({
+                            error: true,
+                            msg: "Something went wrong when creating the new usser account"
+                        });
                     });
             })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "POST request could not be processed"
+                });
             });
     })
 
@@ -79,10 +104,19 @@ module.exports = (app) => {
         req.body.id = req.params.id;
 
         queries.update.updateQwiki(req.body)
-            .then(qwiki => res.json(qwiki))
+            .then(qwiki => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    qwiki
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "POST request could not be processed"
+                });
             });
     }),
 
@@ -91,10 +125,19 @@ module.exports = (app) => {
         req.body.id = req.params.id;
 
         queries.update.updatePage(req.body)
-            .then(page => res.json(page))
+            .then(page => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    page
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "POST request could not be processed"
+                });
             });
     }),
 
@@ -104,14 +147,18 @@ module.exports = (app) => {
 
         queries.update.updateUser(req.body)
             .then(user => {
-                // Remove the password for security
-                user.password = "";
-
-                res.json(user)
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    uuid: user._id
+                });
             })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "POST request could not be processed"
+                });
             });
     }),
 
@@ -125,25 +172,32 @@ module.exports = (app) => {
                 bcrypt.compare(password, user.password)
                     .then(match => {
                         if (!match) {
-                            return res.status(400).send({ msg: "Invalid credentials" });
+                            return res.status(400).json({
+                                error: true,
+                                msg: "Invalid credentials"
+                            });
                         }
 
-                        const sessUser = { uuid: user._id,  };
-                        req.session.user = sessUser;
-
-                        res.send({
-                            msg: "Successfully logged in",
-                            sessUser
+                        res.json({
+                            error: false,
+                            msg: "Success",
+                            uuid: user._id
                         });
                     })
                     .catch(err => {
                         console.log(err);
-                        res.send(err);
+                        res.status(400).json({
+                            error: true,
+                            msg: ""
+                        });
                     });
             })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "POST request could not be processed"
+                });
             });
     })
 }

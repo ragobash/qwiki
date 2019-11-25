@@ -22,7 +22,6 @@
 const express = require("express");
 const path = require("path");
 const session = require('express-session');
-const MongoDBStore = require("connect-mongodb-session")(session);
 const mongoose = require("mongoose");
 
 // Constants
@@ -45,15 +44,6 @@ if (process.env.NODE_ENV === "production") {
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
-
-const store = new MongoDBStore({
-  uri: MONGODB_URI,
-  collection: "Sessions"
-});
-
-store.on('error', function(error) {
-  console.log(error);
 });
 
 // Setup user session handler
