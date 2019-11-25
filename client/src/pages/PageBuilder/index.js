@@ -25,6 +25,7 @@ import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { Box, TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import ToolbarBtn from "../../components/ToolbarBtn/index.js";
 
 // styles for title and blrb input
 
@@ -88,9 +89,9 @@ class PageBuilder extends React.Component {
 
   newSection = event => {
     event.preventDefault();
-
+    console.log(event.target.getAttribute("data-sectiontype"));
     const entry = {
-      sectionType: event.target.sectiontype,
+      sectionType: event.target.getAttribute("data-sectiontype"),
       content: ""
     };
 
@@ -165,7 +166,7 @@ class PageBuilder extends React.Component {
               }
             }}
             InputLabelProps={{
-              style: { color: "white", padding: "0px 0px 5px 15px" }          
+              style: { color: "white", padding: "0px 0px 5px 15px" }
             }}
             fullWidth
             multiline={true}
@@ -180,16 +181,31 @@ class PageBuilder extends React.Component {
             onChange={this.handleInput}
           />
         </div>
+        <input
+          className="submit"
+          type="submit"
+          value="Submit"
+          onClick={this.handleSubmit}
+        ></input>
 
-        <div className="kjhjk">
+        <div>
           {this.state.sections.map((section, index) => {
-            switch (section.type) {
+            switch (section.sectionType) {
               case "HEADING":
+                console.log("heading hit");
                 return (
-                  <div className="background" key={index}>
-                    <input
+                  <div className="background" id="heading" key={index}>
+                    <ToolbarBtn
+                    InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
                       data-index={index}
-                      value={section.content}
+                      content={section.content}
                       onChange={this.sectionInput}
                     />
                   </div>
@@ -197,9 +213,9 @@ class PageBuilder extends React.Component {
               case "IMAGE":
                 return (
                   <div className="background" key={index}>
-                    <input
+                  <ToolbarBtn
                       data-index={index}
-                      value={section.content}
+                      content={section.content}
                       onChange={this.sectionInput}
                     />
                   </div>
@@ -207,9 +223,9 @@ class PageBuilder extends React.Component {
               default:
                 return (
                   <div className="background" key={index}>
-                    <textarea
+                  <ToolbarBtn
                       data-index={index}
-                      value={section.content}
+                      content={section.content}
                       onChange={this.sectionInput}
                     />
                   </div>
@@ -223,8 +239,6 @@ class PageBuilder extends React.Component {
             <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
           </Box>
         </div>
-
-        <input className="submit" type="submit" value="Submit" onClick={this.handleSubmit}></input>
       </div>
     );
   }
