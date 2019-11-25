@@ -26,8 +26,8 @@ import { Button, Menu, MenuItem } from "@material-ui/core";
 import "./NavMenu.css";
 
 class NavMenu extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       open: false
     };
@@ -61,7 +61,7 @@ class NavMenu extends Component {
         >
           <MenuItem onClick={this.handleClose}>
             {" "}
-            <LoginModal />{" "}
+            <LoginModal {...this.props} />{" "}
           </MenuItem>
           <MenuItem onClick={this.handleClose}>
             {" "}

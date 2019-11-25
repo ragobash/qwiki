@@ -25,8 +25,8 @@ import "./LoginModal.css";
 
 class LoginModal extends Component {
     // This handles the state of the modal
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.state = {
             open: false,
             email: "",
@@ -41,27 +41,34 @@ class LoginModal extends Component {
 
     // closes modal
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({
+            open: false,
+            email: "",
+            password: ""
+        });
     };
 
     handleInput = event => {
         const name = event.target.name;
         const value = event.target.value;
-    
+
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-    
-      handleSubmit = event => {
+    };
+
+    handleSubmit = event => {
         event.preventDefault();
+
+        API.login(this.state)
+            .then(res => {
+                document.cookie = res.data.sessUser;
+                this.props.userLoggedIn(res.data.uuid);
+            })
+            .catch(err => console.log(err));
+    };
     
-        API.newUser(this.state)
-          .then(res => console.log(res))
-          .catch(err => console.log(err));
-      };
-    
-render() {
+    render() {
        return(
         <div>
             {/* login btn */}

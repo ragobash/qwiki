@@ -21,6 +21,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { withCookies } from "react-cookie";
 import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
 import QwikiBuilder from "./pages/QwikiBuilder";
@@ -34,15 +35,35 @@ class App extends Component {
 
     this.state = {
       loggedIn: false,
-      userID: ""
+      uuid: ""
     };
+  }
+
+  componentDidMount() {
+    const uuid = this.props.cookies.get("qwiki.sid");
+
+    if (uuid) {
+      this.setState({
+        loggedIn: true,
+        uuid
+      });
+    }
+  }
+
+  userLoggedIn = uuid => {
+    this.props.cookies.set("qwiki.sid", uuid);
+
+    this.setState({
+      loggedIn: true,
+      uuid
+    });
   }
 
   render() {
     return (
       <Router>
         <div className="background">
-          <Navbar />
+          <Navbar userLoggedIn={this.userLoggedIn} />
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
@@ -56,4 +77,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withCookies(App);
