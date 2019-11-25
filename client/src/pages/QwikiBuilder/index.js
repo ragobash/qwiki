@@ -54,7 +54,8 @@ class QwikiBuilder extends React.Component {
       img: "",
       public: true,
       permissions: "OWNER",
-      mods: []
+      mods: [],
+      redirect: ""
     };
   }
 
@@ -81,12 +82,19 @@ class QwikiBuilder extends React.Component {
 
     API.newQwiki(this.state)
       .then(res => {
-        return <Redirect to={"/qwikis/" + res.data._id} />
+        const redirect = "/qwikis/" + res.data.qwiki._id;
+        this.setState({
+          redirect
+        });
       })
       .catch(err => console.log(err));
   }
 
   render() {
+    if (this.state.redirect.length > 0) {
+      return <Redirect to={this.state.redirect} />
+    }
+
     return (
       <div>
         {/* title input */}

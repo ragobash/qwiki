@@ -21,7 +21,7 @@
 // Imports
 const express = require("express");
 const path = require("path");
-const session = require('express-session');
+// const session = require('express-session');
 const mongoose = require("mongoose");
 
 // Constants
@@ -47,19 +47,18 @@ mongoose.connect(MONGODB_URI, {
 });
 
 // Setup user session handler
-app.use(session({
-  name: "qWiki.sid",
-  secret: "qWiki-sessions",
-  resave: false,
-  saveUninitialized: false,
-  rolling: true,
-  store: store,
-  cookie: {
-    maxAge: 3600000,
-    secure: "auto",
-    sameSite: true
-  }
-}));
+// app.use(session({
+//   name: "qwiki.sid",
+//   secret: "qwiki-sessions",
+//   resave: false,
+//   saveUninitialized: false,
+//   rolling: true,
+//   cookie: {
+//     maxAge: 3600000,
+//     secure: "auto",
+//     sameSite: true
+//   }
+// }));
 
 // Import API routes
 require("./app/routes/getRoutes")(app);

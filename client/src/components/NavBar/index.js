@@ -18,7 +18,7 @@
  *
  */
 
-import React, { Component } from "react";
+import React from "react";
 import { AppBar, Toolbar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Navbar.css";

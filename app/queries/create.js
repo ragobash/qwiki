@@ -54,6 +54,7 @@ module.exports = {
                 data.qwikiID,
                 { $push: { pages: page._id } }
             )
+            return page;
         });
     },
 

@@ -62,7 +62,8 @@ class PageBuilder extends React.Component {
       title: "",
       blurb: "",
       public: true,
-      sections: []
+      sections: [],
+      redirect: ""
     };
   }
 
@@ -125,12 +126,19 @@ class PageBuilder extends React.Component {
 
     API.newPage(this.state)
       .then(res => {
-        return <Redirect to={"/pages/" + res.data._id} />;
+        const redirect = "/pages/" + res.data.page._id;
+        this.setState({
+          redirect
+        });
       })
       .catch(err => console.log(err));
   };
 
   render() {
+    if (this.state.redirect.length > 0) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     return (
       <div className="fulldiv">
         {/* title input */}
@@ -196,14 +204,14 @@ class PageBuilder extends React.Component {
                 return (
                   <div className="background" id="heading" key={index}>
                     <ToolbarBtn
-                    InputProps={{
-              classes: {
-                root: this.props.classes.textField
-              }
-            }}
-            InputLabelProps={{
-              style: { color: "white", padding: "0px 0px 5px 15px" }
-            }}
+                      InputProps={{
+                        classes: {
+                          root: this.props.classes.textField
+                        }
+                      }}
+                      InputLabelProps={{
+                        style: { color: "white", padding: "0px 0px 5px 15px" }
+                      }}
                       data-index={index}
                       content={section.content}
                       onChange={this.sectionInput}
@@ -213,7 +221,7 @@ class PageBuilder extends React.Component {
               case "IMAGE":
                 return (
                   <div className="background" key={index}>
-                  <ToolbarBtn
+                    <ToolbarBtn
                       data-index={index}
                       content={section.content}
                       onChange={this.sectionInput}
@@ -223,7 +231,7 @@ class PageBuilder extends React.Component {
               default:
                 return (
                   <div className="background" key={index}>
-                  <ToolbarBtn
+                    <ToolbarBtn
                       data-index={index}
                       content={section.content}
                       onChange={this.sectionInput}
