@@ -62,7 +62,9 @@ module.exports = (app) => {
 
     // Sends the results of the searchPages query (an array of Page documents) to the client
     app.get("/api/pages/:term", (req, res) => {
-        queries.read.searchPages(req.params.term)
+        let term = ("" + req.params.term);
+
+        queries.read.searchPages(term)
             .then(page => {
                 res.json({
                     error: false,
@@ -100,7 +102,9 @@ module.exports = (app) => {
 
     // Sends the results of the searchUsers query (an array of User documents) to the client
     app.get("/api/users/:term", (req, res) => {
-        queries.read.searchUsers(req.params.term)
+        let term = ("" + req.params.term);
+
+        queries.read.searchUsers(term)
             .then(users => {
                 res.json({
                     error: false,
