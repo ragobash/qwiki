@@ -90,7 +90,7 @@ class PageBuilder extends React.Component {
 
   newSection = event => {
     event.preventDefault();
-    console.log(event.target.getAttribute("data-sectiontype"));
+
     const entry = {
       sectionType: event.target.getAttribute("data-sectiontype"),
       content: ""
@@ -102,6 +102,20 @@ class PageBuilder extends React.Component {
       sections
     });
   };
+
+  removeSection = event => {
+    event.preventDefault();
+
+    const index = event.target.getAttribute("data-index");
+
+    const sections = this.state.sections.filter((section, i) => {
+      return i !== index;
+    });
+
+    this.setState({
+      sections
+    });
+  }
 
   sectionInput = event => {
     const index = event.target.getAttribute("data-index");
@@ -127,6 +141,7 @@ class PageBuilder extends React.Component {
     API.newPage(this.state)
       .then(res => {
         const redirect = "/pages/" + res.data.page._id;
+        
         this.setState({
           redirect
         });
