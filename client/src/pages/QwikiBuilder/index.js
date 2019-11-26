@@ -59,7 +59,6 @@ class QwikiBuilder extends React.Component {
     };
   }
 
-  // TODO
   handleInput = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -69,20 +68,19 @@ class QwikiBuilder extends React.Component {
     });
   }
 
-  // TODO
   switchPublic = (event) => {
     this.setState({
       public: event.target.checked
     });
   }
 
-  // TODO
   handleSubmit = (event) => {
     event.preventDefault();
 
     API.newQwiki(this.state)
       .then(res => {
         const redirect = "/qwikis/" + res.data.qwiki._id;
+
         this.setState({
           redirect
         });
