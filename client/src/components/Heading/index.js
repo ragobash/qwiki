@@ -22,7 +22,7 @@ import React from "react";
 
 function Heading(props) {
     return (
-        <span className="h3">{props.content}</span>
+        <span>{props.content}</span>
     );
 }
 

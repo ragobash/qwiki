@@ -23,9 +23,9 @@ import { Redirect } from "react-router-dom";
 import "../PageBuilder/pagebuilder.css";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
-import { Box, TextField } from "@material-ui/core";
+import { Box, TextField, Divider } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import ToolbarBtn from "../../components/ToolbarBtn/index.js";
+// import ToolbarBtn from "../../components/ToolbarBtn/index.js";
 
 // styles for title and blrb input
 
@@ -40,10 +40,9 @@ const styles = theme => ({
     marginRight: theme.spacing(1),
     width: "75%",
     heigth: "300",
-    borderRadius: "40px",
     background: "#2f3640",
     color: "white !important",
-    borderColor: "#3498db"
+    borderColor: "#3498db !important"
   },
   background: {
     background: "white"
@@ -155,9 +154,8 @@ class PageBuilder extends React.Component {
     }
 
     return (
-      <div className="fulldiv">
-        {/* title input */}
-        <div className="background">
+      <div id="wrapper">
+        <div id="content">
           <TextField
             InputProps={{
               classes: {
@@ -170,6 +168,7 @@ class PageBuilder extends React.Component {
             id="outlined-basic"
             // className={this.props.classes.textField}
             label="Title"
+            placeholder="Required*"
             margin="normal"
             variant="outlined"
             name="title"
@@ -177,10 +176,6 @@ class PageBuilder extends React.Component {
             onChange={this.handleInput}
             fullWidth
           />
-        </div>
-
-        {/* blurb input */}
-        <div className="background">
           <TextField
             id="outlined-basic"
             InputProps={{
@@ -189,13 +184,14 @@ class PageBuilder extends React.Component {
               }
             }}
             InputLabelProps={{
-              style: { color: "white", padding: "0px 0px 5px 15px" }
+              style: { color: "white", padding: "0px 0px 5px 15px", width: "100%" }
             }}
             fullWidth
             multiline={true}
             rows={1}
             rowsMax={10}
             label="Blurb"
+            placeholder="Required*"
             margin="normal"
             variant="outlined"
             name="blurb"
@@ -203,68 +199,105 @@ class PageBuilder extends React.Component {
             value={this.state.blurb}
             onChange={this.handleInput}
           />
-        </div>
-        <input
-          className="submit"
-          type="submit"
-          value="Submit"
-          onClick={this.handleSubmit}
-        ></input>
+          <Divider variant="middle" style={{backgroundColor: "#f4f4f4"}}/>
 
-        <div>
-          {this.state.sections.map((section, index) => {
-            switch (section.sectionType) {
-              case "HEADING":
-                console.log("heading hit");
-                return (
-                  <div className="background" id="heading" key={index}>
-                    <ToolbarBtn
-                      InputProps={{
-                        classes: {
-                          root: this.props.classes.textField
-                        }
-                      }}
-                      InputLabelProps={{
-                        style: { color: "white", padding: "0px 0px 5px 15px" }
-                      }}
-                      data-index={index}
-                      content={section.content}
-                      onChange={this.sectionInput}
-                    />
-                  </div>
-                );
-              case "IMAGE":
-                return (
-                  <div className="background" key={index}>
-                    <ToolbarBtn
-                      data-index={index}
-                      content={section.content}
-                      onChange={this.sectionInput}
-                    />
-                  </div>
-                );
-              default:
-                return (
-                  <div className="background" key={index}>
-                    <ToolbarBtn
-                      data-index={index}
-                      content={section.content}
-                      onChange={this.sectionInput}
-                    />
-                  </div>
-                );
-            }
-          })}
+          <div>
+            {this.state.sections.map((section, index) => {
+              switch (section.sectionType) {
+                case "HEADING":
+                  console.log("heading hit");
+                  return (
+                    <div className="background" id="heading" key={index}>
+                      <TextField
+                        InputProps={{
+                          classes: {
+                            root: this.props.classes.textField
+                          }
+                        }}
+                        InputLabelProps={{
+                          style: { color: "white", padding: "0px 0px 5px 15px" }
+                        }}
+                        id="outlined-basic"
+                        label="Heading"
+                        margin="normal"
+                        variant="outlined"
+                        name="heading"
+                        value={this.state.heading}
+                        onChange={this.handleInput}
+                        fullWidth
+                      />
+                    </div>
+                  );
+                case "IMAGE":
+                  return (
+                    <div className="background" key={index}>
+                      <TextField
+                        InputProps={{
+                          classes: {
+                            root: this.props.classes.textField
+                          }
+                        }}
+                        InputLabelProps={{
+                          style: { color: "white", padding: "0px 0px 5px 15px" }
+                        }}
+                        id="outlined-basic"
+                        label="Image"
+                        margin="normal"
+                        variant="outlined"
+                        name="image"
+                        value={this.state.image}
+                        onChange={this.handleInput}
+                        fullWidth
+                      />
+                    </div>
+                  );
+                default:
+                  return (
+                    <div className="background" key={index}>
+                      <TextField
+                        id="outlined-basic"
+                        InputProps={{
+                          classes: {
+                            root: this.props.classes.textField
+                          }
+                        }}
+                        InputLabelProps={{
+                          style: { color: "white", padding: "0px 0px 5px 15px" }
+                        }}
+                        fullWidth
+                        multiline={true}
+                        rows={1}
+                        rowsMax={10}
+                        label="Paragraph"
+                        margin="normal"
+                        variant="outlined"
+                        name="paragraph"
+                        padding="10px"
+                        value={this.state.paragraph}
+                        onChange={this.handleInput}
+                      />
+                      <input
+                        className="submit"
+                        type="submit"
+                        value="Submit"
+                        onClick={this.handleSubmit}
+                      ></input>
+                    </div>
+                  );
+              }
+            })}
+          </div>
         </div>
 
-        <div className="fullbox">
-          <Box className="toolbarbox" bgcolor="#2f3640">
-            <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
-          </Box>
+        <div id="toolbar">
+          <div className="fullbox">
+            <Box className="toolbarbox" bgcolor="#2f3640">
+              <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
+            </Box>
+          </div>
         </div>
       </div>
     );
   }
 }
-
 export default withStyles(styles)(PageBuilder);
