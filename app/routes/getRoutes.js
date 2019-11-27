@@ -102,7 +102,7 @@ module.exports = (app) => {
     });
 
     // Sends the results of the searchUsers query (an array of User documents) to the client
-    app.get("/api/users/:term", (req, res) => {
+    app.get("/api/users/search/:term", (req, res) => {
         let term = ("" + req.params.term);
 
         queries.read.searchUsers(term)
