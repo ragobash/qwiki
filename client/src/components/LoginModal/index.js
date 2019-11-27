@@ -19,16 +19,18 @@
  */
 
 import React, {Component} from "react";
-// import { Link } from "react-router-dom";
+import API from "../../util/API";
 import {Button, Modal,} from '@material-ui/core';
 import "./LoginModal.css";
 
 class LoginModal extends Component {
     // This handles the state of the modal
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.state = {
-            open: false
+            open: false,
+            email: "",
+            password: ""
         };
     }
 
@@ -39,10 +41,34 @@ class LoginModal extends Component {
 
     // closes modal
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({
+            open: false,
+            email: "",
+            password: ""
+        });
+    };
+
+    handleInput = event => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+
+        API.login(this.state)
+            .then(res => {
+                document.cookie = res.data.sessUser;
+                this.props.userLoggedIn(res.data.uuid);
+            })
+            .catch(err => console.log(err));
     };
     
-render() {
+    render() {
        return(
         <div>
             {/* login btn */}
@@ -61,9 +87,21 @@ render() {
               <form className="box">
               <h2>Login</h2>
                   <div>
-                    <input type="text" placeholder="Username"></input>
-                    <input type="password" placeholder="Password"></input>
-                    <input type="submit" value="Login"></input>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleInput}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleInput}
+                    />
+                    <input type="submit" value="Login" onClick={this.handleSubmit}></input>
                   </div>
               </form>
             </div>

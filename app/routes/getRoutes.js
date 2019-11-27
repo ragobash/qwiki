@@ -25,60 +25,118 @@ module.exports = (app) => {
     // Sends the results of the allQwikis query (an array of Qwiki documents) to the client
     app.get("/api/qwikis", (req, res) => {
         queries.read.allQwikis()
-            .then(data => res.json(data))
+            .then(qwikis => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    qwikis
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "GET request could not be processed"
+                });
             });
     });
 
     // Sends the results of the getQwiki query (a single Qwiki document) to the client
     app.get("/api/qwikis/:id", (req, res) => {
         queries.read.getQwiki(req.params.id)
-            .then(data => res.json(data))
+            .then(qwiki => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    qwiki
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "GET request could not be processed"
+                });
             });
     });
 
     // Sends the results of the searchPages query (an array of Page documents) to the client
     app.get("/api/pages/:term", (req, res) => {
-        queries.read.searchPages(req.params.term)
-            .then(data => res.json(data))
+        let term = ("" + req.params.term);
+
+        queries.read.searchPages(term)
+            .then(page => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    page
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "GET request could not be processed"
+                });
             });
     });
 
     // Sends the results of the getPage query (a single Page document) to the client
     app.get("/api/pages/:id", (req, res) => {
         queries.read.getPage(req.params.id)
-            .then(data => res.json(data))
+            .then(page => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    page
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "GET request could not be processed"
+                });
             });
     });
 
     // Sends the results of the searchUsers query (an array of User documents) to the client
     app.get("/api/users/:term", (req, res) => {
-        queries.read.searchUsers(req.params.term)
-            .then(data => res.json(data))
+        let term = ("" + req.params.term);
+
+        queries.read.searchUsers(term)
+            .then(users => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    users
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "GET request could not be processed"
+                });
             });
     });
     
     // Sends the results of the getUser query (a single User document)
     app.get("/api/users/:id", (req, res) => {
         queries.read.getUser(req.params.id)
-            .then(data => res.json(data))
+            .then(user => {
+                res.json({
+                    error: false,
+                    msg: "Success",
+                    user
+                });
+            })
             .catch(err => {
                 console.log(err);
-                res.send(err);
+                res.status(400).json({
+                    error: true,
+                    msg: "GET request could not be processed"
+                });
             });
     });
 }

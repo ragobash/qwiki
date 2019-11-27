@@ -23,11 +23,12 @@ import { Redirect } from "react-router-dom";
 import "../PageBuilder/pagebuilder.css";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
-import { TextField } from "@material-ui/core";
+import { Box, TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
+import ToolbarBtn from "../../components/ToolbarBtn/index.js";
 
 // styles for title and blrb input
+
 const styles = theme => ({
   container: {
     display: "flex",
@@ -37,12 +38,18 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: "75%",
     heigth: "300",
-    background: "white"
+    borderRadius: "40px",
+    background: "#2f3640",
+    color: "white !important",
+    borderColor: "#3498db"
   },
   background: {
     background: "white"
+  },
+  label: {
+    color: "white"
   }
 });
 
@@ -55,7 +62,8 @@ class PageBuilder extends React.Component {
       title: "",
       blurb: "",
       public: true,
-      sections: []
+      sections: [],
+      redirect: ""
     };
   }
 
@@ -84,7 +92,7 @@ class PageBuilder extends React.Component {
     event.preventDefault();
 
     const entry = {
-      type: event.target.sectiontype,
+      sectionType: event.target.getAttribute("data-sectiontype"),
       content: ""
     };
 
@@ -95,11 +103,36 @@ class PageBuilder extends React.Component {
     });
   };
 
+  removeSection = event => {
+    event.preventDefault();
+
+    const index = event.target.getAttribute("data-index");
+
+    const sections = this.state.sections.filter((section, i) => {
+      return i !== index;
+    });
+
+    this.setState({
+      sections
+    });
+  }
+
   sectionInput = event => {
-    const index = event.target.index;
+    const index = event.target.getAttribute("data-index");
     const content = event.target.value;
 
-    this.setState({});
+    let sections = [...this.state.sections];
+
+    const sectionType = sections[index].sectionType;
+
+    sections[index] = {
+      sectionType,
+      content
+    };
+
+    this.setState({
+      sections
+    });
   };
 
   handleSubmit = event => {
@@ -107,26 +140,42 @@ class PageBuilder extends React.Component {
 
     API.newPage(this.state)
       .then(res => {
-        return <Redirect to={"/pages/" + res.data._id} />;
+        const redirect = "/pages/" + res.data.page._id;
+        
+        this.setState({
+          redirect
+        });
       })
       .catch(err => console.log(err));
   };
 
-  // TODO
   render() {
+    if (this.state.redirect.length > 0) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     return (
-      <div>
+      <div className="fulldiv">
         {/* title input */}
         <div className="background">
           <TextField
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
             id="outlined-basic"
-            className={this.props.classes.textField}
+            // className={this.props.classes.textField}
             label="Title"
             margin="normal"
             variant="outlined"
             name="title"
             value={this.state.title}
             onChange={this.handleInput}
+            fullWidth
           />
         </div>
 
@@ -134,45 +183,75 @@ class PageBuilder extends React.Component {
         <div className="background">
           <TextField
             id="outlined-basic"
-            className={this.props.classes.textField}
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
+            fullWidth
+            multiline={true}
+            rows={1}
+            rowsMax={10}
             label="Blurb"
             margin="normal"
             variant="outlined"
             name="blurb"
+            padding="10px"
             value={this.state.blurb}
             onChange={this.handleInput}
           />
         </div>
+        <input
+          className="submit"
+          type="submit"
+          value="Submit"
+          onClick={this.handleSubmit}
+        ></input>
 
-        <div className="kjhjk">
+        <div>
           {this.state.sections.map((section, index) => {
-            switch (section.type) {
+            switch (section.sectionType) {
               case "HEADING":
+                console.log("heading hit");
                 return (
-                  <input
-                    key={index}
-                    index={index}
-                    value={section.content}
-                    onChange={this.sectionInput}
-                  />
+                  <div className="background" id="heading" key={index}>
+                    <ToolbarBtn
+                      InputProps={{
+                        classes: {
+                          root: this.props.classes.textField
+                        }
+                      }}
+                      InputLabelProps={{
+                        style: { color: "white", padding: "0px 0px 5px 15px" }
+                      }}
+                      data-index={index}
+                      content={section.content}
+                      onChange={this.sectionInput}
+                    />
+                  </div>
                 );
               case "IMAGE":
                 return (
-                  <input
-                    key={index}
-                    index={index}
-                    value={section.content}
-                    onChange={this.sectionInput}
-                  />
+                  <div className="background" key={index}>
+                    <ToolbarBtn
+                      data-index={index}
+                      content={section.content}
+                      onChange={this.sectionInput}
+                    />
+                  </div>
                 );
               default:
                 return (
-                  <textarea
-                    key={index}
-                    index={index}
-                    value={section.content}
-                    onChange={this.sectionInput}
-                  />
+                  <div className="background" key={index}>
+                    <ToolbarBtn
+                      data-index={index}
+                      content={section.content}
+                      onChange={this.sectionInput}
+                    />
+                  </div>
                 );
             }
           })}
@@ -183,8 +262,6 @@ class PageBuilder extends React.Component {
             <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
           </Box>
         </div>
-
-        <input type="submit" value="Submit" onClick={this.handleSubmit}></input>
       </div>
     );
   }

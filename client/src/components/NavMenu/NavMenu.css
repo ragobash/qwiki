@@ -3,7 +3,7 @@
     display: flex;
     justify-content: left;
     margin-right: 0%;
-    padding-right: 0%;
+    padding-left: 50px;
 }
 Button {
     margin-right: 0%;

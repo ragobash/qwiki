@@ -25,9 +25,9 @@ qWiki is a platform that provides a quick and easy way to host your own scalable
 * [Mongoose](https://mongoosejs.com/docs/api.html)
 * [React](https://reactjs.org/docs/getting-started.html)
 * [Redux](https://redux.js.org/)
+* [Validator](https://www.npmjs.com/package/validator)
 
 ## Usage
-
 /// FILLER TEXT
 
 ## Contributing

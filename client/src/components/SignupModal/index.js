@@ -19,14 +19,19 @@
  */
 
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import API from "../../util/API";
 import { Button, Modal } from "@material-ui/core";
 
 class SignupModal extends Component {
   constructor() {
     super();
+
     this.state = {
-      open: false
+      open: false,
+      email: "",
+      displayName: "",
+      password: "",
+      confirm: ""
     };
   }
 
@@ -35,14 +40,41 @@ class SignupModal extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      email: "",
+      displayName: "",
+      password: "",
+      confirm: ""
+    });
+  };
+
+  handleInput = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    if (this.state.password === this.state.confirm) {
+      API.newUser(this.state)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+    } else {
+      console.log("Password fields do not match.");
+    }
   };
 
   render() {
     return (
       <div>
         <Button variant="contained" onClick={this.handleOpen} id="btn">
-          Sign up
+          Register
         </Button>
 
         <Modal
@@ -50,16 +82,41 @@ class SignupModal extends Component {
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onClose={this.handleClose}
-          autocomplete="off"
+          autoComplete="off"
         >
           <div>
             <form className="box">
-              <h2>Sign up</h2>
+              <h2>Register</h2>
               <div>
-                <input type="text" placeholder="Email"></input>
-                <input type="text" placeholder="Username"></input>
-                <input type="password" placeholder="Password"></input>
-                <input type="submit" value="Sign Up"></input>
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleInput}
+                />
+                <input
+                  type="text"
+                  placeholder="Display Name"
+                  name="displayName"
+                  value={this.state.displayName}
+                  onChange={this.handleInput}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInput}
+                />
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirm"
+                  value={this.state.confirm}
+                  onChange={this.handleInput}
+                />
+                <input type="submit" value="Sign Up" onClick={this.handleSubmit} />
               </div>
             </form>
           </div>

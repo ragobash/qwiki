@@ -80,5 +80,10 @@ export default {
     // Performs an axios POST request to update a User
     updateUser: (id, data) => {
         return axios.post("/api/users/" + id, data);
+    },
+
+    // TODO
+    login: (data) => {
+        return axios.post("/api/login", data);
     }
 }

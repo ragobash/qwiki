@@ -17,37 +17,41 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
+import TextField from "@material-ui/core/TextField";
+import "../../components/ToolbarBtn/ToolbarBtn.css";
 
-const useStyles = makeStyles({
-  root: {
+const useStyles = makeStyles(theme => ({
+  container: {
     display: "flex",
-    "& > * + *": {
-      marginLeft: 16
-    }
+    flexWrap: "wrap"
   },
-  square: {
-    width: "13%",
-    heigth: "10%",
-    backgroundColor: "#000000"
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 750,
+    background: "#2f3640"
   }
-});
+}));
 
-export default function Logo() {
+export default function MultilineTextFields() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <a href="/">
-        <Avatar
-          variant="square"
-          src="/images/logocolor.png"
-          className={classes.square}
-        ></Avatar>
-      </a>
-    </div>
+    <form className={classes.container} noValidate autoComplete="off">
+      <div>
+        <TextField
+          id="outlined-textarea"
+          label="Required*"
+          placeholder=""
+          multiline
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          fullWidth
+        />
+      </div>
+    </form>
   );
 }

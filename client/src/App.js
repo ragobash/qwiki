@@ -21,6 +21,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { withCookies } from "react-cookie";
 import Navbar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
 import QwikiBuilder from "./pages/QwikiBuilder";
@@ -28,27 +29,58 @@ import QwikiHub from "./pages/QwikiHub";
 import PageBuilder from "./pages/PageBuilder";
 import QwikiPage from "./pages/QwikiHub";
 
+const HOUR = 3600;
+
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      loggedIn: false,
-      userID: ""
+      uuid: ""
     };
+  }
+
+  componentDidMount() {
+    const uuid = this.props.cookies.get("qwiki.sid");
+
+    if (uuid) {
+      this.setState({
+        uuid
+      });
+    }
+  }
+
+  userLoggedIn = uuid => {
+    this.props.cookies.set("qwiki.sid", uuid, {
+      path: "/",
+      maxAge: HOUR,
+      sameSite: true
+    });
+
+    this.setState({
+      uuid
+    });
+  }
+
+  userLoggedOut = () => {
+    this.props.cookies.remove("qwiki.sid", { path: "/" });
+
+    this.setState({
+      uuid: ""
+    })
   }
 
   render() {
     return (
       <Router>
         <div className="background">
-          <Navbar />
+          <Navbar userLoggedIn={this.userLoggedIn} />
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
           <Route path="/qwikis/:id" component={QwikiHub} />
-          <Route exact path="/pages/builder/:id" component={PageBuilder} />
+          <Route path="/pages/builder/:id" component={PageBuilder} />
           <Route path="/pages/:id" component={QwikiPage} />
         </Switch>
       </Router>
@@ -56,4 +88,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withCookies(App);
