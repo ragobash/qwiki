@@ -60,12 +60,13 @@ class QwikiHub extends React.Component {
 
     API.getQwikiByID(id)
       .then(res => {
+        console.log(res.data.qwiki);
         this.setState({
-          _id: res.data._id,
-          title: res.data.title,
-          blurb: res.data.blurb,
-          img: res.data.img,
-          pages: res.data.pages
+          _id: res.data.qwiki._id,
+          title: res.data.qwiki.title,
+          blurb: res.data.qwiki.blurb,
+          img: res.data.qwiki.img,
+          pages: res.data.qwiki.pages
         });
       })
       .catch(err => {
