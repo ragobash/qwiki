@@ -131,9 +131,9 @@ class PageBuilder extends React.Component {
 
   render() {
     return (
-      <div id="wrapper">
-        <div id="content">
-          <TextField
+<div class="wrapper">
+    <div class="content">
+<TextField
             InputProps={{
               classes: {
                 root: this.props.classes.textField
@@ -161,7 +161,7 @@ class PageBuilder extends React.Component {
               }
             }}
             InputLabelProps={{
-              style: { color: "white", padding: "0px 0px 5px 15px", width: "100%" }
+              style: { color: "white", padding: "0px 0px 5px 15px" }
             }}
             fullWidth
             multiline={true}
@@ -176,105 +176,106 @@ class PageBuilder extends React.Component {
             value={this.state.blurb}
             onChange={this.handleInput}
           />
-          <Divider variant="middle" style={{backgroundColor: "#f4f4f4"}}/>
+          <Divider style={{ backgroundColor: "#f4f4f4", width: "500px" }} />
 
           <div>
-            {this.state.sections.map((section, index) => {
-              switch (section.sectionType) {
-                case "HEADING":
-                  console.log("heading hit");
-                  return (
-                    <div className="background" id="heading" key={index}>
-                      <TextField
-                        InputProps={{
-                          classes: {
-                            root: this.props.classes.textField
-                          }
-                        }}
-                        InputLabelProps={{
-                          style: { color: "white", padding: "0px 0px 5px 15px" }
-                        }}
-                        id="outlined-basic"
-                        label="Heading"
-                        margin="normal"
-                        variant="outlined"
-                        name="heading"
-                        value={this.state.heading}
-                        onChange={this.handleInput}
-                        fullWidth
-                      />
-                    </div>
-                  );
-                case "IMAGE":
-                  return (
-                    <div className="background" key={index}>
-                      <TextField
-                        InputProps={{
-                          classes: {
-                            root: this.props.classes.textField
-                          }
-                        }}
-                        InputLabelProps={{
-                          style: { color: "white", padding: "0px 0px 5px 15px" }
-                        }}
-                        id="outlined-basic"
-                        label="Image"
-                        margin="normal"
-                        variant="outlined"
-                        name="image"
-                        value={this.state.image}
-                        onChange={this.handleInput}
-                        fullWidth
-                      />
-                    </div>
-                  );
-                default:
-                  return (
-                    <div className="background" key={index}>
-                      <TextField
-                        id="outlined-basic"
-                        InputProps={{
-                          classes: {
-                            root: this.props.classes.textField
-                          }
-                        }}
-                        InputLabelProps={{
-                          style: { color: "white", padding: "0px 0px 5px 15px" }
-                        }}
-                        fullWidth
-                        multiline={true}
-                        rows={1}
-                        rowsMax={10}
-                        label="Paragraph"
-                        margin="normal"
-                        variant="outlined"
-                        name="paragraph"
-                        padding="10px"
-                        value={this.state.paragraph}
-                        onChange={this.handleInput}
-                      />
-                      <input
-                        className="submit"
-                        type="submit"
-                        value="Submit"
-                        onClick={this.handleSubmit}
-                      ></input>
-                    </div>
-                  );
+          {this.state.sections.map((section, index) => {
+            switch (section.sectionType) {
+              case "HEADING":
+                console.log("heading hit");
+                return (
+                  <div className="background" id="heading" key={index}>
+                  <TextField
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
               }
-            })}
-          </div>
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
+            id="outlined-basic"
+            label="Heading"
+            margin="normal"
+            variant="outlined"
+            name="heading"
+            value={this.state.heading}
+            onChange={this.handleInput}
+            fullWidth
+          />
+                  </div>
+                );
+              case "IMAGE":
+                return (
+                  <div className="background" key={index}>
+                  <TextField
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
+            id="outlined-basic"
+            label="Image"
+            margin="normal"
+            variant="outlined"
+            name="image"
+            value={this.state.image}
+            onChange={this.handleInput}
+            fullWidth
+          />
+                  </div>
+                );
+              default:
+                return (
+                  <div className="background" key={index}>
+                  <TextField
+            id="outlined-basic"
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
+            fullWidth
+            multiline={true}
+            rows={1}
+            rowsMax={10}
+            label="Paragraph"
+            margin="normal"
+            variant="outlined"
+            name="paragraph"
+            padding="10px"
+            value={this.state.paragraph}
+            onChange={this.handleInput}
+          />
+          
+                  </div>
+                  
+                );
+            }
+          })}
+          <input
+          className="submit"
+          type="submit"
+          value="Submit"
+          onClick={this.handleSubmit}
+        ></input>
         </div>
-
-        <div id="toolbar">
-          <div className="fullbox">
-            <Box className="toolbarbox" bgcolor="#2f3640">
-              <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
-            </Box>
-          </div>
+    </div>
+    <div class="toolbar">
+    <div className="fullbox">
+          <Box className="toolbarbox" bgcolor="#2f3640">
+            <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
+          </Box>
         </div>
-      </div>
-    );
-  }
+    </div>
+</div>
+);
+}
 }
 export default withStyles(styles)(PageBuilder);
