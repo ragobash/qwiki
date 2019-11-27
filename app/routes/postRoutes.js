@@ -320,7 +320,7 @@ module.exports = app => {
     }),
     // Handles user login requests
     app.post("/api/login", (req, res) => {
-      const { email, password  } = req.body;
+      let { email, password  } = req.body;
 
       email = ("" + email).toLowerCase();
       password = ("" + password);

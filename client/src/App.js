@@ -74,7 +74,7 @@ class App extends Component {
     return (
       <Router>
         <div className="background">
-          <Navbar userLoggedIn={this.userLoggedIn} />
+          <Navbar loggedIn={this.state.uuid.length > 0} userLoggedIn={this.userLoggedIn} userLoggedOut={this.userLoggedOut} />
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
