@@ -13,7 +13,9 @@ class UserPage extends Component {
     }
 
     render() {
-        return <div></div>
+        return (
+            <div></div>
+        );
     }
 }
 
