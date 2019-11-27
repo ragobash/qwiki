@@ -6,31 +6,11 @@
 #content {  
     flex-grow: 1;
     margin: 0 auto;
-    
 }
 
 #toolbar {
-    width: 300px;
     margin: 0 auto;
-    padding: 15px;
-}
-
-/* .toolbarbox {
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-} */
-
-.fullbox {
-    display: flex;
-    justify-content: flex-end;
-    top: 0px;
-    right: 0px;
-}
-
-.fulldiv {
-    position: relative;
+    padding: 16px 15px 0px 25px;
 }
 
 .submit {

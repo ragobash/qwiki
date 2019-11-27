@@ -25,6 +25,7 @@ import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { Box, TextField, Divider } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import Footer from '../../components/Footer';
 // import ToolbarBtn from "../../components/ToolbarBtn/index.js";
 
 // styles for title and blrb input
@@ -304,6 +305,7 @@ class PageBuilder extends React.Component {
             <Box className="toolbarbox" bgcolor="#2f3640">
               <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
             </Box>
+            
           </div>
         </div>
       </div>
