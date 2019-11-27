@@ -19,17 +19,17 @@
  */
 
 import React from "react";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 import { withStyles } from "@material-ui/core/styles";
 
 class Footer extends React.Component {
-    render() {
-        return (
-           <div class="wrapper">
-            <Box />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div class="wrapper">
+        <Box />
+      </div>
+    );
+  }
 }
 
 export default Footer;

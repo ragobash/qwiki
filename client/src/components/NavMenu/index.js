@@ -46,7 +46,11 @@ class NavMenu extends Component {
       return (
         <MenuItem onClick={this.handleClose}>
           {" "}
-          <Button variant="contained"  onClick={this.props.userLoggedOut} id="btn">
+          <Button
+            variant="contained"
+            onClick={this.props.userLoggedOut}
+            id="btn"
+          >
             Logout
           </Button>
         </MenuItem>

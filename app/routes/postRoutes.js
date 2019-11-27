@@ -320,10 +320,10 @@ module.exports = app => {
     }),
     // Handles user login requests
     app.post("/api/login", (req, res) => {
-      let { email, password  } = req.body;
+      let { email, password } = req.body;
 
       email = ("" + email).toLowerCase();
-      password = ("" + password);
+      password = "" + password;
 
       if (!validator.isEmail(email) || validator.isEmpty(email)) {
         return res.status(400).json({
@@ -332,9 +332,9 @@ module.exports = app => {
         });
       } else if (validator.isEmpty(password)) {
         return res.status(400).json({
-            error: true,
-            msg: "PASSWORD field cannot be empty"
-          });
+          error: true,
+          msg: "PASSWORD field cannot be empty"
+        });
       }
 
       queries.read

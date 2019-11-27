@@ -73,13 +73,9 @@ class App extends Component {
 
   getHomePage = () => {
     if (this.state.uuid.length > 0) {
-      return (
-        <UserPage uuid={this.state.uuid} />
-      );
+      return <UserPage uuid={this.state.uuid} />;
     } else {
-      return (
-        <LandingPage />
-      );
+      return <LandingPage />;
     }
   };
 
@@ -87,7 +83,11 @@ class App extends Component {
     return (
       <Router>
         <div className="background">
-          <Navbar loggedIn={this.state.uuid.length > 0} userLoggedIn={this.userLoggedIn} userLoggedOut={this.userLoggedOut} />
+          <Navbar
+            loggedIn={this.state.uuid.length > 0}
+            userLoggedIn={this.userLoggedIn}
+            userLoggedOut={this.userLoggedOut}
+          />
         </div>
         <Switch>
           <Route exact path="/" component={this.getHomePage} />
