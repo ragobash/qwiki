@@ -33,7 +33,7 @@ class QwikiPage extends React.Component {
             _id: "",
             title: "",
             blurb: "",
-            sections = []
+            sections: []
         }
     }
 
@@ -42,6 +42,7 @@ class QwikiPage extends React.Component {
 
         API.getPageByID(id)
             .then(res => {
+                console.log(res.data);
                 this.setState({
                     _id: res.data.page._id,
                     title: res.data.page.title,
@@ -58,14 +59,14 @@ class QwikiPage extends React.Component {
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
                 {
-                    this.state.sections.map(section => {
+                    this.state.sections && this.state.sections.map(section => {
                         switch(section.sectionType) {
                             case "HEADING":
                                 return <Heading content={section.content} />
-                            case "PARAGRAPH":
-                                return <Paragraph content={section.content} />
                             case "IMAGE":
                                 return <Image content={section.content} />
+                            default:
+                                return <Paragraph content={section.content} />
                         }
                     })
                 }

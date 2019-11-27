@@ -61,7 +61,7 @@ module.exports = (app) => {
     });
 
     // Sends the results of the searchPages query (an array of Page documents) to the client
-    app.get("/api/pages/:term", (req, res) => {
+    app.get("/api/pages/search/:term", (req, res) => {
         let term = ("" + req.params.term);
 
         queries.read.searchPages(term)
@@ -83,8 +83,11 @@ module.exports = (app) => {
 
     // Sends the results of the getPage query (a single Page document) to the client
     app.get("/api/pages/:id", (req, res) => {
+        console.log("Test test");
+
         queries.read.getPage(req.params.id)
             .then(page => {
+                
                 res.json({
                     error: false,
                     msg: "Success",
