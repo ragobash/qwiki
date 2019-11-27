@@ -20,7 +20,7 @@
 
 import React from "react";
 import API from "../../util/API";
-import Heading from "../../components/Heading";
+import Heading from "../../components/Heading/index.js";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
 
