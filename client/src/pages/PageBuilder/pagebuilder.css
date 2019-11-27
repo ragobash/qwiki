@@ -5,11 +5,14 @@
 }
 #content {  
     flex-grow: 1;
+    margin: 0 auto;
+    
 }
 
 #toolbar {
     width: 300px;
     margin: 0 auto;
+    padding: 15px;
 }
 
 /* .toolbarbox {
@@ -35,21 +38,15 @@
     color: #4054b2;
     width: 325px;
     height: 35px;
-    margin: 0.5% 25%;
-    border-radius: 25px;
     border: 1px solid #4054b2;
     font-weight: 600;
 }
 
-textarea {
-    background: #909090;
-    color: #f4f4f4;
-    border-radius: 25px;
-    border: 1px solid #4054b2;
-    width: 75%;
-    padding: 5px;
+#submit {
+    text-align: center;
+    margin: 15px;
 }
 
-#outlined-basic {
+#filled-basic {
     border-radius: 0%;
 }
