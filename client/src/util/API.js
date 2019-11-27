@@ -44,7 +44,7 @@ export default {
 
     // Performs an axios GET request for any Pages that contain the specified term
     searchPages: term => {
-        return axios.get("/api/pages/" + term);
+        return axios.get("/api/pages/search/" + term);
     },
 
     // Performs an axios GET request for any Users that contain the specified term

@@ -47,6 +47,7 @@ class QwikiHub extends React.Component {
         API
             .getQwikiByID(id)
             .then(res => {
+                console.log(res.data.qwiki);
                 this.setState({
                     _id: res.data.qwiki._id,
                     title: res.data.qwiki.title,
