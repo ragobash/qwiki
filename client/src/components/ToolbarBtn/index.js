@@ -43,13 +43,16 @@ export default function MultilineTextFields() {
       <div>
         <TextField
           id="outlined-textarea"
-          label="Required*"
-          placeholder=""
+          label=""
+          placeholder="Required*"
           multiline
           className={classes.textField}
           margin="normal"
           variant="outlined"
-          fullWidth
+          inputProps={{
+            style: { textAlign: "center",
+            justifyContent: "center" }
+          }}
         />
       </div>
     </form>
