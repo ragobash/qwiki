@@ -27,7 +27,7 @@ import LandingPage from "./pages/LandingPage";
 import QwikiBuilder from "./pages/QwikiBuilder";
 import QwikiHub from "./pages/QwikiHub";
 import PageBuilder from "./pages/PageBuilder";
-import QwikiPage from "./pages/QwikiHub";
+import QwikiPage from "./pages/QwikiPage";
 
 const HOUR = 3600;
 
@@ -78,10 +78,10 @@ class App extends Component {
         </div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
+          <Route exact path="/pages/:id" component={QwikiPage} />
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
-          <Route path="/qwikis/:id" component={QwikiHub} />
-          <Route path="/pages/builder/:id" component={PageBuilder} />
-          <Route path="/pages/:id" component={QwikiPage} />
+          <Route exact path="/qwikis/:id" component={QwikiHub} />
+          <Route exact path="/pages/builder/:id" component={PageBuilder} />
         </Switch>
       </Router>
     );
