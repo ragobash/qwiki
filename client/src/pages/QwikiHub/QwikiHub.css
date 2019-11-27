@@ -1,0 +1,50 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: 200px 100px 200px;
+}
+
+.btns {}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.title {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    color: white;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    font-size: 50px;
+}
+
+.pic {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    align-items: center;
+    justify-content: center;
+}
+
+.blurb {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.btn2 {
+    margin: 5px;
+    padding: 5px;
+}
