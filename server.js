@@ -21,6 +21,7 @@
 // Imports
 const express = require("express");
 const path = require("path");
+// const session = require('express-session');
 const mongoose = require("mongoose");
 
 // Constants
@@ -44,6 +45,20 @@ mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+// Setup user session handler
+// app.use(session({
+//   name: "qwiki.sid",
+//   secret: "qwiki-sessions",
+//   resave: false,
+//   saveUninitialized: false,
+//   rolling: true,
+//   cookie: {
+//     maxAge: 3600000,
+//     secure: "auto",
+//     sameSite: true
+//   }
+// }));
 
 // Import API routes
 require("./app/routes/getRoutes")(app);

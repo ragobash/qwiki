@@ -54,11 +54,11 @@ class QwikiBuilder extends React.Component {
       img: "",
       public: true,
       permissions: "OWNER",
-      mods: []
+      mods: [],
+      redirect: ""
     };
   }
 
-  // TODO
   handleInput = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -68,25 +68,31 @@ class QwikiBuilder extends React.Component {
     });
   }
 
-  // TODO
   switchPublic = (event) => {
     this.setState({
       public: event.target.checked
     });
   }
 
-  // TODO
   handleSubmit = (event) => {
     event.preventDefault();
 
     API.newQwiki(this.state)
       .then(res => {
-        return <Redirect to={"/qwikis/" + res.data._id} />
+        const redirect = "/qwikis/" + res.data.qwiki._id;
+
+        this.setState({
+          redirect
+        });
       })
       .catch(err => console.log(err));
   }
 
   render() {
+    if (this.state.redirect.length > 0) {
+      return <Redirect to={this.state.redirect} />
+    }
+
     return (
       <div>
         {/* title input */}

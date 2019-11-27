@@ -58,7 +58,7 @@ module.exports = {
     // Queries the Users collection for any User documents with the specified term in the email
     searchUsersEmail: (term) => {
         return db.Users
-            .find({
+            .findOne({
                 email: ("" + term).toLowerCase()
             });
     },

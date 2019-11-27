@@ -36,12 +36,12 @@ const useStyles = makeStyles({
   }
 });
 
-export default function VariantAvatars() {
+export default function VariantAvatars(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Avatar variant="square" src="https://via.placeholder.com/300" className={classes.square}>
+      <Avatar variant="square" src={props.content} className={classes.square}>
       </Avatar>
     </div>
   );
