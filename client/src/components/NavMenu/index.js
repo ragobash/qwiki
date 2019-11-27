@@ -41,6 +41,32 @@ class NavMenu extends Component {
     this.setState({ open: false });
   };
 
+  menuItems = () => {
+    if (this.props.loggedIn) {
+      return (
+        <MenuItem onClick={this.handleClose}>
+          {" "}
+          <Button variant="contained"  onClick={this.props.userLoggedOut} id="btn">
+            Logout
+          </Button>
+        </MenuItem>
+      );
+    } else {
+      return (
+        <div>
+          <MenuItem onClick={this.handleClose}>
+            {" "}
+            <LoginModal {...this.props} />{" "}
+          </MenuItem>
+          <MenuItem onClick={this.handleClose}>
+            {" "}
+            <SignupModal />{" "}
+          </MenuItem>
+        </div>
+      );
+    }
+  };
+
   render() {
     return (
       <div className="background">
@@ -59,14 +85,7 @@ class NavMenu extends Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>
-            {" "}
-            <LoginModal {...this.props} />{" "}
-          </MenuItem>
-          <MenuItem onClick={this.handleClose}>
-            {" "}
-            <SignupModal />{" "}
-          </MenuItem>
+          {this.menuItems()}
         </Menu>
       </div>
     );

@@ -83,8 +83,6 @@ module.exports = (app) => {
 
     // Sends the results of the getPage query (a single Page document) to the client
     app.get("/api/pages/:id", (req, res) => {
-        console.log("Test test");
-
         queries.read.getPage(req.params.id)
             .then(page => {
                 
