@@ -28,6 +28,7 @@ import QwikiBuilder from "./pages/QwikiBuilder";
 import QwikiHub from "./pages/QwikiHub";
 import PageBuilder from "./pages/PageBuilder";
 import QwikiPage from "./pages/QwikiPage";
+import UserPage from "./pages/UserPage";
 
 const HOUR = 3600;
 
@@ -60,24 +61,36 @@ class App extends Component {
     this.setState({
       uuid
     });
-  }
+  };
 
   userLoggedOut = () => {
     this.props.cookies.remove("qwiki.sid", { path: "/" });
 
     this.setState({
       uuid: ""
-    })
-  }
+    });
+  };
+
+  getHomePage = () => {
+    if (this.state.uuid.length > 0) {
+      return <UserPage uuid={this.state.uuid} />;
+    } else {
+      return <LandingPage />;
+    }
+  };
 
   render() {
     return (
       <Router>
         <div className="background">
-          <Navbar loggedIn={this.state.uuid.length > 0} userLoggedIn={this.userLoggedIn} userLoggedOut={this.userLoggedOut} />
+          <Navbar
+            loggedIn={this.state.uuid.length > 0}
+            userLoggedIn={this.userLoggedIn}
+            userLoggedOut={this.userLoggedOut}
+          />
         </div>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={this.getHomePage} />
           <Route exact path="/pages/:id" component={QwikiPage} />
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
           <Route exact path="/qwikis/:id" component={QwikiHub} />

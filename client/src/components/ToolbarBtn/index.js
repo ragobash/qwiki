@@ -50,8 +50,7 @@ export default function MultilineTextFields() {
           margin="normal"
           variant="outlined"
           inputProps={{
-            style: { textAlign: "center",
-            justifyContent: "center" }
+            style: { textAlign: "center", justifyContent: "center" }
           }}
         />
       </div>
