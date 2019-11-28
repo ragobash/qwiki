@@ -65,5 +65,4 @@ class ErrorPage extends React.Component {
     );
   }
 }
-
 export default ErrorPage;

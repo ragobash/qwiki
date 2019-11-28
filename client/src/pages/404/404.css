@@ -1,10 +1,10 @@
-#wrapper {
+#errorwrapper {
     width: 100%;
     display: flex;
     padding: 10px;
 }
 
-#content {
+#errorcontent {
     display: flex;
     justify-content: center;
 }

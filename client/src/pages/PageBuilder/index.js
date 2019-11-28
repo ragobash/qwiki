@@ -165,14 +165,15 @@ class PageBuilder extends React.Component {
               style: { color: "white", padding: "0px 0px 5px 15px" }
             }}
             id="filled-basic"
+            // className={this.props.classes.textField}
             label="Title"
+            placeholder="Required*"
             margin="normal"
             variant="filled"
             name="title"
             value={this.state.title}
             onChange={this.handleInput}
             fullWidth
-            required= "true"
           />
           <TextField
             id="filled-basic"
@@ -193,17 +194,15 @@ class PageBuilder extends React.Component {
             rows={1}
             rowsMax={10}
             label="Blurb"
+            placeholder="Required*"
             margin="normal"
             variant="filled"
             name="blurb"
             padding="10px"
             value={this.state.blurb}
             onChange={this.handleInput}
-            required= "true"
           />
-          <Divider
-          variant="middle"
-          style={{ backgroundColor: "#f4f4f4" }} />
+          <Divider variant="middle" style={{ backgroundColor: "#f4f4f4" }} />
 
           <div>
             {this.state.sections.map((section, index) => {
@@ -305,6 +304,7 @@ class PageBuilder extends React.Component {
             <Box className="toolbarbox" bgcolor="#2f3640">
               <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
             </Box>
+            
           </div>
         </div>
       </div>
