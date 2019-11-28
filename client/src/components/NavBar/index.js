@@ -33,12 +33,13 @@ function Navbar(props) {
         <Toolbar className="navbar">
           <div>
             <Logo />
+            
           </div>
           <div className="tools">
             <div className="search-box">
               <input
                 type="text"
-                placeholder="Type to search"
+                placeholder="Type to search..."
                 className="search-txt"
               ></input>
               <a href="/" className="search-btn">

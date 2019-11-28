@@ -40,7 +40,7 @@ export default function VariantAvatars(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}></div>
+    <div className={classes.root}>
       <Avatar
         variant="square"
         src={props.content}
