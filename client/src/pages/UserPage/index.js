@@ -20,40 +20,58 @@
 
 import React, { Component } from "react";
 import API from "../../util/API";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class UserPage extends Component {
+  constructor() {
+    super();
 
-    constructor() {
-        super();
+    this.state = {
+      uuid: "",
+      displayName: "",
+      followed: "",
+      joined: "",
+      owned: []
+    };
+  }
 
-        this.state = {
-            uuid: "",
-            displayName: "",
-            followed: "",
-            joined: ""
-        };
-    }
+  componentDidMount() {
+    const uuid = this.props.uuid || this.props.match.params.uuid;
 
-    componentDidMount() {
-        const uuid = this.props.uuid || this.props.match.params.uuid;
+    API.getUserByID(uuid)
+      .then(res => {
+        this.setState({
+          uuid,
+          displayName: res.data.user.displayName,
+          followed: res.data.user.followed,
+          joined: res.data.user.joined
+        });
+      })
+      .catch(err => console.log(err));
 
-        API.getUserByID(uuid)
-            .then(res => {
-                this.setState({
-                    uuid,
-                    displayName: res.data.user.displayName,
-                    followed: res.data.user.followed,
-                    joined: res.data.user.joined
-                });
-            })
-            .catch(err => console.log(err));
-    }
+    API.getOwnedQwikis(uuid)
+      .then(res => {
+        this.setState({
+          owned: res.data.owned
+        });
+      })
+      .catch(err => console.log(err));
+  }
 
-    render() {
-        return (
-            <div></div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <Fab
+          color="primary"
+          aria-label="add"
+          href={"/pages/builder/" + this.state._id}
+        >
+          <AddIcon />
+        </Fab>
+      </div>
+    );
+  }
 }
 
 export default UserPage;
