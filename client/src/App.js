@@ -29,6 +29,7 @@ import QwikiHub from "./pages/QwikiHub";
 import PageBuilder from "./pages/PageBuilder";
 import QwikiPage from "./pages/QwikiPage";
 import UserPage from "./pages/UserPage";
+import ErrorPage from "./pages/404";
 
 const HOUR = 3600;
 
@@ -95,6 +96,7 @@ class App extends Component {
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
           <Route exact path="/qwikis/:id" component={QwikiHub} />
           <Route exact path="/pages/builder/:id" component={PageBuilder} />
+          <Route exact path="/404" component={ErrorPage} />
         </Switch>
       </Router>
     );

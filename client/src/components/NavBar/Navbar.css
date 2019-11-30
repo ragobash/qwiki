@@ -11,7 +11,7 @@
     background-color: black;
     display: flex;
     justify-content: space-between;
-    border-bottom: #FB582F 1px;
+    border-bottom: #FB582F 1px solid;
 }
 
 .tools {
@@ -58,4 +58,9 @@
 
 .search-box:hover>.search-btn {
     background: white;
+}
+
+.MuiToolbar-gutters {
+    padding-top: 6px;
+    padding-bottom: 8px;
 }

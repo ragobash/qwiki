@@ -25,7 +25,6 @@ import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { Box, TextField, Divider } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import Footer from '../../components/Footer';
 // import ToolbarBtn from "../../components/ToolbarBtn/index.js";
 
 // styles for title and blrb input

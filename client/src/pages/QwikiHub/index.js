@@ -21,13 +21,13 @@
 import React from "react";
 import API from "../../util/API";
 import SimpleExpansionPanel from "../../components/qWikiPagePopOut";
-import Heading from "../../components/Heading";
-import Paragraph from "../../components/Paragraph";
+// import Heading from "../../components/Heading";
+// import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core/styles";
-import { display } from "@material-ui/system";
+// import { display } from "@material-ui/system";
 import "./QwikiHub.css";
 
 const styles = () => ({

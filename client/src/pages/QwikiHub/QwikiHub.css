@@ -27,8 +27,8 @@ h6,
     grid-column-end: 4;
     color: white;
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     font-size: 50px;
 }
 
