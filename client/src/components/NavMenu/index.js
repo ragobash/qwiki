@@ -64,7 +64,7 @@ class NavMenu extends Component {
           </MenuItem>
           <MenuItem onClick={this.handleClose}>
             {" "}
-            <SignupModal />{" "}
+            <SignupModal {...this.props} />{" "}
           </MenuItem>
         </div>
       );
