@@ -80,10 +80,6 @@ class App extends Component {
     }
   };
 
-  getQwikiHub = () => {
-    return <QwikiHub uuid={this.state.uuid} />
-  }
-
   render() {
     return (
       <Router>
@@ -97,9 +93,9 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={this.getHomePage} />
           <Route exact path="/pages/:id" component={QwikiPage} />
-          <Route exact path="/qwikis/builder" component={QwikiBuilder} />
-          <Route exact path="/qwikis/:id" component={this.getQwikiHub} />
-          <Route exact path="/pages/builder/:id" component={PageBuilder} />
+          <Route exact path="/qwikis/builder" render={() => <QwikiBuilder uuid={this.state.uuid} />} />
+          <Route exact path="/qwikis/:id" render={() => <QwikiHub uuid={this.state.uuid} />} />
+          <Route exact path="/pages/builder/:id" render={() => <PageBuilder uuid={this.state.uuid} />} />
           <Route path="*" component={ErrorPage} />
         </Switch>
       </Router>

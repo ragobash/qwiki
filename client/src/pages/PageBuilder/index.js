@@ -60,14 +60,18 @@ class PageBuilder extends React.Component {
       title: "",
       blurb: "",
       public: true,
+      editor: this.props.uuid,
       sections: [],
       redirect: ""
     };
   }
 
   componentDidMount() {
+    let path = window.location.href.split('/');
+    const id = path[path.length - 1];
+
     this.setState({
-      qwikiID: this.props.match.params.id
+      qwikiID: id
     });
   }
 

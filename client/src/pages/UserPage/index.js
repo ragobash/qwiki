@@ -30,7 +30,7 @@ class UserPage extends Component {
     this.state = {
       uuid: "",
       displayName: "",
-      followed: "",
+      followed: [],
       joined: "",
       owned: []
     };
