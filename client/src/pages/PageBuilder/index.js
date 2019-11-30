@@ -285,12 +285,14 @@ class PageBuilder extends React.Component {
                   );
               }
             })}
-            <div id="submit"><input
+            <div id="submit">
+            <input
               className="submit"
               type="submit"
-              value="Submit"
+              value="SUBMIT"
               onClick={this.handleSubmit}
-            ></input>
+            >
+            </input>
             </div>
           </div>
         </div>

@@ -30,6 +30,7 @@ import PageBuilder from "./pages/PageBuilder";
 import QwikiPage from "./pages/QwikiPage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/404";
+import About from "./pages/About";
 
 const HOUR = 3600;
 
@@ -84,6 +85,10 @@ class App extends Component {
     return <QwikiHub uuid={this.state.uuid} />
   }
 
+  search = (term) => {
+    // TODO
+  }
+
   render() {
     return (
       <Router>
@@ -92,6 +97,7 @@ class App extends Component {
             loggedIn={this.state.uuid.length > 0}
             userLoggedIn={this.userLoggedIn}
             userLoggedOut={this.userLoggedOut}
+            search={this.search}
           />
         </div>
         <Switch>
@@ -100,6 +106,7 @@ class App extends Component {
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
           <Route exact path="/qwikis/:id" component={this.getQwikiHub} />
           <Route exact path="/pages/builder/:id" component={PageBuilder} />
+          <Route path="/about" component={About} />
           <Route path="*" component={ErrorPage} />
         </Switch>
       </Router>

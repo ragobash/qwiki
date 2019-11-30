@@ -20,11 +20,13 @@
     height: 35px;
     border: 1px solid #4054b2;
     font-weight: 600;
+    font-size: 15px;
 }
 
 #submit {
     text-align: center;
     margin: 15px;
+    
 }
 
 #filled-basic {
