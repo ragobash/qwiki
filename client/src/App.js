@@ -96,7 +96,7 @@ class App extends Component {
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
           <Route exact path="/qwikis/:id" component={QwikiHub} />
           <Route exact path="/pages/builder/:id" component={PageBuilder} />
-          <Route exact path="/404" component={ErrorPage} />
+          <Route path="*" component={ErrorPage} />
         </Switch>
       </Router>
     );
