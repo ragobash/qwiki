@@ -41,6 +41,10 @@ export default {
     return axios.get("/api/users/" + id);
   },
 
+  getOwnedQwikis: uuid => {
+    return axios.get("/api/owned", { uuid });
+  },
+
   // Performs an axios GET request for any Pages that contain the specified term
   searchPages: term => {
     return axios.get("/api/pages/search/" + term);

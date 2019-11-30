@@ -56,7 +56,8 @@ class QwikiHub extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
+    console.log(this.props);
+    const id = 0;
 
     API.getQwikiByID(id)
       .then(res => {

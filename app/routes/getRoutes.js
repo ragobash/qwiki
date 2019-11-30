@@ -144,4 +144,23 @@ module.exports = app => {
         });
       });
   });
+
+  app.get("api/owned", (req, res) => {
+    queries.read
+      .getOwnedQwikis(req.body.uuid)
+      .then(owned => {
+        res.json({
+          error: false,
+          msg: "Success",
+          owned
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
+          error: true,
+          msg: "GET request could not be processed"
+        });
+      });
+  });
 };

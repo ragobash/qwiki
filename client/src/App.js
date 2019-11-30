@@ -76,7 +76,7 @@ class App extends Component {
     if (this.state.uuid.length > 0) {
       return <UserPage uuid={this.state.uuid} />;
     } else {
-      return <LandingPage uuid={this.state.uuid} />;
+      return <LandingPage/>;
     }
   };
 
