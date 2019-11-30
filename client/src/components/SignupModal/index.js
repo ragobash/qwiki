@@ -63,7 +63,9 @@ class SignupModal extends Component {
 
     if (this.state.password === this.state.confirm) {
       API.newUser(this.state)
-        .then(res => console.log(res))
+        .then(res => {
+          this.props.userLoggedIn(res.data.uuid);
+        })
         .catch(err => console.log(err));
     } else {
       console.log("Password fields do not match.");

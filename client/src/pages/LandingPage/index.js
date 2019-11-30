@@ -21,12 +21,12 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 
 class LandingPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.mounted = false;
 
     this.state = {
       qwikis: []
@@ -34,32 +34,30 @@ class LandingPage extends React.Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
+
     API.getAllQwikis()
       .then(res => {
-        this.setState(
-          {
-            qwikis: res.data.qwikis
-          }
-        );
+        if (this.mounted) {
+          this.setState(
+            {
+              qwikis: res.data.qwikis
+            }
+          );
+        }
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  // TODO: user login stuff
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   render() {
     return (
       <div>
-        <Fab
-            color="primary"
-            aria-label="add"
-            href={"/qwikis/builder/"}
-        >
-            <AddIcon />
-        </Fab>
-
         {this.state.qwikis.length > 0 ? this.state.qwikis.map(
             qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} /> }
         ): <div />}

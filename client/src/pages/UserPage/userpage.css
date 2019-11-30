@@ -8,6 +8,8 @@
     justify-content: center;
 }
 
-#followed{
-    display: inline-flex;
+#fab {
+  position: fixed;
+  top: 90px;
+  left: 10px;
 }

@@ -32,6 +32,10 @@ module.exports = {
     return db.Qwikis.findById(_id).populate("Pages");
   },
 
+  getOwnedQwikis: uuid => {
+    return db.Qwikis.find({ owner: uuid });
+  },
+
   // Queries the Pages collection for any Page documents with the specified term in the title
   searchPages: term => {
     return db.Pages.find({

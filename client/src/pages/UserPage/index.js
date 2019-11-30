@@ -23,6 +23,8 @@ import API from "../../util/API";
 import { Typography, Divider } from '@material-ui/core';
 import '../UserPage/userpage.css'
 import QwikiCard from '../../components/QwikiCard'
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class UserPage extends Component {
 
@@ -32,8 +34,9 @@ class UserPage extends Component {
         this.state = {
             uuid: "",
             displayName: "",
-            followed: "",
-            joined: ""
+            followed: [],
+            joined: "",
+            owned: []
         };
     }
 
@@ -50,12 +53,29 @@ class UserPage extends Component {
                 });
             })
             .catch(err => console.log(err));
+
+            API.getOwnedQwikis(uuid)
+            .then(res => {
+              this.setState({
+                owned: res.data.owned
+              });
+            })
+            .catch(err => console.log(err));
     }
 
     render(props) {
         return (
             <div id="userPageWrapper">
-                <div id="owned">
+            <div id="fab">
+            <Fab
+                    color="primary"
+                    aria-label="add"
+                    href={"/pages/builder/" + this.state._id}
+                >
+                <AddIcon />
+                </Fab>
+                </div>
+            <div id="owned">
                 <Typography 
                     id="owned"
                     variant="h3"
@@ -67,9 +87,10 @@ class UserPage extends Component {
                     variant="middle"
                     style={{background:"white", width:"200px"}}>
                 </Divider>
-                <QwikiCard qwiki={} />
-            </div>
-            <Typography 
+                {this.state.owned.map(qwiki => {
+                    return <QwikiCard qwiki={qwiki} />
+                })}
+                <Typography 
                     id="followed"
                     variant="h3"
                     align="center"
@@ -80,6 +101,8 @@ class UserPage extends Component {
                     variant="middle"
                     style={{background:"white", width:"200px"}}>
                 </Divider>
+                
+            </div>
             </div>
         );
     }

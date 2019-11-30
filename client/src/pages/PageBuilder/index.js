@@ -25,7 +25,7 @@ import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { Box, TextField, Divider, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 // styles for title and blrb input
 
@@ -228,7 +228,7 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon color="#FB582F" /></Button>
+                      <Button data-index={index} onClick={this.removeSection}><DeleteRoundedIcon color="error" /></Button>
                     </div>
                   );
                 case "IMAGE":
@@ -252,7 +252,7 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon color="#FB582F" /></Button>
+                      <Button data-index={index} onClick={this.removeSection}><DeleteRoundedIcon color="error" /></Button>
                     </div>
                   );
                 default:
@@ -280,17 +280,19 @@ class PageBuilder extends React.Component {
                         value={this.state.paragraph}
                         onChange={this.handleInput}
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon color="#FB582F" /></Button>
+                      <Button data-index={index} onClick={this.removeSection}><DeleteRoundedIcon color="error" /></Button>
                     </div>
                   );
               }
             })}
-            <div id="submit"><input
+            <div id="submit">
+            <input
               className="submit"
               type="submit"
-              value="Submit"
+              value="SUBMIT"
               onClick={this.handleSubmit}
-            ></input>
+            >
+            </input>
             </div>
           </div>
         </div>
