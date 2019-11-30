@@ -23,9 +23,9 @@ import { Redirect } from "react-router-dom";
 import "../PageBuilder/pagebuilder.css";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
-import { Box, TextField, Divider } from "@material-ui/core";
+import { Box, TextField, Divider, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-// import ToolbarBtn from "../../components/ToolbarBtn/index.js";
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 
 // styles for title and blrb input
 
@@ -208,7 +208,6 @@ class PageBuilder extends React.Component {
             {this.state.sections.map((section, index) => {
               switch (section.sectionType) {
                 case "HEADING":
-                  console.log("heading hit");
                   return (
                     <div className="background" id="heading" key={index}>
                       <TextField
@@ -229,6 +228,7 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
+                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon /></Button>
                     </div>
                   );
                 case "IMAGE":
@@ -252,6 +252,7 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
+                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon /></Button>
                     </div>
                   );
                 default:
@@ -279,12 +280,7 @@ class PageBuilder extends React.Component {
                         value={this.state.paragraph}
                         onChange={this.handleInput}
                       />
-                      {/* <input
-                        className="submit"
-                        type="submit"
-                        value="Submit"
-                        onClick={this.handleSubmit}
-                      ></input> */}
+                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon /></Button>
                     </div>
                   );
               }
