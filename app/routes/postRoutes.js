@@ -114,27 +114,34 @@ module.exports = app => {
         });
     }),
     // Adds a new User to the database and sends the result back to the client
-    app.post("/api/users/new", (req, res) => {
+    app.post("/api/register", (req, res) => {
+      // console.log("Received request");
+
       let { email, displayName, password } = req.body;
 
       email = ("" + email).toLowerCase();
       displayName = "" + displayName;
       password = "" + password;
 
+      // console.log(email, displayName, password);
+
       if (!validator.isEmail(email) || validator.isEmpty(email)) {
+        console.log("Failed to register new user: Error: email field");
         return res.status(400).json({
           error: true,
           msg: "EMAIL field must contain a valid email address"
         });
       } else if (validator.isEmpty(displayName)) {
+        console.log("Failed to register new user: Error: displayName field");
         return res.status(400).json({
           error: true,
           msg: "DISPLAYNAME field cannot be empty"
         });
       } else if (
         validator.isEmpty(password) ||
-        validator.isLength(password, { min: 8, max: 32 })
+        !validator.isLength(password, { min: 8, max: 32 })
       ) {
+        console.log("Failed to register new user: Error: password field");
         return res.status(400).json({
           error: true,
           msg: "PASSWORD field must be between 8-32 characters"

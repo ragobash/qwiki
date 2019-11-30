@@ -48,7 +48,7 @@ export default {
 
   // Performs an axios GET request for any Users that contain the specified term
   searchUsers: term => {
-    return axios.get("/api/users/" + term);
+    return axios.get("/api/users/search/" + term);
   },
 
   // Performs an axios POST request to add a new Qwiki
@@ -63,7 +63,7 @@ export default {
 
   // Performs an axios POST request to add a new User
   newUser: data => {
-    return axios.post("/api/users/new", data);
+    return axios.post("/api/register", data);
   },
 
   // Performs an axios POST request to update a Qwiki

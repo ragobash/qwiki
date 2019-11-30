@@ -228,7 +228,7 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon /></Button>
+                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon color="#FB582F" /></Button>
                     </div>
                   );
                 case "IMAGE":
@@ -252,7 +252,7 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon /></Button>
+                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon color="#FB582F" /></Button>
                     </div>
                   );
                 default:
@@ -280,7 +280,7 @@ class PageBuilder extends React.Component {
                         value={this.state.paragraph}
                         onChange={this.handleInput}
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon /></Button>
+                      <Button data-index={index} onClick={this.removeSection}><DeleteForeverRoundedIcon color="#FB582F" /></Button>
                     </div>
                   );
               }
