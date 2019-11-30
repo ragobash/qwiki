@@ -27,13 +27,14 @@ const SALT_ROUNDS = 10;
 module.exports = app => {
   // Adds a new Qwiki to the database and sends the result back to the client
   app.post("/api/qwikis/new", (req, res) => {
-    let { title, blurb, img, public, permissions, mods } = req.body;
+    let { title, blurb, img, public, owner, permissions, mods } = req.body;
 
     title = "" + title;
     blurb = "" + blurb;
     img = "" + img;
     public = "" + public;
     permissions = "" + permissions;
+    owner = "" + owner;
 
     if (validator.isEmpty(title)) {
       return res.status(400).json({
@@ -53,7 +54,7 @@ module.exports = app => {
     }
 
     queries.create
-      .newQwiki({ title, blurb, img, public, permissions, mods })
+      .newQwiki({ title, blurb, img, public, permissions, mods, owner, lastEditor: owner })
       .then(qwiki => {
         res.json({
           error: false,
@@ -71,10 +72,11 @@ module.exports = app => {
   }),
     // Adds a new Page to the database and sends the result back to the client
     app.post("/api/pages/new", (req, res) => {
-      let { title, blurb, sections } = req.body;
+      let { title, blurb, editor, sections } = req.body;
 
       title = "" + title;
       blurb = "" + blurb;
+      editor = "" + editor;
 
       if (validator.isEmpty(title)) {
         return res.status(400).json({
@@ -97,7 +99,7 @@ module.exports = app => {
       });
 
       queries.create
-        .newPage({ title, blurb, sections })
+        .newPage({ title, blurb, lastEditor: editor, sections })
         .then(page => {
           res.json({
             error: false,
@@ -229,11 +231,12 @@ module.exports = app => {
     // Updates a Page document and sends the result back to the client
     app.post("/api/pages/:id", (req, res) => {
       let id = req.params.id;
-      let { title, blurb, sections } = req.body;
+      let { title, blurb, sections, editor } = req.body;
 
       id = "" + id;
       title = "" + title;
       blurb = "" + blurb;
+      editor = "" + editor;
 
       if (validator.isEmpty(id) || !validator.isMongoId(id)) {
         return res.status(400).json({
@@ -261,7 +264,7 @@ module.exports = app => {
       });
 
       queries.update
-        .updatePage({ id, title, blurb, sections })
+        .updatePage({ id, title, blurb, lastEditor: editor, sections })
         .then(page => {
           res.json({
             error: false,

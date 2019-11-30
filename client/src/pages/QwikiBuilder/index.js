@@ -55,6 +55,7 @@ class QwikiBuilder extends React.Component {
       public: true,
       permissions: "OWNER",
       mods: [],
+      owner: this.props.uuid,
       redirect: ""
     };
   }
