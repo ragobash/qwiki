@@ -20,6 +20,9 @@
 
 import React, { Component } from "react";
 import API from "../../util/API";
+import { Typography, Divider } from '@material-ui/core';
+import '../UserPage/userpage.css'
+import QwikiCard from '../../components/QwikiCard'
 
 class UserPage extends Component {
 
@@ -49,9 +52,35 @@ class UserPage extends Component {
             .catch(err => console.log(err));
     }
 
-    render() {
+    render(props) {
         return (
-            <div></div>
+            <div id="userPageWrapper">
+                <div id="owned">
+                <Typography 
+                    id="owned"
+                    variant="h3"
+                    align="center"
+                    style={{color:"white", marginTop: "25px"}}>
+                        Owned:
+                </Typography>
+                <Divider
+                    variant="middle"
+                    style={{background:"white", width:"200px"}}>
+                </Divider>
+                <QwikiCard qwiki={} />
+            </div>
+            <Typography 
+                    id="followed"
+                    variant="h3"
+                    align="center"
+                    style={{color:"white", marginTop: "25px",}}>
+                        Followed:
+                </Typography>
+                <Divider
+                    variant="middle"
+                    style={{background:"white", width:"200px"}}>
+                </Divider>
+            </div>
         );
     }
 }

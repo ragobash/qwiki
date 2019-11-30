@@ -1,0 +1,13 @@
+#owned {
+    
+}
+#userPageWrapper {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+
+#followed{
+    display: inline-flex;
+}
