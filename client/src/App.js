@@ -76,9 +76,13 @@ class App extends Component {
     if (this.state.uuid.length > 0) {
       return <UserPage uuid={this.state.uuid} />;
     } else {
-      return <LandingPage />;
+      return <LandingPage uuid={this.state.uuid} />;
     }
   };
+
+  getQwikiHub = () => {
+    return <QwikiHub uuid={this.state.uuid} />
+  }
 
   render() {
     return (
@@ -94,7 +98,7 @@ class App extends Component {
           <Route exact path="/" component={this.getHomePage} />
           <Route exact path="/pages/:id" component={QwikiPage} />
           <Route exact path="/qwikis/builder" component={QwikiBuilder} />
-          <Route exact path="/qwikis/:id" component={QwikiHub} />
+          <Route exact path="/qwikis/:id" component={this.getQwikiHub} />
           <Route exact path="/pages/builder/:id" component={PageBuilder} />
           <Route path="*" component={ErrorPage} />
         </Switch>

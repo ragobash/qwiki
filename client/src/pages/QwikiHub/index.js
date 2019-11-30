@@ -60,7 +60,6 @@ class QwikiHub extends React.Component {
 
     API.getQwikiByID(id)
       .then(res => {
-        console.log(res.data.qwiki);
         this.setState({
           _id: res.data.qwiki._id,
           title: res.data.qwiki.title,
@@ -74,6 +73,22 @@ class QwikiHub extends React.Component {
       });
   }
 
+  newPageButton = () => {
+    if (this.props.uuid.length > 0) {
+      return (
+        <Fab
+          color="primary"
+          aria-label="add"
+          href={"/pages/builder/" + this.state._id}
+        >
+          <AddIcon />
+        </Fab>
+      );
+    } else {
+      return null;
+    }
+  };
+
   render() {
     return (
       <div className="gridContainer">
@@ -81,15 +96,7 @@ class QwikiHub extends React.Component {
           <div className="btn1">
             <SimpleExpansionPanel pages={this.state.pages} />
           </div>
-          <div className="btn2">
-            <Fab
-              color="primary"
-              aria-label="add"
-              href={"/pages/builder/" + this.state._id}
-            >
-              <AddIcon />
-            </Fab>
-          </div>
+          <div className="btn2">{this.newPageButton()}</div>
         </div>
         <div className="title">
           <h1 className={this.props.classes.heading}>{this.state.title}</h1>

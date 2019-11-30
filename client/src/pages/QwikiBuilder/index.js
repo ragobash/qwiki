@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * qWiki
  * Copyright (C) 2019  Andrew Brooking, Josh Munoz, and Ryan Harris
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 import React from "react";
@@ -59,22 +59,22 @@ class QwikiBuilder extends React.Component {
     };
   }
 
-  handleInput = (event) => {
+  handleInput = event => {
     const name = event.target.name;
     const value = event.target.value;
 
     this.setState({
       [name]: value
     });
-  }
+  };
 
-  switchPublic = (event) => {
+  switchPublic = event => {
     this.setState({
       public: event.target.checked
     });
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
 
     API.newQwiki(this.state)
@@ -86,11 +86,11 @@ class QwikiBuilder extends React.Component {
         });
       })
       .catch(err => console.log(err));
-  }
+  };
 
   render() {
     if (this.state.redirect.length > 0) {
-      return <Redirect to={this.state.redirect} />
+      return <Redirect to={this.state.redirect} />;
     }
 
     return (
@@ -134,7 +134,14 @@ class QwikiBuilder extends React.Component {
             />
           </div>
         </div>
-          <input type="submit" value="Submit" onClick={this.handleSubmit}></input>
+        <div id="submit">
+          <input
+            className="submit"
+            type="submit"
+            value="Submit"
+            onClick={this.handleSubmit}
+          ></input>
+        </div>
       </div>
     );
   }
