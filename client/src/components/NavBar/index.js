@@ -41,6 +41,7 @@ function Navbar(props) {
                 type="text"
                 placeholder="Type to search..."
                 className="search-txt"
+                // onSubmit={this.props.search}
               ></input>
               <a href="/" className="search-btn">
                 <SearchIcon />

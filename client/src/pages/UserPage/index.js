@@ -20,58 +20,92 @@
 
 import React, { Component } from "react";
 import API from "../../util/API";
+import { Typography, Divider } from '@material-ui/core';
+import '../UserPage/userpage.css'
+import QwikiCard from '../../components/QwikiCard'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
 class UserPage extends Component {
-  constructor() {
-    super();
 
-    this.state = {
-      uuid: "",
-      displayName: "",
-      followed: [],
-      joined: "",
-      owned: []
-    };
-  }
+    constructor() {
+        super();
 
-  componentDidMount() {
-    const uuid = this.props.uuid || this.props.match.params.uuid;
+        this.state = {
+            uuid: "",
+            displayName: "",
+            followed: [],
+            joined: "",
+            owned: []
+        };
+    }
 
-    API.getUserByID(uuid)
-      .then(res => {
-        this.setState({
-          uuid,
-          displayName: res.data.user.displayName,
-          followed: res.data.user.followed,
-          joined: res.data.user.joined
-        });
-      })
-      .catch(err => console.log(err));
+    componentDidMount() {
+        const uuid = this.props.uuid || this.props.match.params.uuid;
 
-    API.getOwnedQwikis(uuid)
-      .then(res => {
-        this.setState({
-          owned: res.data.owned
-        });
-      })
-      .catch(err => console.log(err));
-  }
+        API.getUserByID(uuid)
+            .then(res => {
+                this.setState({
+                    uuid,
+                    displayName: res.data.user.displayName,
+                    followed: res.data.user.followed,
+                    joined: res.data.user.joined
+                });
+            })
+            .catch(err => console.log(err));
 
-  render() {
-    return (
-      <div>
-        <Fab
-          color="primary"
-          aria-label="add"
-          href={"/pages/builder/" + this.state._id}
-        >
-          <AddIcon />
-        </Fab>
-      </div>
-    );
-  }
+            API.getOwnedQwikis(uuid)
+            .then(res => {
+              this.setState({
+                owned: res.data.owned
+              });
+            })
+            .catch(err => console.log(err));
+    }
+
+    render(props) {
+        return (
+            <div id="userPageWrapper">
+            <div id="fab">
+            <Fab
+                    color="primary"
+                    aria-label="add"
+                    href={"/pages/builder/" + this.state._id}
+                >
+                <AddIcon />
+                </Fab>
+                </div>
+            <div id="owned">
+                <Typography 
+                    id="owned"
+                    variant="h3"
+                    align="center"
+                    style={{color:"white", marginTop: "25px"}}>
+                        Owned:
+                </Typography>
+                <Divider
+                    variant="middle"
+                    style={{background:"white", width:"200px"}}>
+                </Divider>
+                {this.state.owned.map(qwiki => {
+                    return <QwikiCard qwiki={qwiki} />
+                })}
+                <Typography 
+                    id="followed"
+                    variant="h3"
+                    align="center"
+                    style={{color:"white", marginTop: "25px",}}>
+                        Followed:
+                </Typography>
+                <Divider
+                    variant="middle"
+                    style={{background:"white", width:"200px"}}>
+                </Divider>
+                
+            </div>
+            </div>
+        );
+    }
 }
 
 export default UserPage;

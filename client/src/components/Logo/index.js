@@ -22,19 +22,19 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     "& > * + *": {
-      marginLeft: 16
+      margin: theme.spacing(1),
     }
   },
   square: {
-    width: "13%",
-    heigth: "10%",
+    width: "100px",
+    heigth: "100px",
     backgroundColor: "#000000"
   }
-});
+}));
 
 export default function Logo() {
   const classes = useStyles();

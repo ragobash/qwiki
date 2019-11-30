@@ -76,13 +76,15 @@ class QwikiHub extends React.Component {
   newPageButton = () => {
     if (this.props.uuid.length > 0) {
       return (
-        <Fab
-          color="primary"
-          aria-label="add"
-          href={"/pages/builder/" + this.state._id}
-        >
-          <AddIcon />
-        </Fab>
+        <div id="qwikifab">
+          <Fab
+            color="primary"
+            aria-label="add"
+            href={"/pages/builder/" + this.state._id}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
       );
     } else {
       return null;
