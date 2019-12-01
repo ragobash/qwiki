@@ -19,7 +19,7 @@
  */
 
 import React from "react";
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Navbar.css";
 import Logo from "../Logo";
@@ -31,9 +31,15 @@ function Navbar(props) {
     <div className="navbar">
       <AppBar position="static" className="navbar">
         <Toolbar className="navbar">
-          <div>
+          <div className="components">
             <Logo />
-            
+            <a href="/about">
+            <Button
+              id="navlink"
+              style={{color: "#f4f4f4"}}>
+              About
+            </Button>
+            </a>
           </div>
           <div className="tools">
             <div className="search-box">

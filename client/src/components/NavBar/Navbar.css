@@ -14,6 +14,14 @@
     border-bottom: #FB582F 1px solid;
 }
 
+#navlink {
+    padding: 10px;
+}
+
+.components {
+    display: flex;
+}
+
 .tools {
     display: flex;
     align-items: center;
