@@ -8,6 +8,7 @@
 }
 
 .navbar {
+    width: 99%;
     background-color: black;
     display: flex;
     justify-content: space-between;
@@ -16,6 +17,7 @@
 
 #navlink {
     padding: 10px;
+    margin-left: 10px;
 }
 
 .components {

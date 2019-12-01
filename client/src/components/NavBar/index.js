@@ -33,13 +33,24 @@ function Navbar(props) {
         <Toolbar className="navbar">
           <div className="components">
             <Logo />
-            <a href="/about">
             <Button
+              href="/about"
+              color="primary"
+              variant="contained"
+              size="small"
               id="navlink"
               style={{color: "#f4f4f4"}}>
-              About
+              ABOUT
             </Button>
-            </a>
+            <Button
+              href="/contact"
+              color="primary"
+              variant="contained"
+              size="small"
+              id="navlink"
+              style={{color: "#f4f4f4"}}>
+              CONTACT
+            </Button>
           </div>
           <div className="tools">
             <div className="search-box">

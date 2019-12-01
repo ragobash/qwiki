@@ -31,6 +31,7 @@ import QwikiPage from "./pages/QwikiPage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/404";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 const HOUR = 3600;
 
@@ -99,6 +100,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={this.getHomePage} />
           <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
           <Route exact path="/pages/:id" component={QwikiPage} />
           <Route exact path="/qwikis/builder" render={() => <QwikiBuilder uuid={this.state.uuid} />} />
           <Route exact path="/qwikis/:id" render={() => <QwikiHub uuid={this.state.uuid} />} />
