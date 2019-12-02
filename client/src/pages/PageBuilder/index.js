@@ -25,7 +25,7 @@ import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { Box, TextField, Divider, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 
 // styles for title and blrb input
 
@@ -67,7 +67,7 @@ class PageBuilder extends React.Component {
   }
 
   componentDidMount() {
-    let path = window.location.href.split('/');
+    let path = window.location.href.split("/");
     const id = path[path.length - 1];
 
     this.setState({
@@ -232,12 +232,16 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteRoundedIcon color="error" /></Button>
+                      <div id="deletebutton">
+                        <Button data-index={index} onClick={this.removeSection}>
+                          <DeleteRoundedIcon color="error" />
+                        </Button>
+                      </div>
                     </div>
                   );
                 case "IMAGE":
                   return (
-                    <div className="background" key={index}>
+                    <div className="background" id="heading" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -256,12 +260,16 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteRoundedIcon color="error" /></Button>
+                      <div id="deletebutton">
+                        <Button data-index={index} onClick={this.removeSection}>
+                          <DeleteRoundedIcon color="error" />
+                        </Button>
+                      </div>{" "}
                     </div>
                   );
                 default:
                   return (
-                    <div className="background" key={index}>
+                    <div className="background" id="heading" key={index}>
                       <TextField
                         id="filled-basic"
                         InputProps={{
@@ -284,19 +292,22 @@ class PageBuilder extends React.Component {
                         value={this.state.paragraph}
                         onChange={this.handleInput}
                       />
-                      <Button data-index={index} onClick={this.removeSection}><DeleteRoundedIcon color="error" /></Button>
+                      <div id="deletebutton">
+                        <Button data-index={index} onClick={this.removeSection}>
+                          <DeleteRoundedIcon color="error" />
+                        </Button>
+                      </div>
                     </div>
                   );
               }
             })}
             <div id="submit">
-            <input
-              className="submit"
-              type="submit"
-              value="SUBMIT"
-              onClick={this.handleSubmit}
-            >
-            </input>
+              <input
+                className="submit"
+                type="submit"
+                value="SUBMIT"
+                onClick={this.handleSubmit}
+              ></input>
             </div>
           </div>
         </div>
@@ -306,7 +317,6 @@ class PageBuilder extends React.Component {
             <Box className="toolbarbox" bgcolor="#2f3640">
               <BuilderToolbar newClass="toolbar" onClick={this.newSection} />
             </Box>
-            
           </div>
         </div>
       </div>
