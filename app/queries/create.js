@@ -48,9 +48,6 @@ module.exports = {
       lastEdit: Date.now(),
       lastEditor: data.editor,
       sections: data.sections || []
-    }).then(page => {
-      db.Qwikis.findByIdAndUpdate(data.qwikiID, { $push: { pages: page._id } });
-      return page;
     });
   },
 
