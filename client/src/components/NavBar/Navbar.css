@@ -8,10 +8,20 @@
 }
 
 .navbar {
+    width: 99%;
     background-color: black;
     display: flex;
     justify-content: space-between;
     border-bottom: #FB582F 1px solid;
+}
+
+#navlink {
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.components {
+    display: flex;
 }
 
 .tools {

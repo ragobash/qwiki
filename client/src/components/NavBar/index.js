@@ -19,7 +19,7 @@
  */
 
 import React, { Component } from "react";
-import {Redirect} from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { AppBar, Toolbar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Navbar.css";
@@ -41,11 +41,11 @@ class Navbar extends Component {
     API.searchQwikis(term)
       .then(qwikis => {
         this.setState({
-          redirect: ("/search/" + term)
-        })
+          redirect: "/search/" + term
+        });
       })
       .catch(err => console.log(err));
-  }
+  };
 
   render() {
     // if (this.state.redirect.length > 0) {
@@ -56,8 +56,28 @@ class Navbar extends Component {
       <div className="navbar">
         <AppBar position="static" className="navbar">
           <Toolbar className="navbar">
-            <div>
+            <div className="components">
               <Logo />
+              <Button
+                href="/about"
+                color="primary"
+                variant="contained"
+                size="small"
+                id="navlink"
+                style={{ color: "#f4f4f4" }}
+              >
+                ABOUT
+              </Button>
+              <Button
+                href="/contact"
+                color="primary"
+                variant="contained"
+                size="small"
+                id="navlink"
+                style={{ color: "#f4f4f4" }}
+              >
+                CONTACT
+              </Button>
             </div>
             <div className="tools">
               <div className="search-box">
