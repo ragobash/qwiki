@@ -37,7 +37,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = () => ({
   card: {
-    maxWidth: 345
+    maxWidth: 300
   },
   media: {
     height: 0,
@@ -72,7 +72,11 @@ function QwikiCard(props) {
           title=""
         />
         <CardContent>
-          <Typography>{props.qwiki.blurb}</Typography>
+          <Typography>
+            {`${props.qwiki.blurb.substring(0, 75)}${
+              props.qwiki.blurb.length > 100 ? "..." : ""
+            }`}
+          </Typography>
         </CardContent>
         <CardActions>
           <IconButton aria-label="add to favorites">

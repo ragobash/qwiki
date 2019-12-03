@@ -21,8 +21,10 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import "./LandingPage.css";
+import Logo404 from "../../components/Logo404/index"
 
 class LandingPage extends React.Component {
   constructor() {
@@ -36,11 +38,9 @@ class LandingPage extends React.Component {
   componentDidMount() {
     API.getAllQwikis()
       .then(res => {
-        this.setState(
-          {
-            qwikis: res.data.qwikis
-          }
-        );
+        this.setState({
+          qwikis: res.data.qwikis
+        });
       })
       .catch(err => {
         console.log(err);
@@ -51,18 +51,20 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <Fab
-            color="primary"
-            aria-label="add"
-            href={"/qwikis/builder/"}
-        >
-            <AddIcon />
+      <div className="container">
+        <Fab className="add" color="primary" aria-label="add" href={"/qwikis/builder/"}>
+          <AddIcon />
         </Fab>
-
-        {this.state.qwikis.length > 0 ? this.state.qwikis.map(
-            qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} /> }
-        ): <div />}
+        <Logo404 />
+        {this.state.qwikis.length > 0 ? (
+          this.state.qwikis.map(qwiki => {
+            return (
+              <QwikiCard className="qwikiCard" key={qwiki._id} qwiki={qwiki} />
+            );
+          })
+        ) : (
+          <div />
+        )}
       </div>
     );
   }
