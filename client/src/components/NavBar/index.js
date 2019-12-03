@@ -39,7 +39,8 @@ function Navbar(props) {
               variant="contained"
               size="small"
               id="navlink"
-              style={{color: "#f4f4f4"}}>
+              style={{ color: "#f4f4f4" }}
+            >
               ABOUT
             </Button>
             <Button
@@ -48,7 +49,8 @@ function Navbar(props) {
               variant="contained"
               size="small"
               id="navlink"
-              style={{color: "#f4f4f4"}}>
+              style={{ color: "#f4f4f4" }}
+            >
               CONTACT
             </Button>
           </div>
@@ -58,7 +60,7 @@ function Navbar(props) {
                 type="text"
                 placeholder="Type to search..."
                 className="search-txt"
-                // onSubmit={this.props.search}
+                onSubmit={props.search}
               ></input>
               <a href="/" className="search-btn">
                 <SearchIcon />

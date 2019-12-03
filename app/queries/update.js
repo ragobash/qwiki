@@ -94,5 +94,10 @@ module.exports = {
     }
 
     return db.Users.findByIdAndUpdate(data.id, values);
+  },
+
+  // TODO
+  followQwiki: (uuid, qid) => {
+    return db.Users.findByIdAndUpdate(uuid, { $push: { followed: qid } });
   }
 };

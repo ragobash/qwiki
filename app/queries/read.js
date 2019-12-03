@@ -32,6 +32,15 @@ module.exports = {
     return db.Qwikis.findById(_id).populate("Pages");
   },
 
+  // TODO
+  searchQwikis: term => {
+    return db.Qwikis.find({ 
+      "title": { "$regex": term, "$options": "i" },
+      "blurb": { "$regex": term, "$options": "i" }
+     });
+  },
+
+  // TODO
   getOwnedQwikis: uuid => {
     return db.Qwikis.find({ owner: uuid });
   },

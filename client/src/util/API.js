@@ -41,8 +41,14 @@ export default {
     return axios.get("/api/users/" + id);
   },
 
+  // TODO
   getOwnedQwikis: uuid => {
     return axios.get("/api/owned", { uuid });
+  },
+
+  // TODO
+  searchQwikis: term => {
+    return axios.get("/api/qwikis/search", { term });
   },
 
   // Performs an axios GET request for any Pages that contain the specified term
@@ -88,5 +94,10 @@ export default {
   // TODO
   login: data => {
     return axios.post("/api/login", data);
+  },
+
+  // TODO
+  followQwiki: (uuid, qwikiID) => {
+    return axios.post("/api/follow", { uuid, qwikiID });
   }
 };

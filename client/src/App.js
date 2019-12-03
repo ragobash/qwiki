@@ -31,7 +31,9 @@ import QwikiPage from "./pages/QwikiPage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/404";
 import About from "./pages/About";
+import SearchResults from "./pages/SearchResults";
 import Contact from "./pages/Contact";
+import API from "./util/API";
 
 const HOUR = 3600;
 
@@ -78,13 +80,17 @@ class App extends Component {
     if (this.state.uuid.length > 0) {
       return <UserPage uuid={this.state.uuid} />;
     } else {
-      return <LandingPage/>;
+      return <LandingPage uuid={this.state.uuid} />;
     }
   };
 
-  search = (term) => {
-    // TODO
-  }
+  search = term => {
+    API.searchQwikis(term)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
@@ -102,9 +108,22 @@ class App extends Component {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route exact path="/pages/:id" component={QwikiPage} />
-          <Route exact path="/qwikis/builder" render={() => <QwikiBuilder uuid={this.state.uuid} />} />
-          <Route exact path="/qwikis/:id" render={() => <QwikiHub uuid={this.state.uuid} />} />
-          <Route exact path="/pages/builder/:id" render={() => <PageBuilder uuid={this.state.uuid} />} />
+          <Route
+            exact
+            path="/qwikis/builder"
+            render={() => <QwikiBuilder uuid={this.state.uuid} />}
+          />
+          <Route
+            exact
+            path="/qwikis/:id"
+            render={() => <QwikiHub uuid={this.state.uuid} />}
+          />
+          <Route
+            exact
+            path="/pages/builder/:id"
+            render={() => <PageBuilder uuid={this.state.uuid} />}
+          />
+          <Route exact path="/search/:term" component={SearchResults} />
           <Route path="*" component={ErrorPage} />
         </Switch>
       </Router>

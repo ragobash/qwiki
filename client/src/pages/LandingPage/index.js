@@ -59,7 +59,7 @@ class LandingPage extends React.Component {
     return (
       <div>
         {this.state.qwikis.length > 0 ? this.state.qwikis.map(
-            qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} /> }
+            qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} uuid={this.props.uuid} /> }
         ): <div />}
       </div>
     );
