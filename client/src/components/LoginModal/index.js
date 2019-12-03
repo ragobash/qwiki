@@ -88,6 +88,7 @@ class LoginModal extends Component {
               <h2>Login</h2>
               <div>
                 <input
+                  autoFocus="true"
                   type="text"
                   placeholder="Email"
                   name="email"
