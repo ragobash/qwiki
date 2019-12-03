@@ -94,5 +94,10 @@ export default {
   // TODO
   login: data => {
     return axios.post("/api/login", data);
+  },
+
+  // TODO
+  followQwiki: (uuid, qwikiID) => {
+    return axios.post("/api/follow", { uuid, qwikiID });
   }
 };
