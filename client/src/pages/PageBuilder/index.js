@@ -109,7 +109,6 @@ class PageBuilder extends React.Component {
     event.preventDefault();
 
     const index = event.target.getAttribute("data-index") || event.target.parentNode.getAttribute("data-index");
-    console.log(index);
 
     let sections = [...this.state.sections];
     sections.splice(index, 1);
@@ -213,7 +212,7 @@ class PageBuilder extends React.Component {
               switch (section.sectionType) {
                 case "HEADING":
                   return (
-                    <div className="background" id="heading" key={index}>
+                    <div className="background" className="heading" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -241,7 +240,7 @@ class PageBuilder extends React.Component {
                   );
                 case "IMAGE":
                   return (
-                    <div className="background" id="heading" key={index}>
+                    <div className="background" className="image" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -269,7 +268,7 @@ class PageBuilder extends React.Component {
                   );
                 default:
                   return (
-                    <div className="background" id="heading" key={index}>
+                    <div className="background" className="paragraph" key={index}>
                       <TextField
                         id="filled-basic"
                         InputProps={{

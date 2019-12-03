@@ -38,6 +38,6 @@
     border-radius: 0%;
 }
 
-#heading {
+.heading, .paragraph, .image {
     display: flex;
 }
