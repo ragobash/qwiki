@@ -61,6 +61,25 @@ module.exports = app => {
       });
   });
 
+  app.get("/api/qwikis/search", (req, res) => {
+    queries.read
+      .searchQwikis(req.params.id)
+      .then(qwikis => {
+        res.json({
+          error: false,
+          msg: "Success",
+          qwikis
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
+          error: true,
+          msg: "GET request could not be processed"
+        });
+      });
+  });
+
   // Sends the results of the searchPages query (an array of Page documents) to the client
   app.get("/api/pages/search/:term", (req, res) => {
     let term = "" + req.params.term;
@@ -145,6 +164,7 @@ module.exports = app => {
       });
   });
 
+  // TODO
   app.get("api/owned", (req, res) => {
     queries.read
       .getOwnedQwikis(req.body.uuid)
