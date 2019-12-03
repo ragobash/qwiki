@@ -50,9 +50,6 @@ const styles = () => ({
 });
 
 class QwikiCard extends Component {
-  constructor() {
-    super();
-  }
 
   follow = qwikiID => {
     API.followQwiki(this.props.uuid, qwikiID)

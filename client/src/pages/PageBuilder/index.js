@@ -108,11 +108,11 @@ class PageBuilder extends React.Component {
   removeSection = event => {
     event.preventDefault();
 
-    const index = event.target.getAttribute("data-index");
+    const index = event.target.getAttribute("data-index") || event.target.parentNode.getAttribute("data-index");
+    console.log(index);
 
-    const sections = this.state.sections.filter((section, i) => {
-      return i !== index;
-    });
+    let sections = [...this.state.sections];
+    sections.splice(index, 1);
 
     this.setState({
       sections
@@ -232,9 +232,9 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <div id="deletebutton">
-                        <Button data-index={index} onClick={this.removeSection}>
-                          <DeleteRoundedIcon color="error" />
+                      <div className="deleteButton">
+                        <Button data-index={index} onClick={this.removeSection} style={{ backgroundColor: 'transparent' }}>
+                          <DeleteRoundedIcon data-index={index} color="error" />
                         </Button>
                       </div>
                     </div>
@@ -260,9 +260,9 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <div id="deletebutton">
-                        <Button data-index={index} onClick={this.removeSection}>
-                          <DeleteRoundedIcon color="error" />
+                      <div className="deleteButton">
+                        <Button data-index={index} onClick={this.removeSection} style={{ backgroundColor: 'transparent' }}>
+                          <DeleteRoundedIcon data-index={index} color="error" />
                         </Button>
                       </div>{" "}
                     </div>
@@ -292,9 +292,9 @@ class PageBuilder extends React.Component {
                         value={this.state.paragraph}
                         onChange={this.handleInput}
                       />
-                      <div id="deletebutton">
-                        <Button data-index={index} onClick={this.removeSection}>
-                          <DeleteRoundedIcon color="error" />
+                      <div className="deleteButton">
+                        <Button data-index={index} onClick={this.removeSection} style={{ backgroundColor: 'transparent' }}>
+                          <DeleteRoundedIcon data-index={index} color="error" />
                         </Button>
                       </div>
                     </div>
