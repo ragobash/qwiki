@@ -91,7 +91,7 @@ class SignupModal extends Component {
               <h2>Register</h2>
               <div>
                 <input
-                  autoFocus="true"
+                  autoFocus={true}
                   type="text"
                   placeholder="Email"
                   name="email"

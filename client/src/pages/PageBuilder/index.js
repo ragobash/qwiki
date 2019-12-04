@@ -212,7 +212,7 @@ class PageBuilder extends React.Component {
               switch (section.sectionType) {
                 case "HEADING":
                   return (
-                    <div className="background" className="heading" key={index}>
+                    <div className="background" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -240,7 +240,7 @@ class PageBuilder extends React.Component {
                   );
                 case "IMAGE":
                   return (
-                    <div className="background" className="image" key={index}>
+                    <div className="background" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -268,7 +268,7 @@ class PageBuilder extends React.Component {
                   );
                 default:
                   return (
-                    <div className="background" className="paragraph" key={index}>
+                    <div className="background" key={index}>
                       <TextField
                         id="filled-basic"
                         InputProps={{
