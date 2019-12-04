@@ -8,7 +8,6 @@
 }
 
 .navbar {
-    width: 99%;
     background-color: black;
     display: flex;
     justify-content: space-between;

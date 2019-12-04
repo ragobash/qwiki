@@ -82,7 +82,7 @@ class UserPage extends Component {
           <Fab
             color="primary"
             aria-label="add"
-            href={"/pages/builder/" + this.state._id}
+            href={"/qwikis/builder/"}
           >
             <AddIcon />
           </Fab>
@@ -100,9 +100,15 @@ class UserPage extends Component {
             variant="middle"
             style={{ background: "white", width: "200px" }}
           ></Divider>
-          <div>
+          <div className="card-wrapper">
             {this.state.owned.map(qwiki => {
-                return <QwikiCard key={qwiki._id} qwiki={qwiki} uuid={this.props.uuid} />;
+              return (
+                <QwikiCard
+                  key={qwiki._id}
+                  qwiki={qwiki}
+                  uuid={this.props.uuid}
+                />
+              );
             })}
           </div>
           <Typography
@@ -119,7 +125,13 @@ class UserPage extends Component {
           ></Divider>
           <div>
             {this.state.followed.map(qwiki => {
-                return <QwikiCard key={qwiki._id} qwiki={qwiki} uuid={this.props.uuid} />;
+              return (
+                <QwikiCard
+                  key={qwiki._id}
+                  qwiki={qwiki}
+                  uuid={this.props.uuid}
+                />
+              );
             })}
           </div>
           <Typography
@@ -136,7 +148,13 @@ class UserPage extends Component {
           ></Divider>
           <div>
             {this.state.recommended.map(qwiki => {
-                return <QwikiCard key={qwiki._id} qwiki={qwiki} uuid={this.props.uuid} />;
+              return (
+                <QwikiCard
+                  key={qwiki._id}
+                  qwiki={qwiki}
+                  uuid={this.props.uuid}
+                />
+              );
             })}
           </div>
         </div>

@@ -19,9 +19,10 @@
  */
 
 import React from "react";
+import "./Heading.css";
 
 function Heading(props) {
-  return <span>{props.content}</span>;
+  return <h2><u>{props.content}</u></h2>;
 }
 
 export default Heading;

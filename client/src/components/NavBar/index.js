@@ -19,40 +19,22 @@
  */
 
 import React from "react";
-import { AppBar, Toolbar   } from "@material-ui/core";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Navbar.css";
 import Logo from "../Logo";
 import "../NavMenu";
 import NavMenu from "../NavMenu";
+import NavLinks from "../NavLinks/index";
 
 function Navbar(props) {
   return (
-    <div className="navbar">
-      <AppBar position="static" className="navbar">
+    <div>
+      <AppBar position="static">
         <Toolbar className="navbar">
           <div className="components">
             <Logo />
-            <Button
-              href="/about"
-              color="primary"
-              variant="contained"
-              size="small"
-              id="navlink"
-              style={{ color: "#f4f4f4" }}
-            >
-              ABOUT
-            </Button>
-            <Button
-              href="/contact"
-              color="primary"
-              variant="contained"
-              size="small"
-              id="navlink"
-              style={{ color: "#f4f4f4" }}
-            >
-              CONTACT
-            </Button>
+            <NavLinks />
           </div>
           <div className="tools">
             <div className="search-box">

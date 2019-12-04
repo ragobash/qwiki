@@ -29,7 +29,7 @@ module.exports = {
   // Queries the Qwiki collection for a specific Qwiki documents
   // Also populates subpages
   getQwiki: _id => {
-    return db.Qwikis.findById(_id).populate("Pages");
+    return db.Qwikis.findById(_id).populate("pages");
   },
 
   // TODO

@@ -71,7 +71,8 @@ qwiki
      │    │    manifest.json
      │    └─── images
      │           favicon.png
-     │           logo.png
+     │           logocolor.png
+     │           logowhite.png
      └─── src
           │     App.css
           │     App.js
@@ -80,16 +81,74 @@ qwiki
           │     index.js
           │     registerServiceWorker.js
           └─── components
+          │    └─── BuilderToolbar
+          │    │        buildertoolbar.css
+          │    │        index.js
+          │    └─── Fab
+          │    │        index.js
+          │    └─── Heading
+          │    │        Heading.css
+          │    │        index.js
+          │    └─── Image
+          │    │        Image.css
+          │    │        index.js
           │    └─── LoginModal
           │    │        LoginModal.css
-          │    │        LoginModal.js
+          │    │        index.js
+          │    └─── Logo
+          │    │        index.js
           │    └─── NavBar
           │    │        NavBar.css
-          │    │        NavBar.js
+          │    │        index.js
+          │    └─── NavMenu
+          │    │        NavMenu.css
+          │    │        index.js
+          │    └─── Paragraph
+          │    │        Paragraph.css
+          │    │        index.js
+          │    └─── QwikiCard
+          │    │        QwikiCard.css
+          │    │        index.js
+          │    └─── qWikiPagePopOut
+          │    │        qWikiPagePopOut.css
+          │    │        index.js
           │    └─── SignupModal
-          │             SignupModal.css
-          │             SignupModal.js
+          │    │        SignupModal.css
+          │    │        index.js
+          │    └─── Switch
+          │    │        index.js
+          │    └─── BuilderToolbar
+          │             TollbarBtn.css
+          │             index.js
           └─── pages
+               └─── 404
+               │        404.css
+               │        index.js
+               └─── About
+               │        about.css
+               │        index.js
+               └─── Contact
+               │        contact.css
+               │        index.js
+               └─── LandingPage
+               │        index.js
+               └─── PageBuilder
+               │        pagebuilder.css
+               │        index.js
+               └─── QwikiBuilder
+               │        QwikiBuilder.css
+               │        index.js
+               └─── QwikiHub
+               │        QwikiHub.css
+               │        index.js
+               └─── QwikiPage
+               │        index.js
+               └─── SearchResults
+               │        index.js
+               └─── UserPage
+                        userpage.css
+                        index.js
+
 ```
 
 ## License
