@@ -1,5 +1,5 @@
 
-![logo](client/public/images/logowhite.png)
+![logo](client/public/images/strokedlogowhite.png)
 
 qWiki is a platform that provides a quick and easy way to host your own scalable Wiki. With the Builder Tool, you can easily generate dynamic informative Wikis and publish them for others to read or contribute.
 
