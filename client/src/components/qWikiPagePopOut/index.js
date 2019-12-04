@@ -23,8 +23,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+import { ListItem } from "@material-ui/core";
 import ArrowForwardIosOutlinedIcon from "@material-ui/icons/ArrowForwardIosOutlined";
 import "./qWikiPagePopOut.css";
 
@@ -58,22 +57,26 @@ export default function TemporaryDrawer(props) {
     setState({ ...state, [side]: open });
   };
 
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {props.pages.map(page => (
-          <ListItem button key={page.title}>
-            <ListItemText primary={page.title} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const sideList = side => {
+    return (
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer(side, false)}
+        onKeyDown={toggleDrawer(side, false)}
+      >
+        <List>
+          {props.pages.map(page => {
+            return (
+              <ListItem key={page._id}>
+                <a href={"/pages/" + page._id}>{page.title}</a>
+              </ListItem>
+            );
+          })}
+        </List>
+      </div>
+    );
+  };
 
   return (
     <div>

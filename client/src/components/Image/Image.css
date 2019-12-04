@@ -1,0 +1,6 @@
+img {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    align-items: center;
+    justify-content: center;
+}

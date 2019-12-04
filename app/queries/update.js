@@ -99,5 +99,10 @@ module.exports = {
   // TODO
   followQwiki: (uuid, qid) => {
     return db.Users.findByIdAndUpdate(uuid, { $push: { followed: qid } });
+  },
+
+  // TODO
+  addPage: (qid, pid) => {
+    return db.Qwikis.findByIdAndUpdate(qid, { $push: { pages: pid } });
   }
 };

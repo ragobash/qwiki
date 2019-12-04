@@ -21,16 +21,19 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-import "./LandingPage.css";
-import Logo404 from "../../components/Logo404/index";
-import PublicBtn from "../../components/PublicBtn/index";
-import ProgressBar from "../../components/ProgressBar/index";
+// import Grid from '@material-ui/core/Grid';
+// import Fab from "@material-ui/core/Fab";
+// import AddIcon from "@material-ui/icons/Add";
+// import "./landingpage.css";
+// import Logo404 from "../../components/Logo404/index";
+// import PublicBtn from "../../components/PublicBtn/index";
+// import ProgressBar from "../../components/ProgressBar/index";
 
 class LandingPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.mounted = false;
 
     this.state = {
       qwikis: []
@@ -38,18 +41,24 @@ class LandingPage extends React.Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
+
     API.getAllQwikis()
       .then(res => {
-        this.setState({
-          qwikis: res.data.qwikis
-        });
+        if (this.mounted) {
+          this.setState({
+            qwikis: res.data.qwikis
+          });
+        }
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  // TODO: user login stuff
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   render() {
     return (
