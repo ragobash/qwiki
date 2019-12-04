@@ -28,8 +28,8 @@ import NavMenu from "../NavMenu";
 
 function Navbar(props) {
   return (
-    <div className="navbar">
-      <AppBar position="static" className="navbar">
+    <div>
+      <AppBar position="static">
         <Toolbar className="navbar">
           <div className="components">
             <Logo />
