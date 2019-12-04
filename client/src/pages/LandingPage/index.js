@@ -21,6 +21,7 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
+import Grid from '@material-ui/core/Grid';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -58,9 +59,13 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
+      <Grid container spacing={12}>
+      <Grid item xs={12} direction="row" justify="space-evenly">
         {this.state.qwikis.length > 0 ? this.state.qwikis.map(
             qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} uuid={this.props.uuid} /> }
         ): <div />}
+      </Grid>
+      </Grid>
       </div>
     );
   }
