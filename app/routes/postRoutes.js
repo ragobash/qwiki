@@ -27,13 +27,14 @@ const SALT_ROUNDS = 10;
 module.exports = app => {
   // Adds a new Qwiki to the database and sends the result back to the client
   app.post("/api/qwikis/new", (req, res) => {
-    let { title, blurb, img, public, permissions, mods } = req.body;
+    let { title, blurb, img, public, owner, permissions, mods } = req.body;
 
     title = "" + title;
     blurb = "" + blurb;
     img = "" + img;
     public = "" + public;
     permissions = "" + permissions;
+    owner = "" + owner;
 
     if (validator.isEmpty(title)) {
       return res.status(400).json({
@@ -53,7 +54,16 @@ module.exports = app => {
     }
 
     queries.create
-      .newQwiki({ title, blurb, img, public, permissions, mods })
+      .newQwiki({
+        title,
+        blurb,
+        img,
+        public,
+        permissions,
+        mods,
+        owner,
+        lastEditor: owner
+      })
       .then(qwiki => {
         res.json({
           error: false,
@@ -68,240 +78,100 @@ module.exports = app => {
           msg: "POST request could not be processed"
         });
       });
-  }),
-    // Adds a new Page to the database and sends the result back to the client
-    app.post("/api/pages/new", (req, res) => {
-      let { title, blurb, sections } = req.body;
+  });
 
-      title = "" + title;
-      blurb = "" + blurb;
+  // Adds a new Page to the database and sends the result back to the client
+  app.post("/api/pages/new", (req, res) => {
+    let { title, blurb, editor, sections } = req.body;
 
-      if (validator.isEmpty(title)) {
-        return res.status(400).json({
-          error: true,
-          msg: "TITLE field cannot be empty"
-        });
-      }
+    title = "" + title;
+    blurb = "" + blurb;
+    editor = "" + editor;
 
-      sections = sections.map(section => {
-        let { sectionType, content } = section;
-
-        sectionType = "" + sectionType;
-        content = "" + content;
-
-        if (validator.isEmpty(sectionType)) {
-          return {};
-        }
-
-        return { sectionType, content };
+    if (validator.isEmpty(title)) {
+      return res.status(400).json({
+        error: true,
+        msg: "TITLE field cannot be empty"
       });
+    }
 
-      queries.create
-        .newPage({ title, blurb, sections })
-        .then(page => {
-          res.json({
-            error: false,
-            msg: "Success",
-            page
-          });
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(400).json({
-            error: true,
-            msg: "POST request could not be processed"
-          });
-        });
-    }),
-    // Adds a new User to the database and sends the result back to the client
-    app.post("/api/users/new", (req, res) => {
-      let { email, displayName, password } = req.body;
+    sections = sections.map(section => {
+      let { sectionType, content } = section;
 
-      email = ("" + email).toLowerCase();
-      displayName = "" + displayName;
-      password = "" + password;
+      sectionType = "" + sectionType;
+      content = "" + content;
 
-      if (!validator.isEmail(email) || validator.isEmpty(email)) {
-        return res.status(400).json({
-          error: true,
-          msg: "EMAIL field must contain a valid email address"
-        });
-      } else if (validator.isEmpty(displayName)) {
-        return res.status(400).json({
-          error: true,
-          msg: "DISPLAYNAME field cannot be empty"
-        });
-      } else if (
-        validator.isEmpty(password) ||
-        validator.isLength(password, { min: 8, max: 32 })
-      ) {
-        return res.status(400).json({
-          error: true,
-          msg: "PASSWORD field must be between 8-32 characters"
-        });
+      if (validator.isEmpty(sectionType)) {
+        return {};
       }
 
-      bcrypt
-        .hash(password, SALT_ROUNDS)
-        .then(hash => {
-          let data = {
-            email: validator.normalizeEmail(email),
-            displayName: displayName,
-            password: hash
-          };
+      return { sectionType, content };
+    });
 
-          queries.create
-            .newUser(data)
-            .then(user => {
-              res.json({
-                error: false,
-                msg: "Success",
-                uuid: user._id
-              });
-            })
-            .catch(err => {
-              console.log(err);
-              res.status(400).json({
-                error: true,
-                msg: "Something went wrong when creating the new usser account"
-              });
-            });
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(400).json({
-            error: true,
-            msg: "POST request could not be processed"
-          });
+    queries.create
+      .newPage({ title, blurb, lastEditor: editor, sections })
+      .then(page => {
+        res.json({
+          error: false,
+          msg: "Success",
+          page
         });
-    }),
-    // Updates a Qwiki document and sends the result back to the client
-    app.post("/api/qwikis/:id", (req, res) => {
-      let id = req.params.id;
-      let { title, blurb, img } = req.body;
-
-      id = "" + id;
-      title = "" + title;
-      blurb = "" + blurb;
-      img = "" + img;
-
-      if (validator.isEmpty(id) || !validator.isMongoId(id)) {
-        return res.status(400).json({
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
           error: true,
-          msg: "ID field must be a valid mongo id"
+          msg: "POST request could not be processed"
         });
-      } else if (validator.isEmpty(title)) {
-        return res.status(400).json({
-          error: true,
-          msg: "TITLE field cannot be empty"
-        });
-      } else if (!validator.isURL(img)) {
-        return res.status(400).json({
-          error: true,
-          msg: "IMG field must be a valid URL"
-        });
-      }
-
-      queries.update
-        .updateQwiki({ id, title, blurb, img })
-        .then(qwiki => {
-          res.json({
-            error: false,
-            msg: "Success",
-            qwiki
-          });
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(400).json({
-            error: true,
-            msg: "POST request could not be processed"
-          });
-        });
-    }),
-    // Updates a Page document and sends the result back to the client
-    app.post("/api/pages/:id", (req, res) => {
-      let id = req.params.id;
-      let { title, blurb, sections } = req.body;
-
-      id = "" + id;
-      title = "" + title;
-      blurb = "" + blurb;
-
-      if (validator.isEmpty(id) || !validator.isMongoId(id)) {
-        return res.status(400).json({
-          error: true,
-          msg: "ID field must be a valid mongo id"
-        });
-      } else if (validator.isEmpty(title)) {
-        return res.status(400).json({
-          error: true,
-          msg: "TITLE field cannot be empty"
-        });
-      }
-
-      sections = sections.map(section => {
-        let { sectionType, content } = section;
-
-        sectionType = "" + sectionType;
-        content = "" + content;
-
-        if (validator.isEmpty(sectionType)) {
-          return {};
-        }
-
-        return { sectionType, content };
       });
+  });
 
-      queries.update
-        .updatePage({ id, title, blurb, sections })
-        .then(page => {
-          res.json({
-            error: false,
-            msg: "Success",
-            page
-          });
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(400).json({
-            error: true,
-            msg: "POST request could not be processed"
-          });
-        });
-    }),
-    // Updates a User document and sends the result back to the client
-    app.post("/api/users/:id", (req, res) => {
-      let id = req.params.id;
-      let { email, displayName, password } = req.body;
+  // Adds a new User to the database and sends the result back to the client
+  app.post("/api/register", (req, res) => {
+    // console.log("Received request");
 
-      email = ("" + email).toLowerCase();
-      displayName = "" + displayName;
-      password = "" + password;
+    let { email, displayName, password } = req.body;
 
-      if (!validator.isEmail(email) || validator.isEmpty(email)) {
-        return res.status(400).json({
-          error: true,
-          msg: "EMAIL field must contain a valid email address"
-        });
-      } else if (validator.isEmpty(displayName)) {
-        return res.status(400).json({
-          error: true,
-          msg: "DISPLAYNAME field cannot be empty"
-        });
-      } else if (
-        validator.isEmpty(password) ||
-        validator.isLength(password, { min: 8, max: 32 })
-      ) {
-        return res.status(400).json({
-          error: true,
-          msg: "PASSWORD field must be between 8-32 characters"
-        });
-      }
+    email = ("" + email).toLowerCase();
+    displayName = "" + displayName;
+    password = "" + password;
 
-      bcrypt.hash(password, SALT_ROUNDS).then(hash => {
-        queries.update
-          .updateUser({ id, email, displayName, password: hash })
+    // console.log(email, displayName, password);
+
+    if (!validator.isEmail(email) || validator.isEmpty(email)) {
+      console.log("Failed to register new user: Error: email field");
+      return res.status(400).json({
+        error: true,
+        msg: "EMAIL field must contain a valid email address"
+      });
+    } else if (validator.isEmpty(displayName)) {
+      console.log("Failed to register new user: Error: displayName field");
+      return res.status(400).json({
+        error: true,
+        msg: "DISPLAYNAME field cannot be empty"
+      });
+    } else if (
+      validator.isEmpty(password) ||
+      !validator.isLength(password, { min: 8, max: 32 })
+    ) {
+      console.log("Failed to register new user: Error: password field");
+      return res.status(400).json({
+        error: true,
+        msg: "PASSWORD field must be between 8-32 characters"
+      });
+    }
+
+    bcrypt
+      .hash(password, SALT_ROUNDS)
+      .then(hash => {
+        let data = {
+          email: validator.normalizeEmail(email),
+          displayName: displayName,
+          password: hash
+        };
+
+        queries.create
+          .newUser(data)
           .then(user => {
             res.json({
               error: false,
@@ -313,56 +183,155 @@ module.exports = app => {
             console.log(err);
             res.status(400).json({
               error: true,
-              msg: "POST request could not be processed"
+              msg: "Something went wrong when creating the new usser account"
             });
           });
-      });
-    }),
-    // Handles user login requests
-    app.post("/api/login", (req, res) => {
-      const { email, password  } = req.body;
-
-      email = ("" + email).toLowerCase();
-      password = ("" + password);
-
-      if (!validator.isEmail(email) || validator.isEmpty(email)) {
-        return res.status(400).json({
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
           error: true,
-          msg: "EMAIL field must contain a valid email address"
+          msg: "POST request could not be processed"
         });
-      } else if (validator.isEmpty(password)) {
-        return res.status(400).json({
-            error: true,
-            msg: "PASSWORD field cannot be empty"
-          });
+      });
+  });
+
+  // Updates a Qwiki document and sends the result back to the client
+  app.post("/api/qwikis/:id", (req, res) => {
+    let id = req.params.id;
+    let { title, blurb, img } = req.body;
+
+    id = "" + id;
+    title = "" + title;
+    blurb = "" + blurb;
+    img = "" + img;
+
+    if (validator.isEmpty(id) || !validator.isMongoId(id)) {
+      return res.status(400).json({
+        error: true,
+        msg: "ID field must be a valid mongo id"
+      });
+    } else if (validator.isEmpty(title)) {
+      return res.status(400).json({
+        error: true,
+        msg: "TITLE field cannot be empty"
+      });
+    } else if (!validator.isURL(img)) {
+      return res.status(400).json({
+        error: true,
+        msg: "IMG field must be a valid URL"
+      });
+    }
+
+    queries.update
+      .updateQwiki({ id, title, blurb, img })
+      .then(qwiki => {
+        res.json({
+          error: false,
+          msg: "Success",
+          qwiki
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
+          error: true,
+          msg: "POST request could not be processed"
+        });
+      });
+  });
+
+  // Updates a Page document and sends the result back to the client
+  app.post("/api/pages/:id", (req, res) => {
+    let id = req.params.id;
+    let { title, blurb, sections, editor } = req.body;
+
+    id = "" + id;
+    title = "" + title;
+    blurb = "" + blurb;
+    editor = "" + editor;
+
+    if (validator.isEmpty(id) || !validator.isMongoId(id)) {
+      return res.status(400).json({
+        error: true,
+        msg: "ID field must be a valid mongo id"
+      });
+    } else if (validator.isEmpty(title)) {
+      return res.status(400).json({
+        error: true,
+        msg: "TITLE field cannot be empty"
+      });
+    }
+
+    sections = sections.map(section => {
+      let { sectionType, content } = section;
+
+      sectionType = "" + sectionType;
+      content = "" + content;
+
+      if (validator.isEmpty(sectionType)) {
+        return {};
       }
 
-      queries.read
-        .searchUsersEmail(email)
-        .then(user => {
-          bcrypt
-            .compare(password, user.password)
-            .then(match => {
-              if (!match) {
-                return res.status(400).json({
-                  error: true,
-                  msg: "Invalid credentials"
-                });
-              }
+      return { sectionType, content };
+    });
 
-              res.json({
-                error: false,
-                msg: "Success",
-                uuid: user._id
-              });
-            })
-            .catch(err => {
-              console.log(err);
-              res.status(400).json({
-                error: true,
-                msg: ""
-              });
-            });
+    queries.update
+      .updatePage({ id, title, blurb, lastEditor: editor, sections })
+      .then(page => {
+        res.json({
+          error: false,
+          msg: "Success",
+          page
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
+          error: true,
+          msg: "POST request could not be processed"
+        });
+      });
+  });
+
+  // Updates a User document and sends the result back to the client
+  app.post("/api/users/:id", (req, res) => {
+    let id = req.params.id;
+    let { email, displayName, password } = req.body;
+
+    email = ("" + email).toLowerCase();
+    displayName = "" + displayName;
+    password = "" + password;
+
+    if (!validator.isEmail(email) || validator.isEmpty(email)) {
+      return res.status(400).json({
+        error: true,
+        msg: "EMAIL field must contain a valid email address"
+      });
+    } else if (validator.isEmpty(displayName)) {
+      return res.status(400).json({
+        error: true,
+        msg: "DISPLAYNAME field cannot be empty"
+      });
+    } else if (
+      validator.isEmpty(password) ||
+      validator.isLength(password, { min: 8, max: 32 })
+    ) {
+      return res.status(400).json({
+        error: true,
+        msg: "PASSWORD field must be between 8-32 characters"
+      });
+    }
+
+    bcrypt.hash(password, SALT_ROUNDS).then(hash => {
+      queries.update
+        .updateUser({ id, email, displayName, password: hash })
+        .then(user => {
+          res.json({
+            error: false,
+            msg: "Success",
+            uuid: user._id
+          });
         })
         .catch(err => {
           console.log(err);
@@ -372,4 +341,82 @@ module.exports = app => {
           });
         });
     });
+  });
+
+  // Handles user login requests
+  app.post("/api/login", (req, res) => {
+    let { email, password } = req.body;
+
+    email = ("" + email).toLowerCase();
+    password = "" + password;
+
+    if (!validator.isEmail(email) || validator.isEmpty(email)) {
+      return res.status(400).json({
+        error: true,
+        msg: "EMAIL field must contain a valid email address"
+      });
+    } else if (validator.isEmpty(password)) {
+      return res.status(400).json({
+        error: true,
+        msg: "PASSWORD field cannot be empty"
+      });
+    }
+
+    queries.read
+      .searchUsersEmail(email)
+      .then(user => {
+        bcrypt
+          .compare(password, user.password)
+          .then(match => {
+            if (!match) {
+              return res.status(400).json({
+                error: true,
+                msg: "Invalid credentials"
+              });
+            }
+
+            res.json({
+              error: false,
+              msg: "Success",
+              uuid: user._id
+            });
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(400).json({
+              error: true,
+              msg: ""
+            });
+          });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
+          error: true,
+          msg: "POST request could not be processed"
+        });
+      });
+  });
+  
+  // TODO
+  app.post("/api/follow", (req, res) => {
+    let { uuid, qwikiID } = req.body;
+
+    queries.update
+      .followQwiki(uuid, qwikiID)
+      .then(user => {
+        res.json({
+          error: false,
+          msg: "Success",
+          followed: user.followed
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).json({
+          error: true,
+          msg: "POST request could not be processed"
+        });
+      });
+  });
 };

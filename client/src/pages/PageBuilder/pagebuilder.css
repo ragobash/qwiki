@@ -5,29 +5,12 @@
 }
 #content {  
     flex-grow: 1;
-}
-
-#toolbar {
-    width: 300px;
     margin: 0 auto;
 }
 
-/* .toolbarbox {
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-} */
-
-.fullbox {
-    display: flex;
-    justify-content: flex-end;
-    top: 0px;
-    right: 0px;
-}
-
-.fulldiv {
-    position: relative;
+#toolbar {
+    margin: 0 auto;
+    padding: 16px 15px 0px 25px;
 }
 
 .submit {
@@ -35,21 +18,26 @@
     color: #4054b2;
     width: 325px;
     height: 35px;
-    margin: 0.5% 25%;
-    border-radius: 25px;
     border: 1px solid #4054b2;
     font-weight: 600;
+    font-size: 15px;
 }
 
-textarea {
-    background: #909090;
-    color: #f4f4f4;
-    border-radius: 25px;
-    border: 1px solid #4054b2;
-    width: 75%;
-    padding: 5px;
+#submit {
+    text-align: center;
+    margin: 15px;
+    
 }
 
-#outlined-basic {
+#filled-basic {
     border-radius: 0%;
+}
+
+#heading {
+    display: flex;
+}
+
+#deletebutton {
+    display: flex;
+    margin: 6px -26px 0px 0px;
 }

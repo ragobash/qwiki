@@ -28,7 +28,12 @@ import QwikiBuilder from "./pages/QwikiBuilder";
 import QwikiHub from "./pages/QwikiHub";
 import PageBuilder from "./pages/PageBuilder";
 import QwikiPage from "./pages/QwikiPage";
-import page404 from "./pages/page404";
+import UserPage from "./pages/UserPage";
+import ErrorPage from "./pages/404";
+import About from "./pages/About";
+import SearchResults from "./pages/SearchResults";
+import Contact from "./pages/Contact";
+import API from "./util/API";
 
 const HOUR = 3600;
 
@@ -61,29 +66,65 @@ class App extends Component {
     this.setState({
       uuid
     });
-  }
+  };
 
   userLoggedOut = () => {
     this.props.cookies.remove("qwiki.sid", { path: "/" });
 
     this.setState({
       uuid: ""
-    })
-  }
+    });
+  };
+
+  getHomePage = () => {
+    if (this.state.uuid.length > 0) {
+      return <UserPage uuid={this.state.uuid} />;
+    } else {
+      return <LandingPage uuid={this.state.uuid} />;
+    }
+  };
+
+  search = term => {
+    API.searchQwikis(term)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
       <Router>
         <div className="background">
-          <Navbar userLoggedIn={this.userLoggedIn} />
+          <Navbar
+            loggedIn={this.state.uuid.length > 0}
+            userLoggedIn={this.userLoggedIn}
+            userLoggedOut={this.userLoggedOut}
+            search={this.search}
+          />
         </div>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={this.getHomePage} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
           <Route exact path="/pages/:id" component={QwikiPage} />
-          <Route exact path="/qwikis/builder" component={QwikiBuilder} />
-          <Route exact path="/qwikis/:id" component={QwikiHub} />
-          <Route exact path="/pages/builder/:id" component={PageBuilder} />
-          <Route path="*" component={page404} />
+          <Route
+            exact
+            path="/qwikis/builder"
+            render={() => <QwikiBuilder uuid={this.state.uuid} />}
+          />
+          <Route
+            exact
+            path="/qwikis/:id"
+            render={() => <QwikiHub uuid={this.state.uuid} />}
+          />
+          <Route
+            exact
+            path="/pages/builder/:id"
+            render={() => <PageBuilder uuid={this.state.uuid} />}
+          />
+          <Route exact path="/search/:term" component={SearchResults} />
+          <Route path="*" component={ErrorPage} />
         </Switch>
       </Router>
     );

@@ -63,8 +63,10 @@ class SignupModal extends Component {
 
     if (this.state.password === this.state.confirm) {
       API.newUser(this.state)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+        .then(res => {
+          this.props.userLoggedIn(res.data.uuid);
+        })
+        .catch(err => console.log(err));
     } else {
       console.log("Password fields do not match.");
     }
@@ -89,6 +91,7 @@ class SignupModal extends Component {
               <h2>Register</h2>
               <div>
                 <input
+                  autoFocus="true"
                   type="text"
                   placeholder="Email"
                   name="email"
@@ -116,7 +119,11 @@ class SignupModal extends Component {
                   value={this.state.confirm}
                   onChange={this.handleInput}
                 />
-                <input type="submit" value="Sign Up" onClick={this.handleSubmit} />
+                <input
+                  type="submit"
+                  value="Sign Up"
+                  onClick={this.handleSubmit}
+                />
               </div>
             </form>
           </div>

@@ -1,0 +1,15 @@
+#owned {
+    
+}
+#userPageWrapper {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+
+#fab {
+  position: fixed;
+  top: 90px;
+  left: 10px;
+}

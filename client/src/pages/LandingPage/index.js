@@ -24,7 +24,9 @@ import QwikiCard from "../../components/QwikiCard";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import "./LandingPage.css";
-import Logo404 from "../../components/Logo404/index"
+import Logo404 from "../../components/Logo404/index";
+import PublicBtn from "../../components/PublicBtn/index";
+import ProgressBar from "../../components/ProgressBar/index";
 
 class LandingPage extends React.Component {
   constructor() {
@@ -52,10 +54,19 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="container">
-        <Fab className="add" color="primary" aria-label="add" href={"/qwikis/builder/"}>
+        <Fab
+          className="add"
+          color="primary"
+          aria-label="add"
+          href={"/qwikis/builder/"}
+        >
           <AddIcon />
         </Fab>
-        <Logo404 />
+        <Logo404 className="logo"/>
+        {/* <PublicBtn />
+        <div>
+          <ProgressBar />
+        </div> */}
         {this.state.qwikis.length > 0 ? (
           this.state.qwikis.map(qwiki => {
             return (

@@ -25,7 +25,7 @@ import "../BuilderToolbar/buildertoolbar.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-  position: 'fixed',
+    position: "fixed"
   },
   button: {
     margin: theme.spacing(1)
@@ -48,8 +48,9 @@ function BuilderToolbar(props) {
         color="primary"
         className={`${classes.button} i-am-class`}
       >
-        <span onClick={props.onClick}
-        data-sectiontype="HEADING">Heading</span>
+        <span onClick={props.onClick} data-sectiontype="HEADING">
+          Heading
+        </span>
       </Button>
       <Button
         onClick={props.onClick}
@@ -58,8 +59,9 @@ function BuilderToolbar(props) {
         color="primary"
         className={`${classes.button} i-am-class`}
       >
-        <span onClick={props.onClick}
-        data-sectiontype="IMAGE">Image</span>
+        <span onClick={props.onClick} data-sectiontype="IMAGE">
+          Image
+        </span>
       </Button>
       <Button
         onClick={props.onClick}
@@ -68,8 +70,9 @@ function BuilderToolbar(props) {
         color="primary"
         className={`${classes.button} i-am-class`}
       >
-        <span onClick={props.onClick}
-        data-sectiontype="PARAGRAPH">Paragraph</span>
+        <span onClick={props.onClick} data-sectiontype="PARAGRAPH">
+          Paragraph
+        </span>
       </Button>
     </div>
   );

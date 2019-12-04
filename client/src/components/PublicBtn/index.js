@@ -18,10 +18,17 @@
  *
  */
 
-const PERMISSIONS = Object.freeze({
-  OWNER: "OWNER",
-  MODS: "MODS",
-  PUBLIC: "PUBLIC"
-});
+import React, { Component } from "react";
+import "./PublicBtn.css";
 
-module.exports = PERMISSIONS;
+class PublicBtn extends Component {
+  render() {
+    return (
+      <div className="center">
+          <input type="checkbox" />
+      </div>
+    );
+  }
+}
+
+export default PublicBtn;

@@ -18,10 +18,23 @@
  *
  */
 
-const PERMISSIONS = Object.freeze({
-  OWNER: "OWNER",
-  MODS: "MODS",
-  PUBLIC: "PUBLIC"
-});
+import React, { Component } from "react";
+import "./ProgressBar.css";
 
-module.exports = PERMISSIONS;
+class ProgressBar extends Component {
+  render() {
+    return (
+      <div className="box">
+        <div className="skill">
+          <span className="Name">Progress</span>
+          <div className="percent">
+            <div className="progress"></div>
+          </div>
+          <span className="Value">66%</span>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default ProgressBar;

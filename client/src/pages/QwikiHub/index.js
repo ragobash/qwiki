@@ -21,13 +21,10 @@
 import React from "react";
 import API from "../../util/API";
 import SimpleExpansionPanel from "../../components/qWikiPagePopOut";
-import Heading from "../../components/Heading";
-import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core/styles";
-import { display } from "@material-ui/system";
 import "./QwikiHub.css";
 
 const styles = () => ({
@@ -51,21 +48,23 @@ class QwikiHub extends React.Component {
       title: "",
       blurb: "",
       img: "",
+      owner: "",
       pages: []
     };
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
+    let path = window.location.href.split('/');
+    const id = path[path.length - 1];
 
     API.getQwikiByID(id)
       .then(res => {
-        console.log(res.data.qwiki);
         this.setState({
           _id: res.data.qwiki._id,
           title: res.data.qwiki.title,
           blurb: res.data.qwiki.blurb,
           img: res.data.qwiki.img,
+          owner: res.data.qwiki.owner,
           pages: res.data.qwiki.pages
         });
       })
@@ -74,6 +73,24 @@ class QwikiHub extends React.Component {
       });
   }
 
+  newPageButton = () => {
+    if (this.props.uuid.length > 0) {
+      return (
+        <div id="qwikifab">
+          <Fab
+            color="primary"
+            aria-label="add"
+            href={"/pages/builder/" + this.state._id}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   render() {
     return (
       <div className="gridContainer">
@@ -81,15 +98,7 @@ class QwikiHub extends React.Component {
           <div className="btn1">
             <SimpleExpansionPanel pages={this.state.pages} />
           </div>
-          <div className="btn2">
-            <Fab
-              color="primary"
-              aria-label="add"
-              href={"/pages/builder/" + this.state._id}
-            >
-              <AddIcon />
-            </Fab>
-          </div>
+          <div className="btn2">{this.newPageButton()}</div>
         </div>
         <div className="title">
           <h1 className={this.props.classes.heading}>{this.state.title}</h1>

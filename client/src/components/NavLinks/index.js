@@ -18,10 +18,22 @@
  *
  */
 
-const PERMISSIONS = Object.freeze({
-  OWNER: "OWNER",
-  MODS: "MODS",
-  PUBLIC: "PUBLIC"
-});
+import React, { Component } from "react";
+import "./Navlinks.css";
 
-module.exports = PERMISSIONS;
+class NavLinks extends Component {
+  render() {
+    return (
+      <div className="btn">
+        <a className="nav-links" href="/contact">
+          <svg>
+            <rect></rect>
+          </svg>
+          CONTACT
+        </a>
+      </div>
+    );
+  }
+}
+
+export default NavLinks;

@@ -23,9 +23,9 @@ import { Redirect } from "react-router-dom";
 import "../PageBuilder/pagebuilder.css";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
-import { Box, TextField, Divider } from "@material-ui/core";
+import { Box, TextField, Divider, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-// import ToolbarBtn from "../../components/ToolbarBtn/index.js";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 
 // styles for title and blrb input
 
@@ -38,7 +38,6 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "75%",
     heigth: "300",
     background: "#2f3640",
     color: "white !important",
@@ -61,14 +60,18 @@ class PageBuilder extends React.Component {
       title: "",
       blurb: "",
       public: true,
+      editor: this.props.uuid,
       sections: [],
       redirect: ""
     };
   }
 
   componentDidMount() {
+    let path = window.location.href.split("/");
+    const id = path[path.length - 1];
+
     this.setState({
-      qwikiID: this.props.match.params.id
+      qwikiID: id
     });
   }
 
@@ -114,7 +117,7 @@ class PageBuilder extends React.Component {
     this.setState({
       sections
     });
-  }
+  };
 
   sectionInput = event => {
     const index = event.target.getAttribute("data-index");
@@ -140,7 +143,7 @@ class PageBuilder extends React.Component {
     API.newPage(this.state)
       .then(res => {
         const redirect = "/pages/" + res.data.page._id;
-        
+
         this.setState({
           redirect
         });
@@ -165,26 +168,30 @@ class PageBuilder extends React.Component {
             InputLabelProps={{
               style: { color: "white", padding: "0px 0px 5px 15px" }
             }}
-            id="outlined-basic"
+            id="filled-basic"
             // className={this.props.classes.textField}
             label="Title"
             placeholder="Required*"
             margin="normal"
-            variant="outlined"
+            variant="filled"
             name="title"
             value={this.state.title}
             onChange={this.handleInput}
             fullWidth
           />
           <TextField
-            id="outlined-basic"
+            id="filled-basic"
             InputProps={{
               classes: {
                 root: this.props.classes.textField
               }
             }}
             InputLabelProps={{
-              style: { color: "white", padding: "0px 0px 5px 15px", width: "100%" }
+              style: {
+                color: "white",
+                padding: "0px 0px 5px 15px",
+                width: "100%"
+              }
             }}
             fullWidth
             multiline={true}
@@ -193,19 +200,18 @@ class PageBuilder extends React.Component {
             label="Blurb"
             placeholder="Required*"
             margin="normal"
-            variant="outlined"
+            variant="filled"
             name="blurb"
             padding="10px"
             value={this.state.blurb}
             onChange={this.handleInput}
           />
-          <Divider variant="middle" style={{backgroundColor: "#f4f4f4"}}/>
+          <Divider variant="middle" style={{ backgroundColor: "#f4f4f4" }} />
 
           <div>
             {this.state.sections.map((section, index) => {
               switch (section.sectionType) {
                 case "HEADING":
-                  console.log("heading hit");
                   return (
                     <div className="background" id="heading" key={index}>
                       <TextField
@@ -217,20 +223,25 @@ class PageBuilder extends React.Component {
                         InputLabelProps={{
                           style: { color: "white", padding: "0px 0px 5px 15px" }
                         }}
-                        id="outlined-basic"
+                        id="filled-basic"
                         label="Heading"
                         margin="normal"
-                        variant="outlined"
+                        variant="filled"
                         name="heading"
                         value={this.state.heading}
                         onChange={this.handleInput}
                         fullWidth
                       />
+                      <div id="deletebutton">
+                        <Button data-index={index} onClick={this.removeSection}>
+                          <DeleteRoundedIcon color="error" />
+                        </Button>
+                      </div>
                     </div>
                   );
                 case "IMAGE":
                   return (
-                    <div className="background" key={index}>
+                    <div className="background" id="heading" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -240,22 +251,27 @@ class PageBuilder extends React.Component {
                         InputLabelProps={{
                           style: { color: "white", padding: "0px 0px 5px 15px" }
                         }}
-                        id="outlined-basic"
+                        id="filled-basic"
                         label="Image"
                         margin="normal"
-                        variant="outlined"
+                        variant="filled"
                         name="image"
                         value={this.state.image}
                         onChange={this.handleInput}
                         fullWidth
                       />
+                      <div id="deletebutton">
+                        <Button data-index={index} onClick={this.removeSection}>
+                          <DeleteRoundedIcon color="error" />
+                        </Button>
+                      </div>{" "}
                     </div>
                   );
                 default:
                   return (
-                    <div className="background" key={index}>
+                    <div className="background" id="heading" key={index}>
                       <TextField
-                        id="outlined-basic"
+                        id="filled-basic"
                         InputProps={{
                           classes: {
                             root: this.props.classes.textField
@@ -270,22 +286,29 @@ class PageBuilder extends React.Component {
                         rowsMax={10}
                         label="Paragraph"
                         margin="normal"
-                        variant="outlined"
+                        variant="filled"
                         name="paragraph"
                         padding="10px"
                         value={this.state.paragraph}
                         onChange={this.handleInput}
                       />
-                      <input
-                        className="submit"
-                        type="submit"
-                        value="Submit"
-                        onClick={this.handleSubmit}
-                      ></input>
+                      <div id="deletebutton">
+                        <Button data-index={index} onClick={this.removeSection}>
+                          <DeleteRoundedIcon color="error" />
+                        </Button>
+                      </div>
                     </div>
                   );
               }
             })}
+            <div id="submit">
+              <input
+                className="submit"
+                type="submit"
+                value="SUBMIT"
+                onClick={this.handleSubmit}
+              ></input>
+            </div>
           </div>
         </div>
 
