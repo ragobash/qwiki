@@ -21,13 +21,17 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import "./landingpage.css";
+import Logo404 from "../../components/Logo404/index";
+// import PublicBtn from "../../components/PublicBtn/index";
+// import ProgressBar from "../../components/ProgressBar/index";
 
 class LandingPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.mounted = false;
+  constructor() {
+    super();
 
     this.state = {
       qwikis: []
@@ -35,37 +39,44 @@ class LandingPage extends React.Component {
   }
 
   componentDidMount() {
-    this.mounted = true;
-
     API.getAllQwikis()
       .then(res => {
-        if (this.mounted) {
-          this.setState(
-            {
-              qwikis: res.data.qwikis
-            }
-          );
-        }
+        this.setState({
+          qwikis: res.data.qwikis
+        });
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  componentWillUnmount() {
-    this.mounted = false;
-  }
+  // TODO: user login stuff
 
   render() {
     return (
-      <div>
-      <Grid container spacing={12}>
-      <Grid item xs={12} direction="row" justify="space-evenly">
-        {this.state.qwikis.length > 0 ? this.state.qwikis.map(
-            qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} uuid={this.props.uuid} /> }
-        ): <div />}
-      </Grid>
-      </Grid>
+      <div className="container">
+        <Fab
+          className="add"
+          color="primary"
+          aria-label="add"
+          href={"/qwikis/builder/"}
+        >
+          <AddIcon />
+        </Fab>
+        <Logo404 className="logo"/>
+        {/* <PublicBtn />
+        <div>
+          <ProgressBar />
+        </div> */}
+        {this.state.qwikis.length > 0 ? (
+          this.state.qwikis.map(qwiki => {
+            return (
+              <QwikiCard className="qwikiCard" key={qwiki._id} qwiki={qwiki} />
+            );
+          })
+        ) : (
+          <div />
+        )}
       </div>
     );
   }

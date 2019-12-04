@@ -22,48 +22,56 @@ import "../Contact/contact.css";
 import { Button, ButtonGroup, Typography, Grid } from "@material-ui/core";
 
 class Contact extends React.Component {
-  
   render() {
-        return (
+    return (
       <div id="contactwrapper">
         <div id="contactcontent">
-        <Grid
-          container
-          spacing={0}
-          alignItems="center"
-          justify="center"
-          style={{ minHeight: "20vh" }}
-        >
-          <Typography 
-            variant="h1"
-            component="h3"
-            align="center"
-            style={{
-                fontWeight:"bold",
-                color:"white"
-                }}
-                >
-                Send Us A Message!
-              </Typography>
+          <Grid
+            container
+            spacing={0}
+            alignItems="center"
+            justify="center"
+            style={{ minHeight: "20vh" }}
+          >
+            <Typography
+              variant="h1"
+              component="h3"
+              align="center"
+              style={{
+                fontWeight: "bold",
+                color: "white"
+              }}
+            >
+              Send Us A Message!
+            </Typography>
+          </Grid>
+          <div id="contactbuttongroup">
+            <Grid container spacing={3} justify="center">
+              <Grid item xs={12} md={6}>
+                <div id="contactbuttons">
+                  <ButtonGroup
+                    fullWidth
+                    aria-label="full width outlined button group"
+                    variant="contained"
+                  >
+                    <Button href="mailto: ragobash@gmail.com" target="#">
+                      EMAIL
+                    </Button>
+                    <Button href="https://github.com/ragobash/qwiki" target="#">
+                      GITHUB
+                    </Button>
+                    <Button href="tel:1-405-301-5463" target="#">
+                      CALL
+                    </Button>
+                  </ButtonGroup>
+                </div>
+              </Grid>
             </Grid>
-            <div id="contactbuttongroup">
-            <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-        <ButtonGroup
-            fullWidth
-            aria-label="full width outlined button group"
-            variant="contained">
-          <Button href="mailto: ragobash@gmail.com" target="#">EMAIL</Button>
-          <Button href="https://github.com/ragobash/qwiki" target="#">GITHUB</Button>
-          <Button href="tel:1-405-301-5463" target="#">CALL</Button>
-        </ButtonGroup>
-      </Grid>
-            </Grid>
-            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default (Contact);
+export default Contact;

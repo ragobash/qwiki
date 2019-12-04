@@ -18,7 +18,7 @@
  *
  */
 
-import React, { Component } from "react";
+import React from "react";
 import {
   Button,
   Card,
@@ -34,11 +34,10 @@ import "./QwikiCard.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withStyles } from "@material-ui/core/styles";
-import API from "../../util/API";
 
 const styles = () => ({
   card: {
-    maxWidth: 345
+    maxWidth: 300
   },
   media: {
     height: 0,
@@ -49,62 +48,52 @@ const styles = () => ({
   }
 });
 
-class QwikiCard extends Component {
-  constructor() {
-    super();
-  }
-
-  follow = qwikiID => {
-    API.followQwiki(this.props.uuid, qwikiID)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.log(err));
-  };
-
-  render() {
-    return (
-      <div className="cardBackground">
-        <Card className={this.props.classes.card}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="recipe" className={this.props.classes.avatar}>
-                R
-              </Avatar>
-            }
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={this.props.qwiki.title}
-            subheader={this.props.qwiki.created}
-          />
-          <CardMedia
-            className={this.props.classes.media}
-            image={this.props.qwiki.img}
-            title=""
-          />
-          <CardContent>
-            <Typography>{this.props.qwiki.blurb}</Typography>
-          </CardContent>
-          <CardActions>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
+function QwikiCard(props) {
+  return (
+    <div className="cardBackground">
+      <Card className={props.classes.card}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={props.classes.avatar}>
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
             </IconButton>
-            <Button
-              variant="outlined"
-              size="small"
-              color="primary"
-              href={"/qwikis/" + this.props.qwiki._id}
-            >
-              Read more
-            </Button>
-          </CardActions>
-        </Card>
-      </div>
-    );
-  }
+          }
+          title={props.qwiki.title}
+          subheader={props.qwiki.created}
+        />
+        <CardMedia
+          className={props.classes.media}
+          image={props.qwiki.img}
+          title=""
+        />
+        <CardContent>
+          <Typography>
+            {`${props.qwiki.blurb.substring(0, 75)}${
+              props.qwiki.blurb.length > 100 ? "..." : ""
+            }`}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            href={"/qwikis/" + props.qwiki._id}
+          >
+            Read more
+          </Button>
+        </CardActions>
+      </Card>
+    </div>
+  );
 }
 
 export default withStyles(styles)(QwikiCard);

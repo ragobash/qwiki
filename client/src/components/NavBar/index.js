@@ -19,42 +19,30 @@
  */
 
 import React from "react";
-import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { AppBar, Toolbar   } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Navbar.css";
 import Logo from "../Logo";
 import "../NavMenu";
 import NavMenu from "../NavMenu";
+import NavLinks from "../NavLinks";
 
 function Navbar(props) {
   return (
     <div className="navbar">
       <AppBar position="static" className="navbar">
         <Toolbar className="navbar">
-          <div className="components">
+          <div
+            id="nav-container-left"
+            style={{ display: "flex", justifyContent: "start" }}
+          >
             <Logo />
-            <Button
-              href="/about"
-              color="primary"
-              variant="contained"
-              size="small"
-              id="navlink"
-              style={{ color: "#f4f4f4" }}
-            >
-              ABOUT
-            </Button>
-            <Button
-              href="/contact"
-              color="primary"
-              variant="contained"
-              size="small"
-              id="navlink"
-              style={{ color: "#f4f4f4" }}
-            >
-              CONTACT
-            </Button>
+            <NavLinks />
           </div>
-          <div className="tools">
+          <div
+            id="nav-container-right"
+            style={{ display: "flex", justifyContent: "end" }}
+          >
             <div className="search-box">
               <input
                 type="text"
@@ -71,6 +59,32 @@ function Navbar(props) {
         </Toolbar>
       </AppBar>
     </div>
+    // <div className="navbar">
+    //   <AppBar position="static" className="navbar">
+    //     <Toolbar className="navbar">
+    //       <div className="components">
+    //         <Logo />
+    //         <div>
+    //           <NavLinks />
+    //         </div>
+    //       </div>
+    //       <div className="tools">
+    //         <div className="search-box">
+    //           <input
+    //             type="text"
+    //             placeholder="Type to search..."
+    //             className="search-txt"
+    //             onSubmit={props.search}
+    //           ></input>
+    //           <a href="/" className="search-btn">
+    //             <SearchIcon />
+    //           </a>
+    //         </div>
+    //         <NavMenu {...props} />
+    //       </div>
+    //     </Toolbar>
+    //   </AppBar>
+    // </div>
   );
 }
 
