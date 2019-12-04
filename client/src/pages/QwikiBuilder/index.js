@@ -55,7 +55,7 @@ class QwikiBuilder extends React.Component {
       public: true,
       permissions: "OWNER",
       mods: [],
-      owner: this.props.uuid,
+      owner: "",
       redirect: ""
     };
   }
@@ -69,16 +69,19 @@ class QwikiBuilder extends React.Component {
     });
   };
 
-  switchPublic = event => {
-    this.setState({
-      public: event.target.checked
-    });
-  };
+  // switchPublic = event => {
+  //   this.setState({
+  //     public: event.target.checked
+  //   });
+  // };
 
   handleSubmit = event => {
     event.preventDefault();
 
-    API.newQwiki(this.state)
+    this.setState({
+      owner: this.props.uuid
+    }, () => {
+      API.newQwiki(this.state)
       .then(res => {
         const redirect = "/qwikis/" + res.data.qwiki._id;
 
@@ -87,6 +90,7 @@ class QwikiBuilder extends React.Component {
         });
       })
       .catch(err => console.log(err));
+    });
   };
 
   render() {

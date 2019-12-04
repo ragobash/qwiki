@@ -82,7 +82,7 @@ class UserPage extends Component {
           <Fab
             color="primary"
             aria-label="add"
-            href={"/pages/builder/" + this.state._id}
+            href={"/qwikis/builder/"}
           >
             <AddIcon />
           </Fab>

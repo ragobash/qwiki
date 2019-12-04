@@ -23,6 +23,11 @@
     font-size: 15px;
 }
 
+.deleteButton {
+    display: flex;
+    margin: 6px -26px 0px 0px;
+}
+
 #submit {
     text-align: center;
     margin: 15px;
@@ -33,11 +38,6 @@
     border-radius: 0%;
 }
 
-#heading {
+.heading, .paragraph, .image {
     display: flex;
-}
-
-#deletebutton {
-    display: flex;
-    margin: 6px -26px 0px 0px;
 }

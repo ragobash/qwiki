@@ -62,7 +62,7 @@ class LoginModal extends Component {
 
     API.login(this.state)
       .then(res => {
-        document.cookie = res.data.sessUser;
+        // document.cookie = res.data.sessUser;
         this.props.userLoggedIn(res.data.uuid);
       })
       .catch(err => console.log(err));
@@ -88,7 +88,7 @@ class LoginModal extends Component {
               <h2>Login</h2>
               <div>
                 <input
-                  autoFocus="true"
+                  autoFocus={true}
                   type="text"
                   placeholder="Email"
                   name="email"

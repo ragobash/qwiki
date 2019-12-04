@@ -108,11 +108,10 @@ class PageBuilder extends React.Component {
   removeSection = event => {
     event.preventDefault();
 
-    const index = event.target.getAttribute("data-index");
+    const index = event.target.getAttribute("data-index") || event.target.parentNode.getAttribute("data-index");
 
-    const sections = this.state.sections.filter((section, i) => {
-      return i !== index;
-    });
+    let sections = [...this.state.sections];
+    sections.splice(index, 1);
 
     this.setState({
       sections
@@ -213,7 +212,7 @@ class PageBuilder extends React.Component {
               switch (section.sectionType) {
                 case "HEADING":
                   return (
-                    <div className="background" id="heading" key={index}>
+                    <div className="background" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -232,16 +231,16 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <div id="deletebutton">
-                        <Button data-index={index} onClick={this.removeSection}>
-                          <DeleteRoundedIcon color="error" />
+                      <div className="deleteButton">
+                        <Button data-index={index} onClick={this.removeSection} style={{ backgroundColor: 'transparent' }}>
+                          <DeleteRoundedIcon data-index={index} color="error" />
                         </Button>
                       </div>
                     </div>
                   );
                 case "IMAGE":
                   return (
-                    <div className="background" id="heading" key={index}>
+                    <div className="background" key={index}>
                       <TextField
                         InputProps={{
                           classes: {
@@ -260,16 +259,16 @@ class PageBuilder extends React.Component {
                         onChange={this.handleInput}
                         fullWidth
                       />
-                      <div id="deletebutton">
-                        <Button data-index={index} onClick={this.removeSection}>
-                          <DeleteRoundedIcon color="error" />
+                      <div className="deleteButton">
+                        <Button data-index={index} onClick={this.removeSection} style={{ backgroundColor: 'transparent' }}>
+                          <DeleteRoundedIcon data-index={index} color="error" />
                         </Button>
                       </div>{" "}
                     </div>
                   );
                 default:
                   return (
-                    <div className="background" id="heading" key={index}>
+                    <div className="background" key={index}>
                       <TextField
                         id="filled-basic"
                         InputProps={{
@@ -292,9 +291,9 @@ class PageBuilder extends React.Component {
                         value={this.state.paragraph}
                         onChange={this.handleInput}
                       />
-                      <div id="deletebutton">
-                        <Button data-index={index} onClick={this.removeSection}>
-                          <DeleteRoundedIcon color="error" />
+                      <div className="deleteButton">
+                        <Button data-index={index} onClick={this.removeSection} style={{ backgroundColor: 'transparent' }}>
+                          <DeleteRoundedIcon data-index={index} color="error" />
                         </Button>
                       </div>
                     </div>

@@ -82,11 +82,12 @@ module.exports = app => {
 
   // Adds a new Page to the database and sends the result back to the client
   app.post("/api/pages/new", (req, res) => {
-    let { title, blurb, editor, sections } = req.body;
+    let { title, blurb, editor, sections, qwikiID } = req.body;
 
     title = "" + title;
     blurb = "" + blurb;
     editor = "" + editor;
+    qwikiID = "" + qwikiID;
 
     if (validator.isEmpty(title)) {
       return res.status(400).json({
@@ -105,24 +106,44 @@ module.exports = app => {
         return {};
       }
 
-      return { sectionType, content };
+      return {
+        sectionType,
+        content
+      };
     });
 
     queries.create
-      .newPage({ title, blurb, lastEditor: editor, sections })
-      .then(page => {
-        res.json({
-          error: false,
-          msg: "Success",
-          page
-        });
+      .newPage({
+        title,
+        blurb,
+        lastEditor: editor,
+        sections,
+        qwikiID
       })
-      .catch(err => {
-        console.log(err);
-        res.status(400).json({
-          error: true,
-          msg: "POST request could not be processed"
-        });
+      .then(page => {
+        queries.update
+          .addPage(qwikiID, page._id)
+          .then(qwiki => {
+            res.json({
+              error: false,
+              msg: "Success",
+              page
+            });
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(400).json({
+              error: true,
+              msg: "POST request could not be processed"
+            });
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(400).json({
+              error: true,
+              msg: "POST request could not be processed"
+            });
+          });
       });
   });
 
@@ -152,7 +173,10 @@ module.exports = app => {
       });
     } else if (
       validator.isEmpty(password) ||
-      !validator.isLength(password, { min: 8, max: 32 })
+      !validator.isLength(password, {
+        min: 8,
+        max: 32
+      })
     ) {
       console.log("Failed to register new user: Error: password field");
       return res.status(400).json({
@@ -224,7 +248,12 @@ module.exports = app => {
     }
 
     queries.update
-      .updateQwiki({ id, title, blurb, img })
+      .updateQwiki({
+        id,
+        title,
+        blurb,
+        img
+      })
       .then(qwiki => {
         res.json({
           error: false,
@@ -273,11 +302,20 @@ module.exports = app => {
         return {};
       }
 
-      return { sectionType, content };
+      return {
+        sectionType,
+        content
+      };
     });
 
     queries.update
-      .updatePage({ id, title, blurb, lastEditor: editor, sections })
+      .updatePage({
+        id,
+        title,
+        blurb,
+        lastEditor: editor,
+        sections
+      })
       .then(page => {
         res.json({
           error: false,
@@ -315,7 +353,10 @@ module.exports = app => {
       });
     } else if (
       validator.isEmpty(password) ||
-      validator.isLength(password, { min: 8, max: 32 })
+      validator.isLength(password, {
+        min: 8,
+        max: 32
+      })
     ) {
       return res.status(400).json({
         error: true,
@@ -325,7 +366,12 @@ module.exports = app => {
 
     bcrypt.hash(password, SALT_ROUNDS).then(hash => {
       queries.update
-        .updateUser({ id, email, displayName, password: hash })
+        .updateUser({
+          id,
+          email,
+          displayName,
+          password: hash
+        })
         .then(user => {
           res.json({
             error: false,
@@ -397,7 +443,7 @@ module.exports = app => {
         });
       });
   });
-  
+
   // TODO
   app.post("/api/follow", (req, res) => {
     let { uuid, qwikiID } = req.body;
