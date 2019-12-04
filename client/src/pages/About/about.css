@@ -8,6 +8,10 @@
     margin: 0 auto;
 }
 
+#aboutbtn {
+    text-align: center;
+}
+
 #photogrid {
 display: flex;
 justify-content: center;
