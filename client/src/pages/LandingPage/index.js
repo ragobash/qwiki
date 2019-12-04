@@ -46,11 +46,9 @@ class LandingPage extends React.Component {
     API.getAllQwikis()
       .then(res => {
         if (this.mounted) {
-          this.setState(
-            {
-              qwikis: res.data.qwikis
-            }
-          );
+          this.setState({
+            qwikis: res.data.qwikis
+          });
         }
       })
       .catch(err => {
@@ -64,10 +62,33 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.qwikis.length > 0 ? this.state.qwikis.map(
-            qwiki => { return <QwikiCard key={qwiki._id} qwiki={qwiki} uuid={this.props.uuid} /> }
-        ): <div />}
+      <div className="container">
+        <Fab
+          className="add"
+          color="primary"
+          aria-label="add"
+          href={"/qwikis/builder/"}
+        >
+          <AddIcon />
+        </Fab>
+        {/* <Logo404 className="logo" /> */}
+        {/* <PublicBtn /> */}
+        {/* <div>
+          <ProgressBar />
+        </div> */}
+        <div className="card-wrapper">
+          {this.state.qwikis.length > 0
+            ? this.state.qwikis.map(qwiki => {
+                return (
+                  <QwikiCard
+                    className="qwikiCard"
+                    key={qwiki._id}
+                    qwiki={qwiki}
+                  />
+                );
+              })
+            : ""}
+        </div>
       </div>
     );
   }

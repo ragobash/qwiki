@@ -18,36 +18,32 @@
  *
  */
 
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
+import React, { Component } from "react";
+import "./Navlinks.css";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    "& > * + *": {
-      margin: theme.spacing(1)
-    }
-  },
-  square: {
-    width: "100px",
-    heigth: "100px",
-    backgroundColor: "#000000"
+class NavLinks extends Component {
+  render() {
+    return (
+      <div className="nav-link-box">
+        <div className="btn">
+          <a className="nav-links" href="/contact">
+            <svg className="btn-svg">
+              <rect></rect>
+            </svg>
+            CONTACT
+          </a>
+        </div>
+        <div className="btn">
+          <a className="nav-links" href="/about">
+            <svg className="btn-svg">
+              <rect></rect>
+            </svg>
+            ABOUT
+          </a>
+        </div>
+      </div>
+    );
   }
-}));
-
-export default function Logo() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <a href="/">
-        <Avatar
-          variant="square"
-          src="/images/logocolor.png"
-          className={classes.square}
-        ></Avatar>
-      </a>
-    </div>
-  );
 }
+
+export default NavLinks;
