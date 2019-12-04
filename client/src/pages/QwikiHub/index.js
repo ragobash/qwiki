@@ -21,23 +21,12 @@
 import React from "react";
 import API from "../../util/API";
 import SimpleExpansionPanel from "../../components/qWikiPagePopOut";
+import Heading from "../../components/Heading";
+import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import { withStyles } from "@material-ui/core/styles";
 import "./QwikiHub.css";
-
-const styles = () => ({
-  //   heading: {
-  //     color: "white",
-  //     fontSize: 100,
-  //     display: "flex",
-  //     justifyContent: "space-evenly"
-  //   },
-  blurb: {
-    color: "white"
-  }
-});
 
 class QwikiHub extends React.Component {
   constructor(props) {
@@ -101,17 +90,17 @@ class QwikiHub extends React.Component {
           <div className="btn2">{this.newPageButton()}</div>
         </div>
         <div className="title">
-          <h1 className={this.props.classes.heading}>{this.state.title}</h1>
+          <Heading content={this.state.title} />
         </div>
         <div className="pic">
           <Image content={this.state.img} />
         </div>
         <div className="blurb">
-          <p className={this.props.classes.blurb}>{this.state.blurb}</p>
+          <Paragraph content={this.state.blurb} />
         </div>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(QwikiHub);
+export default QwikiHub;

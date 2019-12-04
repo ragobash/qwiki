@@ -21,6 +21,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
+import "./Image.css";
 
 const useStyles = makeStyles({
   root: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
   square: {
     width: "100%",
     heigth: "100%",
-    backgroundColor: "red"
+    backgroundColor: "black"
   }
 });
 

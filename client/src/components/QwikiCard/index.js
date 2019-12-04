@@ -18,7 +18,7 @@
  *
  */
 
-import React from "react";
+import React, { Component } from "react";
 import {
   Button,
   Card,
@@ -34,10 +34,11 @@ import "./QwikiCard.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withStyles } from "@material-ui/core/styles";
+import API from "../../util/API";
 
 const styles = () => ({
   card: {
-    maxWidth: 300
+    maxWidth: 345
   },
   media: {
     height: 0,
@@ -84,14 +85,10 @@ class QwikiCard extends Component {
             title=""
           />
           <CardContent>
-            <Typography>
-              {`${this.props.qwiki.blurb.substring(0, 75)}${
-                this.props.qwiki.blurb.length > 100 ? "..." : ""
-              }`}
-            </Typography>
+            <Typography>{this.props.qwiki.blurb}</Typography>
           </CardContent>
           <CardActions>
-            <IconButton aria-label="add to favorites" onClick={this.follow} >
+            <IconButton aria-label="add to favorites">
               <FavoriteIcon />
             </IconButton>
             <Button

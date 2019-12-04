@@ -57,22 +57,26 @@ export default function TemporaryDrawer(props) {
     setState({ ...state, [side]: open });
   };
 
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {props.pages.map(page => (
-          <ListItem>
-            <a key={page._id} href={"/pages/" + page._id}>{page.title}</a>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const sideList = side => {
+    return (
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer(side, false)}
+        onKeyDown={toggleDrawer(side, false)}
+      >
+        <List>
+          {props.pages.map(page => {
+            return (
+              <ListItem key={page._id}>
+                <a href={"/pages/" + page._id}>{page.title}</a>
+              </ListItem>
+            );
+          })}
+        </List>
+      </div>
+    );
+  };
 
   return (
     <div>
