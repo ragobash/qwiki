@@ -21,13 +21,10 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
-// import Grid from '@material-ui/core/Grid';
-// import Fab from "@material-ui/core/Fab";
-// import AddIcon from "@material-ui/icons/Add";
-// import "./landingpage.css";
-// import Logo404 from "../../components/Logo404/index";
-// import PublicBtn from "../../components/PublicBtn/index";
-// import ProgressBar from "../../components/ProgressBar/index";
+import Grid from "@material-ui/core/Grid";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import "./LandingPage.css";
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -71,11 +68,6 @@ class LandingPage extends React.Component {
         >
           <AddIcon />
         </Fab>
-        {/* <Logo404 className="logo" /> */}
-        {/* <PublicBtn /> */}
-        {/* <div>
-          <ProgressBar />
-        </div> */}
         <div className="card-wrapper">
           {this.state.qwikis.length > 0
             ? this.state.qwikis.map(qwiki => {

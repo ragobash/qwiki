@@ -25,6 +25,7 @@ import "./Navbar.css";
 import Logo from "../Logo";
 import "../NavMenu";
 import NavMenu from "../NavMenu";
+import NavLinks from "../NavLinks/index";
 
 function Navbar(props) {
   return (
@@ -33,26 +34,7 @@ function Navbar(props) {
         <Toolbar className="navbar">
           <div className="components">
             <Logo />
-            <Button
-              href="/about"
-              color="primary"
-              variant="contained"
-              size="small"
-              id="navlink"
-              style={{ color: "#f4f4f4" }}
-            >
-              ABOUT
-            </Button>
-            <Button
-              href="/contact"
-              color="primary"
-              variant="contained"
-              size="small"
-              id="navlink"
-              style={{ color: "#f4f4f4" }}
-            >
-              CONTACT
-            </Button>
+            <NavLinks />
           </div>
           <div className="tools">
             <div className="search-box">
