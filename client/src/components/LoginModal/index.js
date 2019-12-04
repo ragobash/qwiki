@@ -84,7 +84,7 @@ class LoginModal extends Component {
           onClose={this.handleClose}
         >
           <div>
-            <form className="box">
+            <form className="modal-box">
               <h2>Login</h2>
               <div>
                 <input

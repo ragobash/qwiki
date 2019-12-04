@@ -24,13 +24,23 @@ import "./Navlinks.css";
 class NavLinks extends Component {
   render() {
     return (
-      <div className="btn">
-        <a className="nav-links" href="/contact">
-          <svg>
-            <rect></rect>
-          </svg>
-          CONTACT
-        </a>
+      <div className="nav-link-box">
+        <div className="btn">
+          <a className="nav-links" href="/contact">
+            <svg className="btn-svg">
+              <rect></rect>
+            </svg>
+            CONTACT
+          </a>
+        </div>
+        <div className="btn">
+          <a className="nav-links" href="/about">
+            <svg className="btn-svg">
+              <rect></rect>
+            </svg>
+            ABOUT
+          </a>
+        </div>
       </div>
     );
   }

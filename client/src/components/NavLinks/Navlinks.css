@@ -7,6 +7,8 @@
   background: black;
   display: flex;
   justify-content: space-between;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .nav-links {
@@ -44,4 +46,14 @@ a:hover svg rect {
   stroke: #3498db;
   stroke-dasharray: 200 60;
   stroke-dashoffset: 0;
+}
+
+.btn-svg {
+  top: 0;
+  left: 0;
+}
+
+.nav-link-box {
+  display: flex;
+  flex-direction: row;
 }

@@ -62,20 +62,24 @@ class LandingPage extends React.Component {
         >
           <AddIcon />
         </Fab>
-        <Logo404 className="logo"/>
-        {/* <PublicBtn />
-        <div>
+        {/* <Logo404 className="logo" /> */}
+        {/* <PublicBtn /> */}
+        {/* <div>
           <ProgressBar />
         </div> */}
-        {this.state.qwikis.length > 0 ? (
-          this.state.qwikis.map(qwiki => {
-            return (
-              <QwikiCard className="qwikiCard" key={qwiki._id} qwiki={qwiki} />
-            );
-          })
-        ) : (
-          <div />
-        )}
+        <div className="card-wrapper">
+          {this.state.qwikis.length > 0
+            ? this.state.qwikis.map(qwiki => {
+                return (
+                  <QwikiCard
+                    className="qwikiCard"
+                    key={qwiki._id}
+                    qwiki={qwiki}
+                  />
+                );
+              })
+            : ""}
+        </div>
       </div>
     );
   }

@@ -21,6 +21,7 @@
 import React, { Component } from "react";
 import API from "../../util/API";
 import { Button, Modal } from "@material-ui/core";
+import "./SignupModal.css";
 
 class SignupModal extends Component {
   constructor() {
@@ -87,7 +88,7 @@ class SignupModal extends Component {
           autoComplete="off"
         >
           <div>
-            <form className="box">
+            <form className="register-box">
               <h2>Register</h2>
               <div>
                 <input
