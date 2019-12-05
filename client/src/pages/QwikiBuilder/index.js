@@ -35,12 +35,16 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
     heigth: "300",
-    background: "white"
+    background: "#2f3640",
+    color: "white !important",
+    borderColor: "#3498db !important"
   },
   background: {
     background: "white"
+  },
+  label: {
+    color: "white"
   }
 });
 
@@ -78,19 +82,22 @@ class QwikiBuilder extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.setState({
-      owner: this.props.uuid
-    }, () => {
-      API.newQwiki(this.state)
-      .then(res => {
-        const redirect = "/qwikis/" + res.data.qwiki._id;
+    this.setState(
+      {
+        owner: this.props.uuid
+      },
+      () => {
+        API.newQwiki(this.state)
+          .then(res => {
+            const redirect = "/qwikis/" + res.data.qwiki._id;
 
-        this.setState({
-          redirect
-        });
-      })
-      .catch(err => console.log(err));
-    });
+            this.setState({
+              redirect
+            });
+          })
+          .catch(err => console.log(err));
+      }
+    );
   };
 
   render() {
@@ -99,53 +106,85 @@ class QwikiBuilder extends React.Component {
     }
 
     return (
-      <div>
-        {/* title input */}
-        <div className="background">
+      <div id="qwikiwrapper">
+        <div id="qwikicontent">
           <TextField
-            id="outlined-basic"
-            className={this.props.classes.textField}
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
+            id="filled-basic"
+            // className={this.props.classes.textField}
             label="Title"
+            placeholder="Required*"
             margin="normal"
-            variant="outlined"
+            variant="filled"
             name="title"
             value={this.state.title}
             onChange={this.handleInput}
+            fullWidth
           />
-          {/* blurb input */}
-          <div className="background">
-            <TextField
-              id="outlined-basic"
-              className={this.props.classes.textField}
-              label="Blurb"
-              margin="normal"
-              variant="outlined"
-              name="blurb"
-              value={this.state.blurb}
-              onChange={this.handleInput}
-            />
+          <TextField
+            id="filled-basic"
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "white",
+                padding: "0px 0px 5px 15px",
+                width: "100%"
+              }
+            }}
+            fullWidth
+            multiline={true}
+            rows={1}
+            rowsMax={10}
+            label="Blurb"
+            placeholder="Required*"
+            margin="normal"
+            variant="filled"
+            name="blurb"
+            padding="10px"
+            value={this.state.blurb}
+            onChange={this.handleInput}
+          />
+          <TextField
+            InputProps={{
+              classes: {
+                root: this.props.classes.textField
+              }
+            }}
+            InputLabelProps={{
+              style: { color: "white", padding: "0px 0px 5px 15px" }
+            }}
+            id="filled-basic"
+            // className={this.props.classes.textField}
+            label="Image"
+            placeholder="Please submit a link"
+            margin="normal"
+            variant="filled"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleInput}
+            fullWidth
+          />
+          <div>
+            <div id="submit">
+              <input
+                className="submit"
+                type="submit"
+                value="Submit"
+                onClick={this.handleSubmit}
+              ></input>
+            </div>
           </div>
-          {/* img input */}
-          <div className="background">
-            <TextField
-              id="outlined-basic"
-              className={this.props.classes.textField}
-              label="Image"
-              margin="normal"
-              variant="outlined"
-              name="img"
-              value={this.state.img}
-              onChange={this.handleInput}
-            />
-          </div>
-        </div>
-        <div id="submit">
-          <input
-            className="submit"
-            type="submit"
-            value="Submit"
-            onClick={this.handleSubmit}
-          ></input>
         </div>
       </div>
     );
