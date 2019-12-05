@@ -25,6 +25,7 @@ import "../UserPage/userpage.css";
 import QwikiCard from "../../components/QwikiCard";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import { blue } from "@material-ui/core/colors";
 
 class UserPage extends Component {
   constructor() {
@@ -77,12 +78,8 @@ class UserPage extends Component {
     return (
       <div id="userPageWrapper">
         <div id="fab">
-          <Fab
-            color="primary"
-            aria-label="add"
-            href={"/qwikis/builder/"}
-          >
-            <AddIcon />
+          <Fab color="primary" aria-label="add" href={"/qwikis/builder/"}>
+            <AddIcon style={{ color: blue[500] }} />
           </Fab>
         </div>
         <div id="owned">
@@ -95,15 +92,19 @@ class UserPage extends Component {
             <u>Owned:</u>
           </Typography>
           <div className="card-wrapper">
-            {this.state.owned.length === 0 ? <span className="message">Nothing to display</span> : this.state.owned.map(qwiki => {
-              return (
-                <QwikiCard
-                  key={qwiki._id}
-                  qwiki={qwiki}
-                  uuid={this.props.uuid}
-                />
-              );
-            })}
+            {this.state.owned.length === 0 ? (
+              <span className="message">Nothing to display</span>
+            ) : (
+              this.state.owned.map(qwiki => {
+                return (
+                  <QwikiCard
+                    key={qwiki._id}
+                    qwiki={qwiki}
+                    uuid={this.props.uuid}
+                  />
+                );
+              })
+            )}
           </div>
           <Typography
             id="followed"
@@ -118,15 +119,19 @@ class UserPage extends Component {
             style={{ background: "white", width: "50%" }}
           ></Divider> */}
           <div className="card-wrapper">
-            {this.state.followed.length === 0 ? <span className="message">Nothing to display</span> : this.state.followed.map(qwiki => {
-              return (
-                <QwikiCard
-                  key={qwiki._id}
-                  qwiki={qwiki}
-                  uuid={this.props.uuid}
-                />
-              );
-            })}
+            {this.state.followed.length === 0 ? (
+              <span className="message">Nothing to display</span>
+            ) : (
+              this.state.followed.map(qwiki => {
+                return (
+                  <QwikiCard
+                    key={qwiki._id}
+                    qwiki={qwiki}
+                    uuid={this.props.uuid}
+                  />
+                );
+              })
+            )}
           </div>
           <Typography
             id="recommended"
@@ -141,15 +146,19 @@ class UserPage extends Component {
             style={{ background: "white", width: "200px" }}
           ></Divider> */}
           <div className="card-wrapper">
-            {this.state.recommended.length === 0 ? <span className="message">Nothing to display</span> : this.state.recommended.map(qwiki => {
-              return (
-                <QwikiCard
-                  key={qwiki._id}
-                  qwiki={qwiki}
-                  uuid={this.props.uuid}
-                />
-              );
-            })}
+            {this.state.recommended.length === 0 ? (
+              <span className="message">Nothing to display</span>
+            ) : (
+              this.state.recommended.map(qwiki => {
+                return (
+                  <QwikiCard
+                    key={qwiki._id}
+                    qwiki={qwiki}
+                    uuid={this.props.uuid}
+                  />
+                );
+              })
+            )}
           </div>
         </div>
       </div>
