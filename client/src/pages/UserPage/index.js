@@ -20,7 +20,7 @@
 
 import React, { Component } from "react";
 import API from "../../util/API";
-import { Typography, Divider } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import "../UserPage/userpage.css";
 import QwikiCard from "../../components/QwikiCard";
 import Fab from "@material-ui/core/Fab";
@@ -94,10 +94,6 @@ class UserPage extends Component {
           >
             <u>Owned:</u>
           </Typography>
-          {/* <Divider
-            variant="middle"
-            style={{ background: "white", width: "200px" }}
-          ></Divider> */}
           <div className="card-wrapper">
             {this.state.owned.length === 0 ? <span className="message">Nothing to display</span> : this.state.owned.map(qwiki => {
               return (

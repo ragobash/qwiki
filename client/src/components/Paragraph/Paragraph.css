@@ -1,5 +1,5 @@
-p {
-    color: white;
-    grid-column-start: 2;
-    grid-column-end: 4;
+#HubParagraph {
+    display: flex;
+    width: 100%;
+    margin: 25px;
 }
