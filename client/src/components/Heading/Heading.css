@@ -4,6 +4,7 @@
     margin: 25px;
 }
 
-#HubDivider {
-    display: flex; 
+.MuiTypography-h2 {
+    font-weight: 500 !important;
+    text-decoration: underline;
 }

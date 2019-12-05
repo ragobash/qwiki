@@ -19,9 +19,18 @@
  */
 
 import React from "react";
+import "./Paragraph.css";
+import { Typography } from "@material-ui/core";
 
 function Paragraph(props) {
-  return <p>{props.content}</p>;
+  return <div id="HubParagraph">
+          <Typography
+            align="left"
+            variant="p"
+            style={{color: "white"}}>
+            {props.content}
+          </Typography>
+            </div>;
 }
 
 export default Paragraph;

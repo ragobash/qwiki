@@ -1,6 +1,5 @@
-img {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    align-items: center;
-    justify-content: center;
+#HubImage {
+    max-width: 500px;
+    max-height: 500px;
+    margin: -8px;
 }

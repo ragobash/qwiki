@@ -20,7 +20,7 @@
 
 import React from "react";
 import "./Heading.css";
-import { Typography, Divider } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 function Heading(props) {
   return <div id="HubHeading">
