@@ -94,6 +94,7 @@ class LoginModal extends Component {
                   name="email"
                   value={this.state.email}
                   onChange={this.handleInput}
+                  tabIndex="1"
                 />
                 <input
                   type="password"
@@ -101,11 +102,13 @@ class LoginModal extends Component {
                   name="password"
                   value={this.state.password}
                   onChange={this.handleInput}
+                  tabIndex="2"
                 />
                 <input
                   type="submit"
                   value="Login"
                   onClick={this.handleSubmit}
+                  tabIndex="3"
                 ></input>
               </div>
             </form>

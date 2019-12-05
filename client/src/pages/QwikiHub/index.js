@@ -43,7 +43,7 @@ class QwikiHub extends React.Component {
   }
 
   componentDidMount() {
-    let path = window.location.href.split('/');
+    let path = window.location.href.split("/");
     const id = path[path.length - 1];
 
     API.getQwikiByID(id)
@@ -82,21 +82,26 @@ class QwikiHub extends React.Component {
 
   render() {
     return (
-      <div className="gridContainer">
+      <div>
         <div>
           <div className="btn1">
             <SimpleExpansionPanel pages={this.state.pages} />
           </div>
           <div className="btn2">{this.newPageButton()}</div>
         </div>
-        <div className="title">
-          <Heading content={this.state.title} />
-        </div>
-        <div className="pic">
-          <Image content={this.state.img} />
-        </div>
-        <div className="blurb">
-          <Paragraph content={this.state.blurb} />
+        <div className="hub-container">
+          <div className="hub-pic">
+            <Image
+              content={this.state.img}
+              style={{ width: "400px", height: "400px" }}
+            />
+          </div>
+          <div className="hub-title">
+            <Heading content={this.state.title} />
+          </div>
+          <div className="hub-blurb">
+            <Paragraph content={this.state.blurb} />
+          </div>
         </div>
       </div>
     );
