@@ -23,7 +23,6 @@ import { AppBar, Toolbar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Navbar.css";
 import Logo from "../Logo";
-import "../NavMenu";
 import NavMenu from "../NavMenu";
 import NavLinks from "../NavLinks/index";
 
@@ -34,7 +33,10 @@ function Navbar(props) {
         <Toolbar className="navbar">
           <div className="components">
             <Logo />
-            <NavLinks />
+
+            <div style={{marginLeft: "50px"}}>
+              <NavLinks />
+            </div>
           </div>
           <div className="tools">
             <div className="search-box">

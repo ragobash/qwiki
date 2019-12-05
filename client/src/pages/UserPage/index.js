@@ -64,11 +64,9 @@ class UserPage extends Component {
 
     API.getAllQwikis()
       .then(res => {
-        if (this.mounted) {
-          this.setState({
-            recommended: res.data.qwikis
-          });
-        }
+        this.setState({
+          recommended: res.data.qwikis
+        });
       })
       .catch(err => {
         console.log(err);
@@ -92,12 +90,12 @@ class UserPage extends Component {
             id="owned"
             variant="h3"
             align="center"
-            style={{ color: "white", marginTop: "25px" }}
+            style={{ color: "white", marginTop: "25px", marginBottom: "25px" }}
           >
-            Owned:
+            <u>Owned:</u>
           </Typography>
           <div className="card-wrapper">
-            {this.state.owned.map(qwiki => {
+            {this.state.owned.length === 0 ? <span className="message">Nothing to display</span> : this.state.owned.map(qwiki => {
               return (
                 <QwikiCard
                   key={qwiki._id}
@@ -111,12 +109,21 @@ class UserPage extends Component {
             id="followed"
             variant="h3"
             align="center"
-            style={{ color: "white", marginTop: "25px" }}
+            style={{ color: "white", marginTop: "25px", marginBottom: "25px" }}
           >
-            Followed:
+            <u>Followed:</u>
           </Typography>
+<<<<<<< HEAD
           <div>
             {this.state.followed.map(qwiki => {
+=======
+          {/* <Divider
+            variant="middle"
+            style={{ background: "white", width: "50%" }}
+          ></Divider> */}
+          <div className="card-wrapper">
+            {this.state.followed.length === 0 ? <span className="message">Nothing to display</span> : this.state.followed.map(qwiki => {
+>>>>>>> c2f7aba9173db872ba9b34529dc4fb4fe628a430
               return (
                 <QwikiCard
                   key={qwiki._id}
@@ -130,12 +137,21 @@ class UserPage extends Component {
             id="recommended"
             variant="h3"
             align="center"
-            style={{ color: "white", marginTop: "25px" }}
+            style={{ color: "white", marginTop: "25px", marginBottom: "25px" }}
           >
-            Recommended:
+            <u>Recommended:</u>
           </Typography>
+<<<<<<< HEAD
           <div>
             {this.state.recommended.map(qwiki => {
+=======
+          {/* <Divider
+            variant="middle"
+            style={{ background: "white", width: "200px" }}
+          ></Divider> */}
+          <div className="card-wrapper">
+            {this.state.recommended.length === 0 ? <span className="message">Nothing to display</span> : this.state.recommended.map(qwiki => {
+>>>>>>> c2f7aba9173db872ba9b34529dc4fb4fe628a430
               return (
                 <QwikiCard
                   key={qwiki._id}
