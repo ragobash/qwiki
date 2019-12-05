@@ -227,8 +227,9 @@ class PageBuilder extends React.Component {
                         margin="normal"
                         variant="filled"
                         name="heading"
+                        data-index={index}
                         value={section.content}
-                        onChange={this.handleInput}
+                        onChange={this.sectionInput}
                         fullWidth
                       />
                       <div className="deleteButton">
@@ -255,8 +256,9 @@ class PageBuilder extends React.Component {
                         margin="normal"
                         variant="filled"
                         name="image"
+                        data-index={index}
                         value={section.content}
-                        onChange={this.handleInput}
+                        onChange={this.sectionInput}
                         fullWidth
                       />
                       <div className="deleteButton">
@@ -288,8 +290,9 @@ class PageBuilder extends React.Component {
                         variant="filled"
                         name="paragraph"
                         padding="10px"
+                        data-index={index}
                         value={section.content}
-                        onChange={this.handleInput}
+                        onChange={this.sectionInput}
                       />
                       <div className="deleteButton">
                         <Button data-index={index} onClick={this.removeSection} style={{ backgroundColor: 'transparent' }}>
