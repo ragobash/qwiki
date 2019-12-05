@@ -35,22 +35,30 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withStyles } from "@material-ui/core/styles";
 import API from "../../util/API";
+import { blue } from "@material-ui/core/colors";
 
 const styles = () => ({
   card: {
-    maxWidth: 345
+    maxWidth: 345,
+    backgroundColor: "black",
+    color: "white"
   },
   media: {
     height: 0,
     paddingTop: "56.25%"
   },
   avatar: {
-    backgroundColor: "red"
+    backgroundColor: "#FB582F"
+  },
+  title: {
+    color: "white"
+  },
+  subheader: {
+    color: "white"
   }
 });
 
 class QwikiCard extends Component {
-
   follow = event => {
     event.preventDefault();
 
@@ -85,21 +93,21 @@ class QwikiCard extends Component {
             title=""
           />
           <CardContent>
-          <Typography>
-            {`${this.props.qwiki.blurb.substring(0, 75)}${
-              this.props.qwiki.blurb.length > 100 ? "..." : ""
-            }`}
-          </Typography>
+            <Typography>
+              {`${this.props.qwiki.blurb.substring(0, 75)}${
+                this.props.qwiki.blurb.length > 100 ? "..." : ""
+              }`}
+            </Typography>
           </CardContent>
           <CardActions>
-            <IconButton aria-label="add to favorites" onClick={this.follow}>
-              <FavoriteIcon />
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon style={{ color: blue[500] }} />
             </IconButton>
             <Button
               variant="outlined"
               size="small"
-              color="primary"
               href={"/qwikis/" + this.props.qwiki._id}
+              style={{ color: blue[500] }}
             >
               Read more
             </Button>
