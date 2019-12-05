@@ -35,4 +35,6 @@
     margin-left: 60px;
     padding-right: 0;
     margin-right: 0;
+    max-width: 400px;
+    max-height: 400px;
 }
