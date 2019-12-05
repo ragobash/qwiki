@@ -68,7 +68,7 @@ class QwikiCard extends Component {
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={this.props.classes.avatar}>
-                R
+                QW
               </Avatar>
             }
             action={
@@ -85,10 +85,14 @@ class QwikiCard extends Component {
             title=""
           />
           <CardContent>
-            <Typography>{this.props.qwiki.blurb}</Typography>
+          <Typography>
+            {`${this.props.qwiki.blurb.substring(0, 75)}${
+              this.props.qwiki.blurb.length > 100 ? "..." : ""
+            }`}
+          </Typography>
           </CardContent>
           <CardActions>
-            <IconButton aria-label="add to favorites">
+            <IconButton aria-label="add to favorites" onClick={this.follow}>
               <FavoriteIcon />
             </IconButton>
             <Button
