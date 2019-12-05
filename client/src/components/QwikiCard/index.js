@@ -94,9 +94,9 @@ class QwikiCard extends Component {
           />
           <CardContent>
             <Typography>
-              {`${this.props.qwiki.blurb.substring(0, 75)}${
-                this.props.qwiki.blurb.length > 100 ? "..." : ""
-              }`}
+              {this.props.qwiki.blurb.substring(0, 75)}{
+                this.props.qwiki.blurb.length > 75 ? "..." : ""
+              }
             </Typography>
           </CardContent>
           <CardActions>
