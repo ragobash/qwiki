@@ -1,40 +1,23 @@
-.hub-container {
+#HubWrapper {
+    width: 100%;
     display: flex;
-    margin: auto;
-    justify-content: left;
-    flex-wrap: wrap;
+    padding: 10px;
 }
 
-.hub-title {
+#SideTools {
+    width: 10%;
+    justify-content: left;
+}
+
+#HubInfo {
     display: flex;
-    justify-content: center;
-    padding-left: 40px;
-    margin-left: 40px;
+    flex-direction: column;
 }
 
 .btn2 {
-    margin: 5px;
-    padding: 5px;
-    margin-left: 0%;
-    padding-left: 0%;
-    position: absolute;
-    display: flex;
-    justify-content: left;
-}
-
-.hub-blurb {
-    width: 75%;
-    padding-left: 60px;
-    margin-left: 60px;
-}
-
-.hub-pic {
-    display: flex;
-    justify-content: right;
-    padding-left: 60px;
-    margin-left: 60px;
-    padding-right: 0;
-    margin-right: 0;
-    max-width: 400px;
-    max-height: 400px;
+    
+        position: fixed;
+        top: 175px;
+        left: 24px;
+      
 }

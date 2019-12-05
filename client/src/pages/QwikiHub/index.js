@@ -82,27 +82,26 @@ class QwikiHub extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <div className="btn1">
+      <div id="HubWrapper">
+          <div id="SideTools">
             <SimpleExpansionPanel pages={this.state.pages} />
-          </div>
           <div className="btn2">{this.newPageButton()}</div>
-        </div>
-        <div className="hub-container">
-          <div className="hub-pic">
-            <Image
-              content={this.state.img}
-              style={{ width: "400px", height: "400px" }}
-            />
           </div>
+          <div id="HubInfo">
           <div className="hub-title">
             <Heading content={this.state.title} />
           </div>
           <div className="hub-blurb">
             <Paragraph content={this.state.blurb} />
           </div>
-        </div>
+          <div className="hub-pic">
+            <Image
+              
+              content="https://thumbnails.texastribune.org/V4vXOZV5hQQJ9dm_mD-js6ZnggQ=/850x570/smart/filters:quality(80)/https://static.texastribune.org/media/files/f89058639bfaee0ba621a6af614385a2/UT_campus_02_LS_TT.jpg"
+              style={{ maxWidth: "400px", maxHeight: "400px" }}
+            />
+            </div>
+          </div>
       </div>
     );
   }

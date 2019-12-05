@@ -26,7 +26,7 @@ function Image(props) {
   return (
       <div id="HubImage">
        <Container>
-          <img src={props.content} alt="qWiki"></img>
+          <img src={props.content} alt="qWiki" {...props}></img>
         </Container>
       </div>
   );
