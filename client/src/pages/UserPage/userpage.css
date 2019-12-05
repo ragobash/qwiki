@@ -21,6 +21,11 @@
   justify-content: center;
 }
 
+.message {
+  color: white;
+  font-size: xx-large;
+}
+
 .cardBackground {
   padding: 10px;
   margin-bottom: 30px;

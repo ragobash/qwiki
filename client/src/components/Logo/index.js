@@ -41,7 +41,7 @@ export default function Logo() {
 
   return (
     <div className={classes.root}>
-      <a href="/">
+      <a href="/" style={{paddingTop: "10px"}}>
         <Avatar
           variant="square"
           src="/images/logocolor.png"
