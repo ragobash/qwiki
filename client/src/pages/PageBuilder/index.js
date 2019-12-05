@@ -119,17 +119,12 @@ class PageBuilder extends React.Component {
   };
 
   sectionInput = event => {
-    const index = event.target.getAttribute("data-index");
-    const content = event.target.value;
+    const index = event.target.parentNode.parentNode.getAttribute("data-index");
+    const content = event.target.parentNode.parentNode.value;
 
     let sections = [...this.state.sections];
 
-    const sectionType = sections[index].sectionType;
-
-    sections[index] = {
-      sectionType,
-      content
-    };
+    sections[index].content = content;
 
     this.setState({
       sections
