@@ -113,17 +113,12 @@ class UserPage extends Component {
           >
             <u>Followed:</u>
           </Typography>
-<<<<<<< HEAD
-          <div>
-            {this.state.followed.map(qwiki => {
-=======
           {/* <Divider
             variant="middle"
             style={{ background: "white", width: "50%" }}
           ></Divider> */}
           <div className="card-wrapper">
             {this.state.followed.length === 0 ? <span className="message">Nothing to display</span> : this.state.followed.map(qwiki => {
->>>>>>> c2f7aba9173db872ba9b34529dc4fb4fe628a430
               return (
                 <QwikiCard
                   key={qwiki._id}
@@ -141,17 +136,12 @@ class UserPage extends Component {
           >
             <u>Recommended:</u>
           </Typography>
-<<<<<<< HEAD
-          <div>
-            {this.state.recommended.map(qwiki => {
-=======
           {/* <Divider
             variant="middle"
             style={{ background: "white", width: "200px" }}
           ></Divider> */}
           <div className="card-wrapper">
             {this.state.recommended.length === 0 ? <span className="message">Nothing to display</span> : this.state.recommended.map(qwiki => {
->>>>>>> c2f7aba9173db872ba9b34529dc4fb4fe628a430
               return (
                 <QwikiCard
                   key={qwiki._id}
