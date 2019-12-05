@@ -20,9 +20,18 @@
 
 import React from "react";
 import "./Heading.css";
+import { Typography, Divider } from "@material-ui/core";
 
 function Heading(props) {
-  return <h2><u>{props.content}</u></h2>;
-}
+  return <div id="HubHeading">
+          <Typography
+            align="left"
+            variant="h2"
+            style={{color: "white"}}
+             >
+            {props.content}
+          </Typography>
+          </div>
+};
 
 export default Heading;

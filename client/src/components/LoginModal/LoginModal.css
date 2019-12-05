@@ -20,6 +20,7 @@
     color: white;
     text-transform: uppercase;
     font-weight: 500;
+    justify-content: center;
 }
 
 /* imnput field styles */

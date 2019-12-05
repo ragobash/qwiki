@@ -20,7 +20,7 @@
 
 import React, { Component } from "react";
 import API from "../../util/API";
-import { Typography, Divider } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import "../UserPage/userpage.css";
 import QwikiCard from "../../components/QwikiCard";
 import Fab from "@material-ui/core/Fab";
@@ -96,10 +96,6 @@ class UserPage extends Component {
           >
             Owned:
           </Typography>
-          <Divider
-            variant="middle"
-            style={{ background: "white", width: "200px" }}
-          ></Divider>
           <div className="card-wrapper">
             {this.state.owned.map(qwiki => {
               return (
@@ -119,10 +115,6 @@ class UserPage extends Component {
           >
             Followed:
           </Typography>
-          <Divider
-            variant="middle"
-            style={{ background: "white", width: "50%" }}
-          ></Divider>
           <div>
             {this.state.followed.map(qwiki => {
               return (
@@ -142,10 +134,6 @@ class UserPage extends Component {
           >
             Recommended:
           </Typography>
-          <Divider
-            variant="middle"
-            style={{ background: "white", width: "200px" }}
-          ></Divider>
           <div>
             {this.state.recommended.map(qwiki => {
               return (

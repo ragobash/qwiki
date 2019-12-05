@@ -170,8 +170,8 @@ class QwikiBuilder extends React.Component {
             placeholder="Please submit a link"
             margin="normal"
             variant="filled"
-            name="title"
-            value={this.state.title}
+            name="image"
+            value={this.state.image}
             onChange={this.handleInput}
             fullWidth
           />
