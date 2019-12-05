@@ -227,7 +227,7 @@ class PageBuilder extends React.Component {
                         margin="normal"
                         variant="filled"
                         name="heading"
-                        value={this.state.heading}
+                        value={section.content}
                         onChange={this.handleInput}
                         fullWidth
                       />
@@ -255,7 +255,7 @@ class PageBuilder extends React.Component {
                         margin="normal"
                         variant="filled"
                         name="image"
-                        value={this.state.image}
+                        value={section.content}
                         onChange={this.handleInput}
                         fullWidth
                       />
@@ -288,7 +288,7 @@ class PageBuilder extends React.Component {
                         variant="filled"
                         name="paragraph"
                         padding="10px"
-                        value={this.state.paragraph}
+                        value={section.content}
                         onChange={this.handleInput}
                       />
                       <div className="deleteButton">

@@ -59,7 +59,7 @@ class QwikiPage extends React.Component {
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
                 {
-                    this.state.sections && this.state.sections.map(section => {
+                    this.state.sections.length > 0 && this.state.sections.map(section => {
                         switch(section.sectionType) {
                             case "HEADING":
                                 return <Heading content={section.content} />
