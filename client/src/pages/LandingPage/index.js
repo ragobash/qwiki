@@ -21,11 +21,7 @@
 import React from "react";
 import API from "../../util/API";
 import QwikiCard from "../../components/QwikiCard";
-// import Grid from '@material-ui/core/Grid';
-// import "./landingpage.css";
-// import Logo404 from "../../components/Logo404/index";
-// import PublicBtn from "../../components/PublicBtn/index";
-// import ProgressBar from "../../components/ProgressBar/index";
+import "./LandingPage.css";
 
 class LandingPage extends React.Component {
   constructor(props) {
