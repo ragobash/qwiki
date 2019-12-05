@@ -60,6 +60,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="container">
+        <div id = "fab">
         <Fab
           className="add"
           color="primary"
@@ -68,6 +69,7 @@ class LandingPage extends React.Component {
         >
           <AddIcon />
         </Fab>
+        </div>
         <div className="card-wrapper">
           {this.state.qwikis.length > 0
             ? this.state.qwikis.map(qwiki => {
