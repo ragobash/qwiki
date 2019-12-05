@@ -35,22 +35,30 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withStyles } from "@material-ui/core/styles";
 import API from "../../util/API";
+import { blue } from "@material-ui/core/colors";
 
 const styles = () => ({
   card: {
-    maxWidth: 345
+    maxWidth: 345,
+    backgroundColor: "black",
+    color: "white"
   },
   media: {
     height: 0,
     paddingTop: "56.25%"
   },
   avatar: {
-    backgroundColor: "red"
+    backgroundColor: "#FB582F"
+  },
+  title: {
+    color: "white"
+  },
+  subheader: {
+    color: "white"
   }
 });
 
 class QwikiCard extends Component {
-
   follow = event => {
     event.preventDefault();
 
@@ -89,7 +97,7 @@ class QwikiCard extends Component {
           </CardContent>
           <CardActions>
             <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
+              <FavoriteIcon style={{ color: blue[500] }} />
             </IconButton>
             <Button
               variant="outlined"
