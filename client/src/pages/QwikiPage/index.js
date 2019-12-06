@@ -64,7 +64,8 @@ class QwikiPage extends React.Component {
                             case "HEADING":
                                 return <Heading content={section.content} />
                             case "IMAGE":
-                                return <Image content={section.content} />
+                                return <Image content={section.content}
+                                            style={{ maxWidth: "400px", maxHeight: "400px" }}/>
                             default:
                                 return <Paragraph content={section.content} />
                         }
