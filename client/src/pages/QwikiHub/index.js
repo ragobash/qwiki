@@ -24,8 +24,7 @@ import SimpleExpansionPanel from "../../components/qWikiPagePopOut";
 import Heading from "../../components/Heading";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+import Fab from "../../components/Fab";
 import "./QwikiHub.css";
 
 class QwikiHub extends React.Component {
@@ -65,15 +64,7 @@ class QwikiHub extends React.Component {
   newPageButton = () => {
     if (this.props.uuid.length > 0) {
       return (
-        <div id="qwikifab">
-          <Fab
-            color="primary"
-            aria-label="add"
-            href={"/pages/builder/" + this.state._id}
-          >
-            <AddIcon />
-          </Fab>
-        </div>
+          <Fab href={"/pages/builder/" + this.state._id} />
       );
     } else {
       return null;
