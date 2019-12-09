@@ -19,6 +19,7 @@
  */
 
 import React from "react";
+import { HashLink as Link } from 'react-router-hash-link';
 import API from "../../util/API";
 import Heading from "../../components/Heading/index.js";
 import Paragraph from "../../components/Paragraph";
@@ -33,7 +34,8 @@ class QwikiPage extends React.Component {
             _id: "",
             title: "",
             blurb: "",
-            sections: []
+            sections: [],
+            nav: []
         }
     }
 
@@ -48,15 +50,35 @@ class QwikiPage extends React.Component {
                     title: res.data.page.title,
                     blurb: res.data.page.blurb,
                     sections: res.data.page.sections
-                });
+                }, this.generateNav);
             })
             .catch(err => console.log(err));
     }
 
+    normalizeLink = str => {
+        return ("" + str).toLowerCase().trim().replace(" ", "_");
+    };
+
+    generateNav = () => {
+        let nav = this.state.sections.map(section => {
+            if (section.sectionType === "HEADING") {
+                return section.content;
+            }
+        });
+
+        this.setState({
+            nav
+        });
+    };
+
+    renderNav = title => {
+        return (<Link to={() => this.normalizeLink(title)}>{title}</Link>);
+    };
+
     renderSection = section => {
         switch(section.sectionType) {
             case "HEADING":
-                return <Heading content={section.content} />
+                return <Heading content={section.content} id={() => this.normalizeLink(section.content)} />
             case "IMAGE":
                 return <Image content={section.content} />
             default:
