@@ -24,6 +24,7 @@ import API from "../../util/API";
 import Heading from "../../components/Heading/index.js";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
+import PageNav from "../../components/PageNav";
 
 class QwikiPage extends React.Component {
 
@@ -91,6 +92,7 @@ class QwikiPage extends React.Component {
             <div>
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
+                <PageNav links={this.state.nav.map(this.renderNav)} />
                 {this.state.sections.length > 0 && this.state.sections.map(this.renderSection)}
             </div>
         )
