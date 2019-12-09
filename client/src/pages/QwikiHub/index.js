@@ -24,8 +24,7 @@ import SimpleExpansionPanel from "../../components/qWikiPagePopOut";
 import Heading from "../../components/Heading";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+import Fab from "../../components/Fab";
 import "./QwikiHub.css";
 
 class QwikiHub extends React.Component {
@@ -65,42 +64,44 @@ class QwikiHub extends React.Component {
   newPageButton = () => {
     if (this.props.uuid.length > 0) {
       return (
-        <div id="qwikifab">
-          <Fab
-            color="primary"
-            aria-label="add"
-            href={"/pages/builder/" + this.state._id}
-          >
-            <AddIcon />
-          </Fab>
-        </div>
+          <Fab href={"/pages/builder/" + this.state._id} />
       );
     } else {
       return null;
     }
   };
 
+  renderInfo = () => {
+    return (
+      <div id="HubInfo">
+        <div className="hub-title">
+          <Heading content={this.state.title} />
+        </div>
+        <div className="hub-blurb">
+          <Paragraph content={this.state.blurb} />
+        </div>
+        <div className="hub-pic">
+          <Image
+            content={this.state.img}
+            style={{ maxWidth: "400px", maxHeight: "400px" }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div id="HubWrapper">
           <div id="SideTools">
             <SimpleExpansionPanel pages={this.state.pages} />
-          <div className="btn2">{this.newPageButton()}</div>
-          </div>
-          <div id="HubInfo">
-          <div className="hub-title">
-            <Heading content={this.state.title} />
-          </div>
-          <div className="hub-blurb">
-            <Paragraph content={this.state.blurb} />
-          </div>
-          <div className="hub-pic">
-            <Image
-              content={this.state.img}
-              style={{ maxWidth: "400px", maxHeight: "400px" }}
-            />
+
+            <div className="btn2">
+              {this.newPageButton()}
             </div>
           </div>
+
+          {this.renderInfo()}
       </div>
     );
   }

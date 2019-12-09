@@ -20,7 +20,7 @@
 
 import React from "react";
 import { Redirect } from "react-router-dom";
-import "../PageBuilder/pagebuilder.css";
+import "./pagebuilder.css";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { Box, TextField, Divider, Button } from "@material-ui/core";

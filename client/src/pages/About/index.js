@@ -18,7 +18,7 @@
  *
  */
 import React from "react";
-import "../About/about.css";
+import "./about.css";
 import { Paper, Typography, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";

@@ -21,11 +21,9 @@
 import React, { Component } from "react";
 import API from "../../util/API";
 import { Typography } from "@material-ui/core";
-import "../UserPage/userpage.css";
+import "./userpage.css";
 import QwikiCard from "../../components/QwikiCard";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-import { blue } from "@material-ui/core/colors";
+import Fab from "../../components/Fab";
 
 class UserPage extends Component {
   constructor() {
@@ -78,9 +76,7 @@ class UserPage extends Component {
     return (
       <div id="userPageWrapper">
         <div id="fab">
-          <Fab color="primary" aria-label="add" href={"/qwikis/builder/"}>
-            <AddIcon style={{ color: blue[500] }} />
-          </Fab>
+          <Fab href={"/qwikis/builder/"} />
         </div>
         <div id="owned">
           <Typography
@@ -114,10 +110,6 @@ class UserPage extends Component {
           >
             <u>Followed:</u>
           </Typography>
-          {/* <Divider
-            variant="middle"
-            style={{ background: "white", width: "50%" }}
-          ></Divider> */}
           <div className="card-wrapper">
             {this.state.followed.length === 0 ? (
               <span className="message">Nothing to display</span>
@@ -141,10 +133,6 @@ class UserPage extends Component {
           >
             <u>Recommended:</u>
           </Typography>
-          {/* <Divider
-            variant="middle"
-            style={{ background: "white", width: "200px" }}
-          ></Divider> */}
           <div className="card-wrapper">
             {this.state.recommended.length === 0 ? (
               <span className="message">Nothing to display</span>

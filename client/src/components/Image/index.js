@@ -26,7 +26,7 @@ function Image(props) {
   return (
       <div id="HubImage">
        <Container>
-          <img src={props.content} alt="qWiki" {...props}></img>
+          <img src={props.content} alt="qWiki" style={{ maxWidth: "400px", maxHeight: "400px" }}></img>
         </Container>
       </div>
   );
