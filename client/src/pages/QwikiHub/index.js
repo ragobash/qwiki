@@ -96,7 +96,7 @@ class QwikiHub extends React.Component {
           </div>
           <div className="hub-pic">
             <Image
-              content={this.state.image}
+              content={this.state.img}
               style={{ maxWidth: "400px", maxHeight: "400px" }}
             />
             </div>
