@@ -19,7 +19,7 @@
  */
 
 import React from "react";
-import "../404/404.css";
+import "./404.css";
 import { Paper, Typography, Grid } from "@material-ui/core";
 
 class ErrorPage extends React.Component {
@@ -28,39 +28,41 @@ class ErrorPage extends React.Component {
       <div id="wrapper">
         <div id="content">
         <Grid
-  container
-  spacing={0}
-  alignItems="center"
-  justify="center"
-  style={{ minHeight: "100vh" }}
->
-            <Paper
-                square="true"
-                style={{
-                    background: "#191919",
-                    color: "white",
-                    padding: "20px",
-                    }}>
-              <Typography 
-                variant="h1"
-                component="h3"
-                align="center"
-                style={{
-                    fontWeight:"bold"
-                }}
-                >
-                404 <span role="img" aria-label="emoji">🙄</span>
-              </Typography>
-              <Typography component="p">
-                Why'd you break our beautiful app?
-                Hit "back" to go back or... you know what? Just leave.
-              </Typography>
-            </Paper>
-            </Grid>
+          container
+          spacing={0}
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: "100vh" }}
+        >
+          <Paper
+              square="true"
+              style={{
+                background: "#191919",
+                color: "white",
+                padding: "20px",
+              }}
+          >
+            <Typography 
+              variant="h1"
+              component="h3"
+              align="center"
+              style={{
+                  fontWeight:"bold"
+              }}
+              >
+              404 <span role="img" aria-label="emoji">🙄</span>
+            </Typography>
+            <Typography component="p">
+              Why'd you break our beautiful app?
+              Hit "back" to go back.
+            </Typography>
+          </Paper>
+        </Grid>
           ); }
         </div>
       </div>
     );
   }
 }
+
 export default ErrorPage;

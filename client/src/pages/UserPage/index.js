@@ -21,7 +21,7 @@
 import React, { Component } from "react";
 import API from "../../util/API";
 import { Typography } from "@material-ui/core";
-import "../UserPage/userpage.css";
+import "./userpage.css";
 import QwikiCard from "../../components/QwikiCard";
 import Fab from "../../components/Fab";
 

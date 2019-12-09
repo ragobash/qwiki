@@ -53,24 +53,23 @@ class QwikiPage extends React.Component {
             .catch(err => console.log(err));
     }
 
+    renderSection = section => {
+        switch(section.sectionType) {
+            case "HEADING":
+                return <Heading content={section.content} />
+            case "IMAGE":
+                return <Image content={section.content} />
+            default:
+                return <Paragraph content={section.content} />
+        }
+    };
+
     render() {
         return (
             <div>
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
-                {
-                    this.state.sections.length > 0 && this.state.sections.map(section => {
-                        switch(section.sectionType) {
-                            case "HEADING":
-                                return <Heading content={section.content} />
-                            case "IMAGE":
-                                return <Image content={section.content}
-                                            style={{ maxWidth: "400px", maxHeight: "400px" }}/>
-                            default:
-                                return <Paragraph content={section.content} />
-                        }
-                    })
-                }
+                {this.state.sections.length > 0 && this.state.sections.map(this.renderSection)}
             </div>
         )
     }

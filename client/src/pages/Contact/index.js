@@ -18,7 +18,7 @@
  *
  */
 import React from "react";
-import "../Contact/contact.css";
+import "./contact.css";
 import { Button, ButtonGroup, Typography, Grid } from "@material-ui/core";
 
 class Contact extends React.Component {
