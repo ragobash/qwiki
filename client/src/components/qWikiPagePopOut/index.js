@@ -66,7 +66,7 @@ export default function TemporaryDrawer(props) {
         onKeyDown={toggleDrawer(side, false)}
       >
         <List>
-          {props.pages.map(page => {
+          {props.pages.length > 0 && props.pages.map(page => {
             return (
               <ListItem key={page._id}>
                 <a href={"/pages/" + page._id}>{page.title}</a>

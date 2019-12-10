@@ -76,7 +76,7 @@ class QwikiCard extends Component {
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={this.props.classes.avatar}>
-                QW
+                {this.props.qwiki.owner.displayName ? this.props.qwiki.owner.displayName.substring(0, 1).toUpperCase(): "?"}
               </Avatar>
             }
             action={
@@ -85,7 +85,7 @@ class QwikiCard extends Component {
               </IconButton>
             }
             title={this.props.qwiki.title}
-            subheader={this.props.qwiki.created}
+            subheader={this.props.qwiki.lastEdit}
           />
           <CardMedia
             className={this.props.classes.media}
@@ -100,7 +100,7 @@ class QwikiCard extends Component {
             </Typography>
           </CardContent>
           <CardActions>
-            <IconButton aria-label="add to favorites">
+            <IconButton aria-label="add to favorites" onClick={this.follow}>
               <FavoriteIcon style={{ color: blue[500] }} />
             </IconButton>
             <Button

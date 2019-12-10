@@ -21,6 +21,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import TitleIcon from '@material-ui/icons/Title';
+import NotesIcon from '@material-ui/icons/Notes';
 import "../BuilderToolbar/buildertoolbar.css";
 
 const useStyles = makeStyles(theme => ({
@@ -49,18 +52,7 @@ function BuilderToolbar(props) {
         className={`${classes.button} i-am-class`}
       >
         <span onClick={props.onClick} data-sectiontype="HEADING">
-          Heading
-        </span>
-      </Button>
-      <Button
-        onClick={props.onClick}
-        data-sectiontype="IMAGE"
-        variant="outlined"
-        color="primary"
-        className={`${classes.button} i-am-class`}
-      >
-        <span onClick={props.onClick} data-sectiontype="IMAGE">
-          Image
+          <TitleIcon onClick={props.onClick} data-sectiontype="HEADING" />
         </span>
       </Button>
       <Button
@@ -71,7 +63,18 @@ function BuilderToolbar(props) {
         className={`${classes.button} i-am-class`}
       >
         <span onClick={props.onClick} data-sectiontype="PARAGRAPH">
-          Paragraph
+          <NotesIcon onClick={props.onClick} data-sectiontype="PARAGRAPH" />
+        </span>
+      </Button>
+      <Button
+        onClick={props.onClick}
+        data-sectiontype="IMAGE"
+        variant="outlined"
+        color="primary"
+        className={`${classes.button} i-am-class`}
+      >
+        <span onClick={props.onClick} data-sectiontype="IMAGE">
+          <AddPhotoAlternateIcon onClick={props.onClick} data-sectiontype="IMAGE" />
         </span>
       </Button>
     </div>

@@ -43,7 +43,7 @@ export default {
 
   // TODO
   getOwnedQwikis: uuid => {
-    return axios.get("/api/owned", { uuid });
+    return axios.get("/api/owned/" + uuid);
   },
 
   // TODO

@@ -42,7 +42,8 @@ if (process.env.NODE_ENV === "production") {
 // Connect to mongo DB
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 // Import API routes
