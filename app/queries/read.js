@@ -23,26 +23,26 @@ const db = require("../models/index");
 module.exports = {
   // Queries the Qwiki collection for all Qwiki documents
   allQwikis: () => {
-    return db.Qwikis.find({});
+    return db.Qwikis.find({}).populate("owner");
   },
 
   // Queries the Qwiki collection for a specific Qwiki documents
-  // Also populates subpages
+  // Also populates subpages and owner
   getQwiki: _id => {
-    return db.Qwikis.findById(_id).populate("pages");
+    return db.Qwikis.findById(_id).populate("pages").populate("owner");
   },
 
   // TODO
   searchQwikis: term => {
     return db.Qwikis.find({ 
-      "title": { "$regex": term, "$options": "i" },
-      "blurb": { "$regex": term, "$options": "i" }
-     });
+      "title": { $regex: term, $options: "i" },
+      "blurb": { $regex: term, $options: "i" }
+     }).populate("owner");
   },
 
   // TODO
   getOwnedQwikis: uuid => {
-    return db.Qwikis.find({ owner: uuid });
+    return db.Qwikis.find({ "owner": uuid }).populate("owner");
   },
 
   // Queries the Pages collection for any Page documents with the specified term in the title
@@ -54,7 +54,7 @@ module.exports = {
 
   // Queries the Pages collection for a specific Page document
   getPage: _id => {
-    return db.Pages.findById(_id);
+    return db.Pages.findById(_id).populate("lastEditor");
   },
 
   // Queries the Users collection for any User documents with the specified term in the displayName
@@ -65,7 +65,7 @@ module.exports = {
         displayName: new RegExp("^" + term + "$", "i")
       },
       "-password"
-    ).populate("Qwikis");
+    ).populate("followed");
   },
 
   // Queries the Users collection for any User documents with the specified term in the email
@@ -78,6 +78,6 @@ module.exports = {
   // Queries the Users collection for a specific User document
   // Also populates followed qwikis
   getUser: _id => {
-    return db.Users.findById(_id, "-password").populate("Qwikis");
+    return db.Users.findById(_id, "-password").populate("followed").populate({ path: "followed", populate: { path: "owner" }});
   }
 };

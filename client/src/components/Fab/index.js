@@ -22,11 +22,11 @@ import React from "react";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
-function Fab(props) {
+function CreateFab(props) {
     return (
         <div id="qwikifab">
           <Fab
-            color="#3498db"
+            color="default"
             aria-label="add"
             href={props.href}
           >
@@ -36,4 +36,4 @@ function Fab(props) {
     );
 }
 
-export default Fab;
+export default CreateFab;

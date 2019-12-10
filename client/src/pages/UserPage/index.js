@@ -72,82 +72,46 @@ class UserPage extends Component {
       });
   }
 
+  renderSection = (title, collection) => {
+    return (
+      <div>
+        <Typography
+          variant="h3"
+          align="center"
+          style={{ color: "white", marginTop: "25px", marginBottom: "25px" }}
+        >
+          <u>{title}</u>
+        </Typography>
+
+        <div className="card-wrapper">
+          {collection.length === 0 ? (
+            <span className="message">Nothing Here</span>
+          ) : (
+            collection.map(qwiki => {
+              return (
+                <QwikiCard
+                  key={qwiki._id}
+                  qwiki={qwiki}
+                  uuid={this.props.uuid}
+                />
+              );
+            })
+          )}
+        </div>
+      </div>
+    );
+  };
+
   render() {
     return (
       <div id="userPageWrapper">
         <div id="fab">
           <Fab href={"/qwikis/builder/"} />
         </div>
-        <div id="owned">
-          <Typography
-            id="owned"
-            variant="h3"
-            align="center"
-            style={{ color: "white", marginTop: "25px", marginBottom: "25px" }}
-          >
-            <u>Owned:</u>
-          </Typography>
-          <div className="card-wrapper">
-            {this.state.owned.length === 0 ? (
-              <span className="message">Nothing to display</span>
-            ) : (
-              this.state.owned.map(qwiki => {
-                return (
-                  <QwikiCard
-                    key={qwiki._id}
-                    qwiki={qwiki}
-                    uuid={this.props.uuid}
-                  />
-                );
-              })
-            )}
-          </div>
-          <Typography
-            id="followed"
-            variant="h3"
-            align="center"
-            style={{ color: "white", marginTop: "25px", marginBottom: "25px" }}
-          >
-            <u>Followed:</u>
-          </Typography>
-          <div className="card-wrapper">
-            {this.state.followed.length === 0 ? (
-              <span className="message">Nothing to display</span>
-            ) : (
-              this.state.followed.map(qwiki => {
-                return (
-                  <QwikiCard
-                    key={qwiki._id}
-                    qwiki={qwiki}
-                    uuid={this.props.uuid}
-                  />
-                );
-              })
-            )}
-          </div>
-          <Typography
-            id="recommended"
-            variant="h3"
-            align="center"
-            style={{ color: "white", marginTop: "25px", marginBottom: "25px" }}
-          >
-            <u>Recommended:</u>
-          </Typography>
-          <div className="card-wrapper">
-            {this.state.recommended.length === 0 ? (
-              <span className="message">Nothing to display</span>
-            ) : (
-              this.state.recommended.map(qwiki => {
-                return (
-                  <QwikiCard
-                    key={qwiki._id}
-                    qwiki={qwiki}
-                    uuid={this.props.uuid}
-                  />
-                );
-              })
-            )}
-          </div>
+        <div>
+          {this.renderSection("Owned:", this.state.owned)}
+          {this.renderSection("Followed:", this.state.followed)}
+          {this.renderSection("Recommended:", this.state.recommended)}
         </div>
       </div>
     );

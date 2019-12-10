@@ -165,9 +165,9 @@ module.exports = app => {
   });
 
   // TODO
-  app.get("/api/owned", (req, res) => {
+  app.get("/api/owned/:uuid", (req, res) => {
     queries.read
-      .getOwnedQwikis(req.body.uuid)
+      .getOwnedQwikis(req.params.uuid)
       .then(owned => {
         res.json({
           error: false,
