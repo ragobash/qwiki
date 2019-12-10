@@ -65,7 +65,7 @@ export default function TemporaryDrawer(props) {
         onClick={toggleDrawer(side, false)}
         onKeyDown={toggleDrawer(side, false)}
       >
-        <List>
+        {/* <List>
           {props.pages.map(page => {
             return (
               <ListItem key={page._id}>
@@ -73,7 +73,7 @@ export default function TemporaryDrawer(props) {
               </ListItem>
             );
           })}
-        </List>
+        </List> */}
       </div>
     );
   };

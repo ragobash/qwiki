@@ -23,6 +23,9 @@ import API from "../../util/API";
 import Heading from "../../components/Heading/index.js";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
+import SimpleExpansionPanel from "../../components/qWikiPagePopOut";
+import "./QwikiPage.css";
+
 
 class QwikiPage extends React.Component {
 
@@ -55,7 +58,11 @@ class QwikiPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="PageWrapper">
+                <div id="SideTools">
+                    <SimpleExpansionPanel pages={this.state.pages} /> 
+                </div>
+                <div id="PageInfo">
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
                 {
@@ -71,6 +78,7 @@ class QwikiPage extends React.Component {
                         }
                     })
                 }
+                </div>
             </div>
         )
     }

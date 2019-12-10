@@ -1,0 +1,14 @@
+#PageWrapper {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
+
+#SideTools {
+    width: 10%;
+    justify-content: left;
+}
+
+#PageInfo {
+    flex-direction: column;
+}
