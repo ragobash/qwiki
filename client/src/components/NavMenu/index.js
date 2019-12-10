@@ -19,7 +19,7 @@
  */
 
 import React, { Component } from "react";
-import MenuIcon from "@material-ui/icons/Menu";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LoginModal from "../LoginModal/index";
 import SignupModal from "../SignupModal/index";
 import { Button, Menu, MenuItem } from "@material-ui/core";
@@ -80,7 +80,7 @@ class NavMenu extends Component {
           aria-haspopup="true"
           onClick={this.handleOpen}
         >
-          <MenuIcon />
+          <AccountCircleIcon style={{color: "#3498db", fontSize: 45}} />
         </Button>
         <Menu
           id="simple-menu"
