@@ -6,7 +6,7 @@ function PageNav(props) {
         <Box>
             <Paper className={classes.paper}>
                 <MenuList>
-                    {props.links.map(link => {
+                    {props.links.length > 0 && props.links.map(link => {
                         return <MenuItem>{link}</MenuItem>
                     })}
                 </MenuList>
