@@ -1,4 +1,5 @@
-.hub-container {
+#HubWrapper {
+    width: 100%;
     display: flex;
     margin: auto;
     justify-content: left;

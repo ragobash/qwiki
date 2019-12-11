@@ -19,10 +19,12 @@
  */
 
 import React from "react";
+import { HashLink as Link } from 'react-router-hash-link';
 import API from "../../util/API";
 import Heading from "../../components/Heading/index.js";
 import Paragraph from "../../components/Paragraph";
 import Image from "../../components/Image";
+import PageNav from "../../components/PageNav";
 
 class QwikiPage extends React.Component {
 
@@ -33,7 +35,8 @@ class QwikiPage extends React.Component {
             _id: "",
             title: "",
             blurb: "",
-            sections: []
+            sections: [],
+            nav: []
         }
     }
 
@@ -48,28 +51,47 @@ class QwikiPage extends React.Component {
                     title: res.data.page.title,
                     blurb: res.data.page.blurb,
                     sections: res.data.page.sections
-                });
+                }, this.generateNav);
             })
             .catch(err => console.log(err));
     }
+
+    normalizeLink = str => {
+        return ("" + str).toLowerCase().trim().replace(" ", "_");
+    };
+
+    generateNav = () => {
+        let nav = this.state.sections.map(section => {
+            return section.sectionType === "HEADING" ? section.content: false
+        });
+
+        this.setState({
+            nav
+        });
+    };
+
+    renderNav = title => {
+        return (<Link to={() => this.normalizeLink(title)}>{title}</Link>);
+    };
+
+    renderSection = section => {
+        switch(section.sectionType) {
+            case "HEADING":
+                return <Heading content={section.content} id={() => this.normalizeLink(section.content)} />
+            case "IMAGE":
+                return <Image content={section.content} />
+            default:
+                return <Paragraph content={section.content} />
+        }
+    };
 
     render() {
         return (
             <div>
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
-                {
-                    this.state.sections.length > 0 && this.state.sections.map(section => {
-                        switch(section.sectionType) {
-                            case "HEADING":
-                                return <Heading content={section.content} />
-                            case "IMAGE":
-                                return <Image content={section.content} />
-                            default:
-                                return <Paragraph content={section.content} />
-                        }
-                    })
-                }
+                <PageNav links={this.state.nav.length > 0 && this.state.nav.map(this.renderNav)} />
+                {this.state.sections.length > 0 && this.state.sections.map(this.renderSection)}
             </div>
         )
     }

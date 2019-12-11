@@ -20,7 +20,7 @@
 
 import React from "react";
 import { Redirect } from "react-router-dom";
-import "../PageBuilder/pagebuilder.css";
+import "./pagebuilder.css";
 import BuilderToolbar from "../../components/BuilderToolbar";
 import API from "../../util/API";
 import { Box, TextField, Divider, Button } from "@material-ui/core";
@@ -119,17 +119,17 @@ class PageBuilder extends React.Component {
   };
 
   sectionInput = event => {
-    const index = event.target.getAttribute("data-index");
+    const index = event.target.parentNode.parentNode.getAttribute("data-index");
     const content = event.target.value;
 
     let sections = [...this.state.sections];
 
-    const sectionType = sections[index].sectionType;
-
     sections[index] = {
-      sectionType,
+      sectionType: sections[index].sectionType,
       content
     };
+
+    console.log(sections);
 
     this.setState({
       sections
@@ -138,6 +138,8 @@ class PageBuilder extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    console.log(this.state.sections);
 
     API.newPage(this.state)
       .then(res => {

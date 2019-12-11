@@ -29,12 +29,12 @@ module.exports = app => {
   app.post("/api/qwikis/new", (req, res) => {
     let { title, blurb, img, public, owner, permissions, mods } = req.body;
 
-    title = "" + title;
-    blurb = "" + blurb;
-    img = "" + img;
-    public = "" + public;
-    permissions = "" + permissions;
-    owner = "" + owner;
+    title = ("" + title).trim();
+    blurb = ("" + blurb).trim();
+    img = ("" + img).trim();
+    public = ("" + public).trim();
+    permissions = ("" + permissions).trim();
+    owner = ("" + owner).trim();
 
     if (validator.isEmpty(title)) {
       return res.status(400).json({
@@ -84,10 +84,10 @@ module.exports = app => {
   app.post("/api/pages/new", (req, res) => {
     let { title, blurb, editor, sections, qwikiID } = req.body;
 
-    title = "" + title;
-    blurb = "" + blurb;
-    editor = "" + editor;
-    qwikiID = "" + qwikiID;
+    title = ("" + title).trim();
+    blurb = ("" + blurb).trim();
+    editor = ("" + editor).trim();
+    qwikiID = ("" + qwikiID).trim();
 
     if (validator.isEmpty(title)) {
       return res.status(400).json({
@@ -99,8 +99,8 @@ module.exports = app => {
     sections = sections.map(section => {
       let { sectionType, content } = section;
 
-      sectionType = "" + sectionType;
-      content = "" + content;
+      sectionType = ("" + sectionType).trim();
+      content = ("" + content).trim();
 
       if (validator.isEmpty(sectionType)) {
         return {};
@@ -153,9 +153,9 @@ module.exports = app => {
 
     let { email, displayName, password } = req.body;
 
-    email = ("" + email).toLowerCase();
-    displayName = "" + displayName;
-    password = "" + password;
+    email = ("" + email).toLowerCase().trim();
+    displayName = ("" + displayName).trim();
+    password = ("" + password).trim();
 
     // console.log(email, displayName, password);
 
@@ -225,10 +225,10 @@ module.exports = app => {
     let id = req.params.id;
     let { title, blurb, img } = req.body;
 
-    id = "" + id;
-    title = "" + title;
-    blurb = "" + blurb;
-    img = "" + img;
+    id = ("" + id).trim();
+    title = ("" + title).trim();
+    blurb = ("" + blurb).trim();
+    img = ("" + img).trim();
 
     if (validator.isEmpty(id) || !validator.isMongoId(id)) {
       return res.status(400).json({
@@ -275,10 +275,10 @@ module.exports = app => {
     let id = req.params.id;
     let { title, blurb, sections, editor } = req.body;
 
-    id = "" + id;
-    title = "" + title;
-    blurb = "" + blurb;
-    editor = "" + editor;
+    id = ("" + id).trim();
+    title = ("" + title).trim();
+    blurb = ("" + blurb).trim();
+    editor = ("" + editor).trim();
 
     if (validator.isEmpty(id) || !validator.isMongoId(id)) {
       return res.status(400).json({
@@ -295,8 +295,8 @@ module.exports = app => {
     sections = sections.map(section => {
       let { sectionType, content } = section;
 
-      sectionType = "" + sectionType;
-      content = "" + content;
+      sectionType = ("" + sectionType).trim();
+      content = ("" + content).trim();
 
       if (validator.isEmpty(sectionType)) {
         return {};
@@ -337,9 +337,10 @@ module.exports = app => {
     let id = req.params.id;
     let { email, displayName, password } = req.body;
 
-    email = ("" + email).toLowerCase();
-    displayName = "" + displayName;
-    password = "" + password;
+    id = ("" + id).trim();
+    email = ("" + email).toLowerCase().trim();
+    displayName = ("" + displayName).trim();
+    password = ("" + password).trim();
 
     if (!validator.isEmail(email) || validator.isEmpty(email)) {
       return res.status(400).json({
@@ -393,8 +394,8 @@ module.exports = app => {
   app.post("/api/login", (req, res) => {
     let { email, password } = req.body;
 
-    email = ("" + email).toLowerCase();
-    password = "" + password;
+    email = ("" + email).toLowerCase().trim();
+    password = ("" + password).trim();
 
     if (!validator.isEmail(email) || validator.isEmpty(email)) {
       return res.status(400).json({
@@ -447,6 +448,9 @@ module.exports = app => {
   // TODO
   app.post("/api/follow", (req, res) => {
     let { uuid, qwikiID } = req.body;
+
+    uuid = ("" + uuid).trim();
+    qwikiID = ("" + qwikiID).trim();
 
     queries.update
       .followQwiki(uuid, qwikiID)
