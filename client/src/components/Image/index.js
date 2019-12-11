@@ -24,12 +24,12 @@ import "./Image.css";
 
 function Image(props) {
   return (
-      <div id="HubImage">
-       <Container>
-          <img src={props.content} alt="qWiki" style={{ maxWidth: "400px", maxHeight: "400px" }}></img>
-        </Container>
-      </div>
+    <div id="HubImage">
+      <Container>
+        <img src={props.content} alt="qWiki" className="hub-img"></img>
+      </Container>
+    </div>
   );
 }
 
-export default (Image);
+export default Image;
