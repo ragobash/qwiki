@@ -90,7 +90,7 @@ class QwikiPage extends React.Component {
             <div>
                 <Heading content={this.state.title} />
                 <Paragraph content={this.state.blurb} />
-                <PageNav links={this.state.nav.length > 0 && this.state.nav.map(this.renderNav)} />
+                {/* <PageNav links={this.state.nav.length > 0 && this.state.nav.map(this.renderNav)} /> */}
                 {this.state.sections.length > 0 && this.state.sections.map(this.renderSection)}
             </div>
         )
