@@ -3,6 +3,7 @@
     margin: auto;
     justify-content: left;
     flex-wrap: wrap;
+    letter-spacing: 1.5px;
 }
 
 .hub-title {
@@ -10,6 +11,10 @@
     justify-content: center;
     padding-left: 40px;
     margin-left: 40px;
+    position: absolute;
+    top: 15%;
+    left: 45%;
+    transform: translate(-50%, -50%);
 }
 
 .btn2 {
@@ -26,11 +31,11 @@
     width: 75%;
     padding-left: 60px;
     margin-left: 60px;
+    text-align: justify;
+    line-height: 30px;
 }
 
 .hub-pic {
-    display: flex;
-    justify-content: right;
     padding-left: 60px;
     margin-left: 60px;
     padding-right: 0;

@@ -2,4 +2,9 @@
     max-width: 500px;
     max-height: 500px;
     margin: -8px;
+    border-radius: 5px;
+}
+
+.hub-img {
+    border-radius: 5px;
 }
